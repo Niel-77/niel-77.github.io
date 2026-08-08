@@ -11,54 +11,30 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* **Ph.D. in Mechanical Engineering**
+  * Texas A&M University, USA *(Ongoing)*
+* **Bachelor's Degree in Engineering**
+  * Institute of Engineering (IOE), Pulchowk Campus, Tribhuvan University, Nepal
 
-Work experience
+Work & Research Experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* **Graduate Research Assistant**
+  * Texas A&M University
+  * Focus: Design Innovation, Multi-Agent AI Systems, CAD Automation
+* **Researcher / Engineer**
+  * Accelerated Komputing
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **Programming & AI/ML**: Python, PyTorch, Deep Learning, Graph Neural Networks (GNNs), LLM Multi-Agent Systems
+* **CAD, CAE & Simulation**: SolidWorks, Parametric CAD, Finite Element Method (FEM), Structural Simulation
+* **Robotics & Automation**: ROS2, SLAM, Nav2, Autonomous Mobile Robots (AMRs)
 
 Publications
 ======
-  <ul>{% for post in site.publications reversed %}
+{% assign sorted_publications = site.publications | sort: 'date' | reverse %}
+<ul>
+  {% for post in sorted_publications %}
     {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+  {% endfor %}
+</ul>
