@@ -32,7 +32,8 @@ Skills
 
 Publications
 ======
-{% assign sorted_publications = site.publications | sort: 'date' | reverse %}
+{% assign sorted_by_title = site.publications | sort: 'title' | reverse %}
+{% assign sorted_publications = sorted_by_title | sort: 'date' | reverse %}
 <ul>
   {% for post in sorted_publications %}
     {% include archive-single-cv.html %}
