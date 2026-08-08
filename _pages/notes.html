@@ -1,0 +1,16 @@
+---
+layout: archive
+title: "Notes"
+permalink: /notes/
+author_profile: true
+---
+
+{% include base_path %}
+
+Welcome to my personal notes archive. Here I share reading summaries, literature notes, and course notes.
+
+{% assign sorted_notes = site.notes | sort: 'date' | reverse %}
+
+{% for post in sorted_notes %}
+  {% include archive-single.html %}
+{% endfor %}
