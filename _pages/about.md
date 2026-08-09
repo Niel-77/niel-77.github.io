@@ -20,7 +20,7 @@ latest_posts:
   limit: 3
 ---
 
-Hi, I'm **Nirmal Prasad Panta**! 
+Hi, I'm **Nirmal Prasad Panta**!
 
 I am a PhD student in Mechanical Engineering at **Texas A&M University**, working at the intersection of **Design Innovation**, **Computational Design Synthesis**, and **Artificial Intelligence**.
 
@@ -39,6 +39,7 @@ My research explores how AI and computational intelligence can expand human crea
 ## 📚 Writing & Resources
 
 I use this website as a personal space to document my research journey, thoughts, and ideas:
+
 - **[Publications](/publications/)**: Conference papers, journal articles, and preprints.
 - **[Blogs](/blog/)**: Articles, reflections, and thoughts on AI and engineering design.
 - **[CV](/cv/)**: Comprehensive overview of my academic background and skills.

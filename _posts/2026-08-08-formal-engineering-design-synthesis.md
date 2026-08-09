@@ -14,7 +14,7 @@ tags:
 
 ## 📑 Subnotes & Reading Summaries
 
-- **[Vitruvius Redux](/blog/2026/vitruvius-redux/)**: Key takeaways, formalisms, and frameworks from *Vitruvius Redux: Formal engineering design synthesis*.
+- **[Vitruvius Redux](/blog/2026/vitruvius-redux/)**: Key takeaways, formalisms, and frameworks from _Vitruvius Redux: Formal engineering design synthesis_.
 
 ---
 
