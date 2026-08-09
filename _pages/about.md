@@ -1,10 +1,23 @@
 ---
+layout: about
+title: About
 permalink: /
-title: "About Me"
-author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
+subtitle: <a href='#'>Texas A&M University</a>. PhD Student in Mechanical Engineering.
+
+profile:
+  align: right
+  image: prof_pic.jpg
+  image_circular: false
+  # more_info: >
+  #   <p>nil.panta77@tamu.edu</p>
+
+selected_papers: true
+social: true
+
+latest_posts:
+  enabled: true
+  scrollable: true
+  limit: 3
 ---
 
 Hi, I'm **Nirmal Prasad Panta**! 
@@ -27,7 +40,12 @@ My research explores how AI and computational intelligence can expand human crea
 
 I use this website as a personal space to document my research journey, thoughts, and ideas:
 - **[Publications](/publications/)**: Conference papers, journal articles, and preprints.
-- **[Blogs](/blogs/)**: Articles, reflections, and thoughts on AI and engineering design.
-- **[Notes](/notes/)**: Coursework notes, paper summaries, and literature notes.
-- **[Portfolio](/portfolio/)**: Highlights of projects and computational design systems.
+- **[Blogs](/blog/)**: Articles, reflections, and thoughts on AI and engineering design.
 - **[CV](/cv/)**: Comprehensive overview of my academic background and skills.
+
+<style>
+  h2 > a[href="/blog/"],
+  h2 > a[href="/publications/"] {
+    text-transform: capitalize;
+  }
+</style>
