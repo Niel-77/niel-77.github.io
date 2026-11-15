@@ -61,15 +61,15 @@ and integration-test fixups, so this is a real gate.
 
 ## Authoring content
 
-| Content            | Where                    | Notes                                                                                 |
-| ------------------ | ------------------------ | ----------------------------------------------------------------------------------------- |
-| Blog posts / notes | `_posts/YYYY-MM-DD-slug.md` | `layout: post`; permalink is `/blog/:year/:title/`. Front matter `tags:` drives the tag archive. Course-note series share a tag (e.g. `Theory of Elasticity`). |
-| Book notes         | `_books/*.md`            | `books` collection (`output: true`), surfaced on `_pages/books.md`.                        |
-| Pages / nav        | `_pages/*.md`            | `about.md` is the landing page. Nav order/visibility is front matter on each page.        |
-| CV                 | `_data/cv.yml` (+ `_pages/cv.md`) | RenderCV YAML; also feeds the `al_folio_cv` layout.                              |
-| Publications       | `_bibliography/*.bib`    | `jekyll-scholar`; rendered by `_pages/publications.md`. Citation counts in `_data/citations.yml`. |
-| News / projects / teaching | `_news/`, `_projects/`, `_teachings/` | Each is a collection with `output: true`.                                |
-| Post images        | `assets/img/<topic>/`    | Reference via `{% include figure.liquid %}` (al-folio tag). ImageMagick generates responsive variants at build. |
+| Content                    | Where                                 | Notes                                                                                                                                                          |
+| -------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Blog posts / notes         | `_posts/YYYY-MM-DD-slug.md`           | `layout: post`; permalink is `/blog/:year/:title/`. Front matter `tags:` drives the tag archive. Course-note series share a tag (e.g. `Theory of Elasticity`). |
+| Book notes                 | `_books/*.md`                         | `books` collection (`output: true`), surfaced on `_pages/books.md`.                                                                                            |
+| Pages / nav                | `_pages/*.md`                         | `about.md` is the landing page. Nav order/visibility is front matter on each page.                                                                             |
+| CV                         | `_data/cv.yml` (+ `_pages/cv.md`)     | RenderCV YAML; also feeds the `al_folio_cv` layout.                                                                                                            |
+| Publications               | `_bibliography/*.bib`                 | `jekyll-scholar`; rendered by `_pages/publications.md`. Citation counts in `_data/citations.yml`.                                                              |
+| News / projects / teaching | `_news/`, `_projects/`, `_teachings/` | Each is a collection with `output: true`.                                                                                                                      |
+| Post images                | `assets/img/<topic>/`                 | Reference via `{% include figure.liquid %}` (al-folio tag). ImageMagick generates responsive variants at build.                                                |
 
 Math in posts uses `$…$` / `$$…$$` (MathJax via `al_math`; `enable_math` is on). Diagrams via
 `al_charts` (mermaid, chart.js, plotly, vega) with per-page front matter opt-in
