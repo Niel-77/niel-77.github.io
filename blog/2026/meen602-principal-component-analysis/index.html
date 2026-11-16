@@ -1,0 +1,751 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA) | Nirmal Prasad Panta </title> <meta name="author" content="Nirmal Prasad Panta"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://nirmalprasadpanta.com.np/blog/2026/meen602-principal-component-analysis/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Nirmal Prasad Panta </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA)</h1> <p class="post-meta"> Created on November 15, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/modeling-and-analysis-of-mechanical-systems"> <i class="fa-solid fa-hashtag fa-sm"></i> Modeling and Analysis of Mechanical Systems</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Many engineering quantities depend on a long list of inputs. <strong>Principal Component Analysis (PCA)</strong> finds the few directions in that input space along which the data actually varies, so we can model with fewer variables. This post builds PCA from variance and covariance, walks through the full procedure on a CNC milling data set, and connects it to the SVD from the <a href="/blog/2026/meen602-matrix-decomposition/">matrix decomposition post</a>.</p> <h3 id="1-motivation-too-many-variables">1. Motivation: too many variables</h3> <p>Two examples of a quantity that depends on many inputs:</p> <ul> <li> <strong>Critical heat flux</strong> in boiling, $\text{CHF}=f(\text{Re},\,T_L,\,T_w,\,\theta,\,q,\dots)$ — Reynolds number, liquid and wall temperatures, orientation, heat input, and more.</li> <li> <strong>Market value of a house</strong>, $=f(\text{area},\,\text{zip code},\,\text{year built},\,\text{bedrooms},\dots)$.</li> </ul> <p>Fitting a curve directly in all these variables tends to <strong>overfit</strong>: with many inputs and limited data, the model fits the noise instead of the trend. This is the <strong>curse of dimensionality</strong> — the amount of data needed to fill the input space grows exponentially with the number of dimensions.</p> <p>Often the inputs are correlated, so the data really lives near a lower-dimensional subspace. Picture a 3-D cloud of points that is flat like a pancake: two directions carry nearly all the spread and the third is almost noise. PCA finds those directions:</p> <ul> <li> <strong>PC1</strong> — the direction of largest variance,</li> <li> <strong>PC2</strong> — the direction of largest remaining variance, orthogonal to PC1,</li> <li>and so on. Here 3 dimensions reduce to 2.</li> </ul> <blockquote> <p><strong>PCA</strong> provides the mathematical tools to identify <strong>orthogonal directions — the eigenvectors of the data covariance matrix — along which the variance of the data is maximized.</strong> $\text{PC}_n$ is the $n^\text{th}$ principal component, the direction with the $n^\text{th}$ highest variance.</p> </blockquote> <h3 id="2-variance">2. Variance</h3> <p>The <strong>variance</strong> is the average squared deviation of the data from their sample mean. For $m$ observations $x_1,\dots,x_m$ with mean $\bar x$,</p> \[\operatorname{Var}(X)=\frac{\sum_{i=1}^{m}(x_i-\bar x)(x_i-\bar x)}{m-1}\ \ge 0 .\] <p>We divide by $m-1$, the <strong>degrees of freedom</strong>, not $m$ (Bessel’s correction). One degree of freedom is used up by estimating $\bar x$ from the same data; dividing by $m$ would underestimate the true variance on average.</p> <h3 id="3-covariance">3. Covariance</h3> <p>For two variables $X$ and $Y$,</p> \[\operatorname{Cov}(X,Y)=\frac{\sum_{i=1}^{m}(x_i-\bar x)(y_i-\bar y)}{m-1}.\] <p><strong>Computational (sum-of-products) form.</strong> Expanding the product and using $\sum x_i=m\bar x$, $\sum y_i=m\bar y$ gives an equivalent formula that needs only running sums of $x$, $y$ and $xy$, with no deviations computed first:</p> \[\operatorname{Cov}(X,Y)=\frac{\sum_{i=1}^{m}x_iy_i-\dfrac{1}{m}\Big(\sum_{i=1}^{m}x_i\Big)\Big(\sum_{i=1}^{m}y_i\Big)}{m-1} =\frac{\sum_{i=1}^{m}x_iy_i-m\,\bar x\,\bar y}{m-1}.\] <p>Setting $Y=X$ gives the matching variance formula, $\operatorname{Var}(X)=\big[\sum x_i^2-\tfrac1m(\sum x_i)^2\big]/(m-1)$.</p> <p><em>Derivation:</em> $\sum(x_i-\bar x)(y_i-\bar y)=\sum x_iy_i-\bar y\sum x_i-\bar x\sum y_i+m\bar x\bar y=\sum x_iy_i-m\bar x\bar y$.</p> <p><em>Check with the CNC data of §7</em> (cutting speed $V$, vibration amplitude $A$, $m=10$): $\sum V=1740$, $\sum A=266.5$, $\sum VA=50355$, so</p> \[\operatorname{Cov}(V,A)=\frac{50355-\tfrac{1740\times266.5}{10}}{9}=\frac{50355-46371}{9}=442.67,\] <p>the same as the deviation form. <em>Caution:</em> on a computer this form subtracts two large, nearly equal numbers, so it can lose precision badly when the mean is large relative to the spread. Use it for hand calculation; numerical libraries use the deviation form (or a one-pass update such as Welford’s algorithm).</p> <p>Unlike the variance, it can take any sign:</p> <table> <thead> <tr> <th>Sign</th> <th>Meaning</th> </tr> </thead> <tbody> <tr> <td>$\operatorname{Cov}&gt;0$</td> <td>The variables move in the same direction: $X\uparrow\Rightarrow Y\uparrow$, $X\downarrow\Rightarrow Y\downarrow$.</td> </tr> <tr> <td>$\operatorname{Cov}&lt;0$</td> <td>Inverse relationship: $X\uparrow\Rightarrow Y\downarrow$.</td> </tr> <tr> <td>$\operatorname{Cov}=0$</td> <td>$X$ and $Y$ are <strong>uncorrelated</strong> (no <em>linear</em> relationship).</td> </tr> </tbody> </table> <p><strong>Uncorrelated is not independent.</strong> With $x=[-1,0,1]$ and $y=x^2=[1,0,1]$, $\operatorname{Cov}(X,Y)=0$, yet $Y$ is completely determined by $X$. Covariance only detects linear trends.</p> <p><strong>The magnitude of covariance is not meaningful on its own.</strong> It does not say whether two data sets are closely or loosely correlated, because it scales with the units. Measuring $X$ in centimetres instead of metres multiplies the covariance by 100 without changing the relationship at all. The fix is to normalize by the standard deviations, which gives the <strong>correlation coefficient</strong></p> \[\rho_{XY}=\frac{\operatorname{Cov}(X,Y)}{\sqrt{\operatorname{Var}(X)\operatorname{Var}(Y)}}\in[-1,1].\] <h3 id="4-the-covariance-matrix">4. The covariance matrix</h3> <p>Stack the $m$ observations of $n$ variables as rows of a data matrix $X\in\mathbb R^{m\times n}$ and subtract each column’s mean to get the centered matrix $X_c$. Then all variances and covariances sit in one $n\times n$ matrix:</p> \[C=\frac{1}{m-1}X_c^TX_c,\qquad C_{jj}=\operatorname{Var}(X_j),\quad C_{jk}=\operatorname{Cov}(X_j,X_k).\] <p>$C$ is symmetric and positive semi-definite (it has the form $U^TU$). From the decomposition post this guarantees real, non-negative eigenvalues and orthogonal eigenvectors:</p> \[C=Q\Lambda Q^T,\qquad \lambda_1\ge\lambda_2\ge\dots\ge\lambda_n\ge0 .\] <ul> <li>The eigenvectors $\vec q_j$ are the <strong>principal directions</strong> (PC1, PC2, …).</li> <li>The eigenvalue $\lambda_j$ is the <strong>variance of the data along</strong> $\vec q_j$.</li> <li>The <strong>explained variance ratio</strong> of the first $k$ components is $\sum_{j\le k}\lambda_j\big/\sum_j\lambda_j$ — the same idea as the energy fraction in SVD truncation.</li> <li>The <strong>scores</strong> (the data in the new coordinates) are $Z=X_cQ$. Keeping the first $k$ columns gives the reduced data.</li> </ul> <p>Why the top eigenvector maximizes variance: the variance of the data projected on a unit vector $\vec w$ is $\vec w^TC\vec w$, and the maximum of this quadratic form over $\lVert\vec w\rVert=1$ is $\lambda_1$, reached at $\vec w=\vec q_1$.</p> <h3 id="5-pca-through-svd">5. PCA through SVD</h3> <p>Take the SVD of the centered data instead, $X_c=U\Sigma V^T$. Then</p> \[C=\frac{1}{m-1}X_c^TX_c=\frac{1}{m-1}V\Sigma^2V^T \quad\Longrightarrow\quad Q=V,\qquad \lambda_j=\frac{\sigma_j^2}{m-1},\qquad Z=X_cV=U\Sigma .\] <p>So PCA is the SVD of the centered data. In practice this is the preferred route: it never forms $X_c^TX_c$, which would square the condition number. Keeping $k$ components is exactly the rank-$k$ truncation of the previous post, and the explained variance ratio is the energy fraction $\sum_{i\le k}\sigma_i^2/\sum\sigma_i^2$.</p> <h3 id="6-worked-example">6. Worked example</h3> <p>Four observations of two variables:</p> \[x=[2,\,4,\,6,\,8],\qquad y=[1,\,3,\,2,\,5],\qquad \bar x=5,\quad \bar y=2.75 .\] <p>Deviations: $x-\bar x=[-3,-1,1,3]$, $y-\bar y=[-1.75,\,0.25,\,-0.75,\,2.25]$, with $m-1=3$.</p> \[\operatorname{Var}(X)=\frac{9+1+1+9}{3}=6.667,\qquad \operatorname{Var}(Y)=\frac{3.0625+0.0625+0.5625+5.0625}{3}=2.917,\] \[\operatorname{Cov}(X,Y)=\frac{5.25-0.25-0.75+6.75}{3}=3.667,\qquad \rho=\frac{3.667}{\sqrt{6.667\times2.917}}=0.83 .\] \[C=\begin{bmatrix}6.667&amp;3.667\\3.667&amp;2.917\end{bmatrix},\qquad \det(C-\lambda I)=\lambda^2-9.583\lambda+6=0 \;\Rightarrow\;\lambda_1=8.910,\ \lambda_2=0.673 .\] \[\vec q_1=\begin{bmatrix}0.853\\0.522\end{bmatrix},\qquad \vec q_2=\begin{bmatrix}-0.522\\0.853\end{bmatrix},\qquad \frac{\lambda_1}{\lambda_1+\lambda_2}=93.0\%.\] <p>PC1 alone explains 93 % of the variance, so each 2-D point can be replaced by a single score $z_1=\vec q_1\cdot(\vec x_i-\bar{\vec x})$:</p> \[z_1=[\,3.47,\ 0.72,\ -0.46,\ -3.73\,]\quad(\text{up to an overall sign}).\] <p>Check by SVD: the singular values of $X_c$ satisfy $\sigma_j^2/3=8.910,\ 0.673$ — the same eigenvalues.</p> <p><strong>Scaling changes the answer.</strong> If $x$ is recorded in centimetres ($100x$), $\operatorname{Cov}$ becomes $366.7$ while $\rho$ stays $0.83$, and PC1 swings to point almost entirely along $x$ simply because its numbers are bigger. When variables have different units (temperatures, Reynolds numbers, areas), <strong>standardize each column</strong> (subtract the mean, divide by the standard deviation) first. This is PCA on the correlation matrix.</p> <h3 id="7-pca-step-by-step-cnc-milling-example">7. PCA step by step: CNC milling example</h3> <p><strong>Objectives of PCA.</strong> (1) Identify the directions (vectors) along which the data has the highest variation. (2) Compress the data for efficient storage and processing without losing its essential features.</p> <p><strong>Data.</strong> Ten CNC milling runs, each recording $n=3$ features:</p> <table> <thead> <tr> <th>Obs.</th> <th>$x_1$: cutting speed $V$ (m/min)</th> <th>$x_2$: feed rate $f$ (mm/rev)</th> <th>$x_3$: vibration amplitude $A$ (µm)</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>120</td> <td>0.05</td> <td>12.4</td> </tr> <tr> <td>2</td> <td>120</td> <td>0.08</td> <td>14.1</td> </tr> <tr> <td>3</td> <td>150</td> <td>0.05</td> <td>15.9</td> </tr> <tr> <td>4</td> <td>150</td> <td>0.08</td> <td>18.2</td> </tr> <tr> <td>5</td> <td>180</td> <td>0.05</td> <td>22.1</td> </tr> <tr> <td>6</td> <td>180</td> <td>0.08</td> <td>25.4</td> </tr> <tr> <td>7</td> <td>200</td> <td>0.10</td> <td>31.7</td> </tr> <tr> <td>8</td> <td>200</td> <td>0.12</td> <td>35.2</td> </tr> <tr> <td>9</td> <td>220</td> <td>0.10</td> <td>42.6</td> </tr> <tr> <td>10</td> <td>220</td> <td>0.12</td> <td>48.9</td> </tr> <tr> <td>Mean</td> <td>174</td> <td>0.083</td> <td>26.65</td> </tr> <tr> <td>Sample var</td> <td>1404.44</td> <td>$7.34\times10^{-4}$</td> <td>157.54</td> </tr> </tbody> </table> <p>Sample covariances: $\operatorname{Cov}(V,f)=0.72$, $\operatorname{Cov}(f,A)=0.282$, $\operatorname{Cov}(V,A)=442.67$.</p> <h4 id="step-1--organize-the-data-matrix">Step 1 — Organize the data matrix</h4> <p>Put the observations in the rows and the features in the columns: $X\in\mathbb R^{m\times n}$, here $m=10$ observations and $n=3$ features, so $X$ is $10\times3$.</p> <h4 id="step-2--check-the-orders-of-magnitude-standardize-if-needed">Step 2 — Check the orders of magnitude; standardize if needed</h4> <p>The variances differ by six orders of magnitude ($1404$ vs. $7\times10^{-4}$). Unscaled, the covariance matrix would be dominated by cutting speed simply because its numbers are large: PCA on the raw data puts 99 % of the variance on a PC1 that is essentially $V$ alone, which says nothing about the physics. So convert each column to <strong>z-scores</strong>:</p> \[z_{ij}=\frac{x_{ij}-\bar x_j}{s_j},\qquad s_j=\sqrt{\frac{\sum_{i=1}^{m}(x_{ij}-\bar x_j)^2}{m-1}},\] <p>with $s_V=37.48$, $s_f=0.0271$, $s_A=12.55$. Every column of $Z\in\mathbb R^{m\times n}$ now has mean 0 and variance 1:</p> \[Z=\begin{bmatrix} -1.441&amp;-1.218&amp;-1.135\\ -1.441&amp;-0.111&amp;-1.000\\ -0.640&amp;-1.218&amp;-0.857\\ -0.640&amp;-0.111&amp;-0.673\\ \phantom{-}0.160&amp;-1.218&amp;-0.363\\ \phantom{-}0.160&amp;-0.111&amp;-0.100\\ \phantom{-}0.694&amp;\phantom{-}0.627&amp;\phantom{-}0.402\\ \phantom{-}0.694&amp;\phantom{-}1.365&amp;\phantom{-}0.681\\ \phantom{-}1.228&amp;\phantom{-}0.627&amp;\phantom{-}1.271\\ \phantom{-}1.228&amp;\phantom{-}1.365&amp;\phantom{-}1.773 \end{bmatrix}.\] <p>Check one entry: $z_{11}=(120-174)/37.48=-1.441$.</p> <h4 id="step-3--construct-the-covariance-matrix">Step 3 — Construct the covariance matrix</h4> \[C=\frac{1}{m-1}Z^TZ= \begin{bmatrix} \operatorname{Var}(z_1)&amp;\operatorname{Cov}(z_1,z_2)&amp;\operatorname{Cov}(z_1,z_3)\\ \operatorname{Cov}(z_2,z_1)&amp;\operatorname{Var}(z_2)&amp;\operatorname{Cov}(z_2,z_3)\\ \operatorname{Cov}(z_3,z_1)&amp;\operatorname{Cov}(z_3,z_2)&amp;\operatorname{Var}(z_3) \end{bmatrix} =\begin{bmatrix}1&amp;0.709&amp;0.941\\0.709&amp;1&amp;0.829\\0.941&amp;0.829&amp;1\end{bmatrix}.\] <p>Because $Z$ is standardized, the diagonal is all ones and the off-diagonal entries are the <strong>correlation coefficients</strong> of the original variables, e.g. $\rho_{VA}=442.67/(37.48\times12.55)=0.941$. $C$ is used because:</p> <ol> <li>It quantifies the linear relationships and dependencies among the features.</li> <li>It is square and symmetric, $\operatorname{Cov}(x_i,x_j)=\operatorname{Cov}(x_j,x_i)$, so its EVD exists with real eigenvalues and orthogonal eigenvectors. The eigenvectors are the principal components, the directions along which the variance is maximum.</li> </ol> <p>Here every off-diagonal entry is positive, so all three variables are positively correlated: faster speeds and higher feeds go with larger vibration. (Nonzero entries alone only say the variables are correlated; it is the positive <em>sign</em> that says they move in the same direction.)</p> <h4 id="step-4--eigenvalue-decomposition-eigenvalues-and-loading-matrix">Step 4 — Eigenvalue decomposition: eigenvalues and loading matrix</h4> <p>Solve $\det(C-\lambda I)=\lambda^3-3\lambda^2+0.924\lambda-0.031=0$, and sort the eigenvalues in decreasing order:</p> \[\lambda_1=2.656,\qquad \lambda_2=0.306,\qquad \lambda_3=0.038,\qquad \sum\lambda_j=3=\operatorname{tr}(C)=n .\] <p>The sum equals $n$ because each standardized variable contributes variance 1. Place the unit eigenvectors as columns, left to right in the same order, to get the <strong>loading matrix</strong> (also called the weight or rotation matrix) $W\in\mathbb R^{n\times n}$:</p> \[W=\begin{bmatrix}\vec w_1&amp;\vec w_2&amp;\vec w_3\end{bmatrix} =\begin{bmatrix} 0.578&amp;\phantom{-}0.571&amp;\phantom{-}0.583\\ 0.549&amp;-0.800&amp;\phantom{-}0.240\\ 0.603&amp;\phantom{-}0.182&amp;-0.777 \end{bmatrix}, \qquad \vec w_1\leftrightarrow\lambda_1,\ \vec w_2\leftrightarrow\lambda_2,\ \vec w_3\leftrightarrow\lambda_3 .\] <table> <thead> <tr> <th>PC</th> <th>$\lambda_j$</th> <th>Explained</th> <th>Cumulative</th> <th>Reading the loadings</th> </tr> </thead> <tbody> <tr> <td>PC1</td> <td>2.656</td> <td>88.5 %</td> <td>88.5 %</td> <td>All three weights $\approx0.58$: overall “cutting severity”.</td> </tr> <tr> <td>PC2</td> <td>0.306</td> <td>10.2 %</td> <td>98.7 %</td> <td>Feed ($-0.80$) against speed ($+0.57$): the feed–speed trade.</td> </tr> <tr> <td>PC3</td> <td>0.038</td> <td>1.3 %</td> <td>100 %</td> <td>Mostly residual noise.</td> </tr> </tbody> </table> <p>The sign of each eigenvector is arbitrary ($-\vec w_j$ is equally valid); here the first entry is taken positive.</p> <p>The scree plot shows how quickly the variance is captured. The 3-D plot shows the standardized runs and the three principal axes (drag to rotate): the points lie close to a plane spanned by PC1 and PC2, and PC1 runs along the diagonal of the cloud from run 1 (slow, light feed) to run 10 (fast, heavy feed). Rotate until you look along PC2 (orange line shrinks to a point): the cloud is then almost a straight line along PC1, and looking along PC1 shows how thin it is in the PC3 direction — that thinness is why $k=2$ loses so little.</p> <pre><code class="language-plotly">{"data":[{"type":"bar","x":["PC1","PC2","PC3"],"y":[88.5,10.2,1.3],"name":"explained (%)","marker":{"color":"steelblue"},"text":["88.5%","10.2%","1.3%"],"textposition":"auto"},{"type":"scatter","x":["PC1","PC2","PC3"],"y":[88.5,98.7,100.0],"mode":"lines+markers","name":"cumulative (%)","line":{"color":"crimson"}}],"layout":{"title":{"text":"Explained variance (scree plot)"},"yaxis":{"title":{"text":"% of total variance"},"range":[0,105]},"height":400,"legend":{"orientation":"h","y":-0.2}}}
+</code></pre> <pre><code class="language-plotly">{"data":[{"type":"scatter3d","x":[-1.441,-1.441,-0.64,-0.64,0.16,0.16,0.694,0.694,1.227,1.227],"y":[-1.218,-0.111,-1.218,-0.111,-1.218,-0.111,0.627,1.365,0.627,1.365],"z":[-1.135,-1.0,-0.856,-0.673,-0.363,-0.1,0.402,0.681,1.271,1.773],"mode":"markers+text","text":["1","2","3","4","5","6","7","8","9","10"],"marker":{"size":5,"color":"black"},"name":"runs (z-scores)"},{"type":"scatter3d","x":[-1.884,1.884],"y":[-1.791,1.791],"z":[-1.967,1.967],"mode":"lines","line":{"color":"crimson","width":8},"name":"PC1 (88.5%)"},{"type":"scatter3d","x":[-0.632,0.632],"y":[0.885,-0.885],"z":[-0.201,0.201],"mode":"lines","line":{"color":"darkorange","width":8},"name":"PC2 (10.2%)"},{"type":"scatter3d","x":[-0.226,0.226],"y":[-0.093,0.093],"z":[0.302,-0.302],"mode":"lines","line":{"color":"royalblue","width":8},"name":"PC3 (1.3%)"}],"layout":{"title":{"text":"CNC runs in standardized space; PC axes drawn \u00b12 standard deviations"},"scene":{"xaxis":{"title":{"text":"z\u2081 speed"},"range":[-3.4,3.4]},"yaxis":{"title":{"text":"z\u2082 feed"},"range":[-3.4,3.4]},"zaxis":{"title":{"text":"z\u2083 vibration"},"range":[-3.4,3.4]},"aspectmode":"cube","camera":{"eye":{"x":-0.75,"y":-2.0,"z":0.5}}},"height":620,"legend":{"orientation":"h"},"margin":{"l":0,"r":0,"t":50,"b":0}}}
+</code></pre> <h4 id="step-5--project-onto-the-principal-components-scores">Step 5 — Project onto the principal components (scores)</h4> <p>To compress, keep only the first $k&lt;n$ columns, $W_k\in\mathbb R^{n\times k}$, and project:</p> \[S_k=Z\,W_k,\qquad (m\times n)(n\times k)=(m\times k).\] <p>If $k=n$ there is no compression. With $k=2$ (98.7 % of the variance), $W_2$ is $3\times2$ and</p> \[S_2=Z\,W_2= \begin{bmatrix} -2.187&amp;-0.055\\ -1.497&amp;-0.916\\ -1.556&amp;\phantom{-}0.453\\ -0.837&amp;-0.400\\ -0.795&amp;\phantom{-}1.000\\ -0.028&amp;\phantom{-}0.162\\ \phantom{-}0.988&amp;-0.033\\ \phantom{-}1.562&amp;-0.573\\ \phantom{-}1.821&amp;\phantom{-}0.430\\ \phantom{-}2.529&amp;-0.070 \end{bmatrix}\quad(10\times2).\] <p><strong>What is $S$?</strong> It has the same number of rows (observations) as the data, but its columns are the principal components, not physical quantities like speed, force or temperature. Each entry is an observation’s coordinate along a PC. The variance of column $j$ is exactly $\lambda_j$ (here $2.656$ and $0.306$), and the columns are uncorrelated with each other. Run 1 (slow, light feed) has the most negative PC1 score and run 10 (fast, heavy feed) the most positive, as PC1 = “severity” predicts. Because the eigenvectors of a symmetric matrix are orthonormal, the full $W$ is an orthogonal (rotation) matrix: $W^TW=I$ and $W^{-1}=W^T$.</p> <h4 id="step-6--reconstruct-the-data">Step 6 — Reconstruct the data</h4> <p><strong>Full reconstruction</strong> ($k=n$). Since $S=ZW$ and $W^{-1}=W^T$,</p> \[SW^T=ZWW^T=Z \qquad\text{(exact)}.\] <p><strong>Truncated reconstruction</strong> ($k&lt;n$). $W_k$ has orthonormal columns, so $W_k^TW_k=I_k$, but $W_kW_k^T\neq I_n$: it is the projection onto the kept PCs. So we only get an approximation:</p> \[Z_\text{recon}=S_kW_k^T\approx Z,\qquad X_\text{recon}=Z_\text{recon}\operatorname{diag}(s_1,\dots,s_n)+\mathbf 1\,\bar{\vec x}^T .\] <p>The last step undoes the standardization, multiplying each column by $s_j$ and adding back $\bar x_j$, to return to physical units.</p> <p>For $k=2$, the first and last runs come back as</p> \[\text{run 1: }(120,\ 0.050,\ 12.4)\ \to\ (125.5,\ 0.052,\ 10.0),\qquad \text{run 10: }(220,\ 0.120,\ 48.9)\ \to\ (227.3,\ 0.122,\ 45.6).\] <p>The relative error is $\lVert Z-Z_\text{recon}\rVert_F/\lVert Z\rVert_F=\sqrt{\lambda_3/\sum\lambda_j}=\sqrt{0.0126}=11.2\%$ in standardized units (2.4 % of $\lVert X\rVert_F$ in physical units). As in the SVD post, the variance kept (98.7 %) is a squared measure, so it overstates the accuracy. Storage drops from $10\times3=30$ numbers to $10\times2+3\times2=26$, plus the means and standard deviations. The saving is small for such a small table, but it grows with $m$: for $10^6$ runs it is about one third.</p> <h4 id="recap-the-whole-pipeline-and-its-dimensions">Recap: the whole pipeline and its dimensions</h4> <p>Each step is a matrix operation, and checking the sizes is the quickest way to catch a mistake (e.g. multiplying by $W_k$ instead of $W_k^T$).</p> <table> <thead> <tr> <th>Matrix</th> <th>Operation</th> <th>General</th> <th>CNC example</th> </tr> </thead> <tbody> <tr> <td>Data $X$</td> <td>Assemble: rows = observations, columns = features</td> <td>$m\times n$</td> <td>$10\times3$</td> </tr> <tr> <td>z-score matrix $Z$</td> <td>Standardize each column: $z_{ij}=(x_{ij}-\bar x_j)/s_j$</td> <td>$m\times n$</td> <td>$10\times3$</td> </tr> <tr> <td>Covariance matrix $C$</td> <td>$C=\frac{1}{m-1}Z^TZ$</td> <td>$n\times n$</td> <td>$3\times3$</td> </tr> <tr> <td>Loading matrix $W$</td> <td>EVD of $C$; eigenvectors as columns, $\lambda_1\ge\lambda_2\ge\dots$</td> <td>$n\times n$</td> <td>$3\times3$</td> </tr> <tr> <td>Truncated loading $W_k$</td> <td>Keep the first $k$ columns (PC1, …, PC$k$)</td> <td>$n\times k$</td> <td>$3\times2$ for $k=2$</td> </tr> <tr> <td>Score matrix $S_k$</td> <td>$S_k=ZW_k$: $(m\times n)(n\times k)$</td> <td>$m\times k$</td> <td>$10\times3$ ($k=3$), $10\times2$ ($k=2$)</td> </tr> <tr> <td>Reconstruction $Z_\text{recon}$</td> <td>$Z_\text{recon}=S_kW_k^T$: $(m\times k)(k\times n)$</td> <td>$m\times n$</td> <td>$10\times3$</td> </tr> <tr> <td>Reconstruction $X_\text{recon}$</td> <td>Undo the standardization: $x_{ij}=s_jz_{ij}+\bar x_j$</td> <td>$m\times n$</td> <td>$10\times3$</td> </tr> </tbody> </table> <p>Compression happens only in the middle: $S_k$ has $k&lt;n$ columns. With $k=n$ ($W$ full), $Z_\text{recon}=Z$ exactly; with $k&lt;n$, $Z_\text{recon}$ keeps the full size $m\times n$ but is only an approximation, because $W_kW_k^T\neq I$.</p> <p><strong>Link to §5.</strong> The same result comes from the SVD of the standardized data, $Z=U\Sigma V^T$: $W=V$, $\lambda_j=\sigma_j^2/(m-1)$ and $S=U\Sigma$, without ever forming $C$.</p> <h3 id="8-limitations">8. Limitations</h3> <ul> <li> <strong>Linear only.</strong> PCA finds flat subspaces. Data on a curved surface needs kernel PCA, autoencoders or other manifold-learning methods.</li> <li> <strong>Variance is not relevance.</strong> The highest-variance direction need not be the one that predicts the output (e.g. CHF). PCA never looks at the output. If prediction is the goal, partial least squares (PLS) or active subspaces use the output too.</li> <li> <strong>Sensitive to outliers and scaling</strong>, since it is built from squared deviations.</li> <li> <strong>Components are mixtures</strong> of the original variables, which makes them harder to interpret physically than a selected subset of inputs.</li> </ul> <h3 id="recap">Recap</h3> <table> <thead> <tr> <th>Topic</th> <th>Core idea</th> </tr> </thead> <tbody> <tr> <td>Why PCA</td> <td>Many correlated inputs → overfitting; find the few directions that carry the variance.</td> </tr> <tr> <td>Variance</td> <td>$\sum(x_i-\bar x)^2/(m-1)\ge0$; $m-1$ = degrees of freedom.</td> </tr> <tr> <td>Covariance</td> <td>Sign gives direction of the linear relationship; magnitude depends on units → use $\rho$.</td> </tr> <tr> <td>Covariance matrix</td> <td>$C=X_c^TX_c/(m-1)$, symmetric PSD; eigenvectors = PCs, eigenvalues = variances along them.</td> </tr> <tr> <td>PCA via SVD</td> <td>$X_c=U\Sigma V^T$: PCs $=V$, $\lambda_j=\sigma_j^2/(m-1)$, scores $=U\Sigma$.</td> </tr> <tr> <td>Choosing $k$</td> <td>Explained variance $\sum_{j\le k}\lambda_j/\sum\lambda_j$, typically $\ge90\%$.</td> </tr> <tr> <td>PCA steps</td> <td>Organize $X$ → standardize to $Z$ → $C=Z^TZ/(m-1)$ → EVD, sort $\lambda$, form $W$ → scores $S_k=ZW_k$ → reconstruct $S_kW_k^T$, un-standardize.</td> </tr> </tbody> </table> <h3 id="check-our-understanding">Check our understanding</h3> <h4 id="true-or-false">True or False</h4> <ol> <li>Variance can be negative.</li> <li>Covariance can be negative.</li> <li>$\operatorname{Cov}(X,Y)=0$ means $X$ and $Y$ are independent.</li> <li>A larger covariance always means a stronger relationship.</li> <li>The covariance matrix is symmetric and positive semi-definite.</li> <li>Principal components are mutually orthogonal.</li> <li>The eigenvalue of a principal component equals the variance of the data along it.</li> <li>The principal directions are the right singular vectors of the centered data matrix.</li> <li>PCA does not depend on the units in which the variables are measured.</li> <li>The first principal component is always the most useful direction for predicting an output.</li> <li>For standardized data, the eigenvalues of the covariance matrix sum to the number of features.</li> <li>For a truncated loading matrix $W_k$ ($k&lt;n$), $W_kW_k^T=I$.</li> <li>In the CNC example, PCA on the unstandardized data would give a PC1 dominated by cutting speed.</li> </ol> <details> <summary><strong>View Answer Key</strong></summary> <ol> <li> <strong>False.</strong> It is an average of squares.</li> <li><strong>True.</strong></li> <li> <strong>False.</strong> Only uncorrelated: $y=x^2$ on $[-1,0,1]$ has zero covariance.</li> <li> <strong>False.</strong> It scales with the units; compare correlation coefficients instead.</li> <li> <strong>True.</strong> $C=\tfrac{1}{m-1}X_c^TX_c$.</li> <li> <strong>True.</strong> They are eigenvectors of a symmetric matrix.</li> <li> <strong>True.</strong> $\vec q_j^TC\vec q_j=\lambda_j$.</li> <li> <strong>True.</strong> $X_c=U\Sigma V^T$ gives $C=V\tfrac{\Sigma^2}{m-1}V^T$.</li> <li> <strong>False.</strong> Rescaling one variable rotates the PCs; standardize first.</li> <li> <strong>False.</strong> PCA ignores the output; high variance need not mean high relevance.</li> <li> <strong>True.</strong> $\operatorname{tr}(C)=n$ because each diagonal entry is 1.</li> <li> <strong>False.</strong> $W_k^TW_k=I_k$, but $W_kW_k^T$ is only a projection; that is why truncated reconstruction is approximate.</li> <li> <strong>True.</strong> Its variance (1404) dwarfs the others; raw PC1 $\approx(0.95,\,0.0005,\,0.30)$ carries 99 % of the variance.</li> </ol> </details> <h4 id="practice-question">Practice question</h4> <p><strong>Q1.</strong> For $x=[1,2,3]$ and $y=[2,4,6]$, find $C$, its eigenvalues and the explained variance of PC1.</p> <details> <summary><strong>View Answer</strong></summary> <p>$\bar x=2$, $\bar y=4$; deviations $[-1,0,1]$ and $[-2,0,2]$; $m-1=2$.</p> \[C=\begin{bmatrix}1&amp;2\\2&amp;4\end{bmatrix},\qquad \lambda_1=5,\ \lambda_2=0,\qquad \vec q_1=\tfrac{1}{\sqrt5}\begin{bmatrix}1\\2\end{bmatrix}.\] <p>PC1 explains 100 %: the points lie exactly on the line $y=2x$, so one dimension describes them completely ($\rho=1$).</p> </details> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Nirmal Prasad Panta. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@3.0.1/dist/plotly.min.js" integrity="sha256-oy6Be7Eh6eiQFs5M7oXuPxxm9qbJXEtTpfSI93dW16Q=" crossorigin="anonymous"></script> <script defer src="/assets/al_charts/js/plotly-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "A growing collection of your cool projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Comprehensive overview of my academic background and skills.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "post-modeling-and-analysis-of-mechanical-systems-principal-component-analysis-pca",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA)",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-principal-component-analysis/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-gradient-based-optimization",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Gradient-Based Optimization",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-gradient-based-optimization/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-derivatives-gradients-hessians-and-the-material-derivative",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Derivatives, Gradients, Hessians and the Material...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-derivatives-and-gradients/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-linear-operators-and-matrix-decomposition",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-matrix-decomposition/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-4-einstein-39-s-index-notation",
+        
+          title: "Theory of Elasticity — Week 4: Einstein's Index Notation",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week4-index-notation/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-3-a-solid-from-atoms-with-the-lennard-jones-potential",
+        
+          title: "Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week3-lennard-jones-solid/";
+          
+        },
+      },{id: "post-taylor-series-why-it-matters-and-what-linear-and-quadratic-approximation-really-mean",
+        
+          title: "Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/taylor-series/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-2-generalizing-vector-spaces",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter2-generalizing-vector-spaces/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-2-hydrostatics-as-an-idealized-introduction-to-continuum-elasticity",
+        
+          title: "Theory of Elasticity — Week 2: Hydrostatics as an Idealized Introduction to Continuum...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week2-hydrostatics-idealized-continuum/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-1-classify-and-analyze",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter1-classifying-model-equations/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-1-what-39-s-the-matter",
+        
+          title: "Theory of Elasticity — Week 1: What's the Matter?",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week1-continuum-hypothesis/";
+          
+        },
+      },{id: "post-vitruvius-redux",
+        
+          title: "Vitruvius Redux",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vitruvius-redux/";
+          
+        },
+      },{id: "post-reading-notes-computational-design-synthesis-amp-ai",
+        
+          title: "Reading Notes: Computational Design Synthesis & AI",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/reading-notes-design-synthesis/";
+          
+        },
+      },{id: "post-formal-engineering-design-synthesis",
+        
+          title: "Formal Engineering Design Synthesis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-engineering-design-synthesis/";
+          
+        },
+      },{id: "post-formal-design-gramar",
+        
+          title: "Formal Design Gramar",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-design-grammar/";
+          
+        },
+      },{id: "post-a-post-with-marimo-snippets",
+        
+          title: "a post with marimo snippets",
+        
+        description: "running Python in the browser with marimo",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/marimo/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
+        
+          title: "a post with plotly.js",
+        
+        description: "this is what included plotly.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/plotly/";
+          
+        },
+      },{id: "post-a-post-with-image-galleries",
+        
+          title: "a post with image galleries",
+        
+        description: "this is what included image galleries could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/photo-gallery/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-a-post-with-tabs",
+        
+          title: "a post with tabs",
+        
+        description: "this is what included tabs in a post could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/tabs/";
+          
+        },
+      },{id: "post-a-post-with-typograms",
+        
+          title: "a post with typograms",
+        
+        description: "this is what included typograms code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/typograms/";
+          
+        },
+      },{id: "post-a-post-that-can-be-cited",
+        
+          title: "a post that can be cited",
+        
+        description: "this is what a post that can be cited looks like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/post-citation/";
+          
+        },
+      },{id: "post-a-post-with-pseudo-code",
+        
+          title: "a post with pseudo code",
+        
+        description: "this is what included pseudo code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/pseudocode/";
+          
+        },
+      },{id: "post-a-post-with-code-diff",
+        
+          title: "a post with code diff",
+        
+        description: "this is how you can display code diffs",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/code-diff/";
+          
+        },
+      },{id: "post-a-post-with-advanced-image-components",
+        
+          title: "a post with advanced image components",
+        
+        description: "this is what advanced image components could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/advanced-images/";
+          
+        },
+      },{id: "post-a-post-with-vega-lite",
+        
+          title: "a post with vega lite",
+        
+        description: "this is what included vega lite code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/vega-lite/";
+          
+        },
+      },{id: "post-a-post-with-geojson",
+        
+          title: "a post with geojson",
+        
+        description: "this is what included geojson code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/geojson-map/";
+          
+        },
+      },{id: "post-a-post-with-echarts",
+        
+          title: "a post with echarts",
+        
+        description: "this is what included echarts code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/echarts/";
+          
+        },
+      },{id: "post-a-post-with-chart-js",
+        
+          title: "a post with chart.js",
+        
+        description: "this is what included chart.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/chartjs/";
+          
+        },
+      },{id: "post-a-post-with-tikzjax",
+        
+          title: "a post with TikZJax",
+        
+        description: "this is what included TikZ code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tikzjax/";
+          
+        },
+      },{id: "post-a-post-with-bibliography",
+        
+          title: "a post with bibliography",
+        
+        description: "an example of a blog post with bibliography",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/post-bibliography/";
+          
+        },
+      },{id: "post-a-post-with-jupyter-notebook",
+        
+          title: "a post with jupyter notebook",
+        
+        description: "an example of a blog post with jupyter notebook",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/jupyter-notebook/";
+          
+        },
+      },{id: "post-a-post-with-custom-blockquotes",
+        
+          title: "a post with custom blockquotes",
+        
+        description: "an example of a blog post with custom blockquotes",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/custom-blockquotes/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
+        
+          title: "a post with table of contents on a sidebar",
+        
+        description: "an example of a blog post with table of contents on a sidebar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/sidebar-table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-audios",
+        
+          title: "a post with audios",
+        
+        description: "this is what included audios could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/audios/";
+          
+        },
+      },{id: "post-a-post-with-videos",
+        
+          title: "a post with videos",
+        
+        description: "this is what included videos could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/videos/";
+          
+        },
+      },{id: "post-displaying-beautiful-interactive-tables",
+        
+          title: "displaying beautiful interactive tables",
+        
+        description: "an example of how to use interactive tables in al-folio",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tables/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents",
+        
+          title: "a post with table of contents",
+        
+        description: "an example of a blog post with table of contents",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-giscus-comments",
+        
+          title: "a post with giscus comments",
+        
+        description: "an example of a blog post with giscus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/giscus-comments/";
+          
+        },
+      },{id: "post-یک-نوشتهٔ-راست-چین",
+        
+          title: "یک نوشتهٔ راست‌چین",
+        
+        description: "نمونه‌ای از پشتیبانی زبان‌های راست‌چین",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/rtl/";
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "post-a-post-with-redirect",
+        
+          title: "a post with redirect",
+        
+        description: "you can also redirect to assets like pdf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/example_pdf.pdf";
+          
+        },
+      },{id: "post-a-post-with-diagrams",
+        
+          title: "a post with diagrams",
+        
+        description: "an example of a blog post with diagrams",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/diagrams/";
+          
+        },
+      },{id: "post-a-distill-style-blog-post",
+        
+          title: "A distill-style blog post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/distill/";
+          
+        },
+      },{id: "post-a-post-with-twitter",
+        
+          title: "a post with twitter",
+        
+        description: "an example of a blog post with twitter",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/twitter/";
+          
+        },
+      },{id: "post-a-post-with-disqus-comments",
+        
+          title: "a post with disqus comments",
+        
+        description: "an example of a blog post with disqus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/disqus-comments/";
+          
+        },
+      },{id: "post-a-post-with-math",
+        
+          title: "a post with math",
+        
+        description: "an example of a blog post with some math",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/math/";
+          
+        },
+      },{id: "post-a-post-with-code",
+        
+          title: "a post with code",
+        
+        description: "an example of a blog post with some code",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/code/";
+          
+        },
+      },{id: "post-a-post-with-images",
+        
+          title: "a post with images",
+        
+        description: "this is what included images could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/images/";
+          
+        },
+      },{id: "post-a-post-with-formatting-and-links",
+        
+          title: "a post with formatting and links",
+        
+        description: "march & april, looking forward to summer",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/formatting-and-links/";
+          
+        },
+      },{id: "books-formal-engineering-design-synthesis",
+          title: 'Formal Engineering Design Synthesis',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/formal_engineering_design_synthesis/";
+            },},{id: "books-the-structure-of-scientific-revolutions",
+          title: 'The Structure of Scientific Revolutions',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/structure_of_scientific_revolution/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-project-1",
+          title: 'project 1',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-project-3-with-very-long-name",
+          title: 'project 3 with very long name',
+          description: "a project that redirects to another website",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
+            },},{id: "projects-project-4",
+          title: 'project 4',
+          description: "another without an image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
+            },},{id: "projects-project-5",
+          title: 'project 5',
+          description: "a project with a background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
+            },},{id: "projects-project-6",
+          title: 'project 6',
+          description: "a project with no image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
+            },},{id: "projects-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_project/";
+            },},{id: "projects-project-8",
+          title: 'project 8',
+          description: "an other project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/8_project/";
+            },},{id: "projects-project-9",
+          title: 'project 9',
+          description: "another project with an image 🎉",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/9_project/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6E%69%6C.%70%61%6E%74%61%37%37@%74%61%6D%75.%65%64%75", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=a9fiG98AAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/niel-77", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/nirmal-panta", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

@@ -1,0 +1,749 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition | Nirmal Prasad Panta </title> <meta name="author" content="Nirmal Prasad Panta"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://nirmalprasadpanta.com.np/blog/2026/meen602-matrix-decomposition/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Nirmal Prasad Panta </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition</h1> <p class="post-meta"> Created on October 20, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/modeling-and-analysis-of-mechanical-systems"> <i class="fa-solid fa-hashtag fa-sm"></i> Modeling and Analysis of Mechanical Systems</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>A <strong>linear operator</strong> acts on a function the way a <strong>matrix</strong> acts on a vector. This post first checks when an operator is “symmetric” under the inner product, then covers the four standard matrix factorizations — LU, QR, eigenvalue decomposition (EVD) and singular value decomposition (SVD) — when to use each, and how a truncated SVD reconstructs and compresses data. The follow-up post on <a href="/blog/2026/meen602-principal-component-analysis/">Principal Component Analysis</a> builds on §7–8.</p> <h3 id="1-inner-products-and-linear-operators">1. Inner products and linear operators</h3> <p>For functions on $[a,b]$, the <strong>inner product</strong> is the dot product with the sum replaced by an integral:</p> \[\langle f, g\rangle = \int_a^b f(x)\,g(x)\,dx.\] <p>For a linear operator $L$ (e.g. $L = d^2/dx^2$), the operator is <strong>self-adjoint</strong> — the analogue of a symmetric matrix — when $\langle Lf, g\rangle = \langle f, Lg\rangle$. With $f(a)=f(b)=g(a)=g(b)=0$, integrating by parts twice gives</p> \[\int_a^b f''g\,dx = \Big[g f'\Big]_a^b - \int_a^b g'f'\,dx = 0 - \Big[g' f\Big]_a^b + \int_a^b g''f\,dx = \int_a^b f\,g''\,dx.\] <p>Both brackets vanish only because of the boundary conditions.</p> <p><strong>Example 1 (satisfies).</strong> Take $L=\dfrac{d^2}{dx^2}$ on $x\in[0,\pi]$ with</p> \[f(x)=\sin x,\qquad g(x)=\sin 2x.\] <p>Both vanish at $x=0$ and $x=\pi$, so the boundary conditions hold. Apply the operator:</p> \[Lf=\frac{d^2}{dx^2}(\sin x)=-\sin x,\qquad Lg=\frac{d^2}{dx^2}(\sin 2x)=-4\sin 2x.\] <p>Left side, using $\sin 2x=2\sin x\cos x$ and the substitution $u=\sin x$, $du=\cos x\,dx$ (so $u$ runs from $0$ to $0$):</p> \[\langle Lf,g\rangle=\int_0^\pi(-\sin x)(\sin 2x)\,dx=-2\int_0^\pi\sin^2x\cos x\,dx=-2\int_0^{0}u^2\,du=0.\] <p>Right side, by the same substitution:</p> \[\langle f,Lg\rangle=\int_0^\pi\sin x\,(-4\sin 2x)\,dx=-8\int_0^\pi\sin^2x\cos x\,dx=-8\int_0^{0}u^2\,du=0.\] <p>So $\langle Lf,g\rangle=\langle f,Lg\rangle=0$ ✓. Both are zero because $\sin x$ and $\sin 2x$ are orthogonal, which makes this a weak check.</p> <p><strong>Example 2 (satisfies, nonzero).</strong> Keep $f=\sin x$ on $[0,\pi]$ and take $g=x(\pi-x)$, which also vanishes at both ends. Then $Lf=-\sin x$ and, since $g’=\pi-2x$, $Lg=-2$.</p> \[\langle Lf,g\rangle=-\int_0^\pi x(\pi-x)\sin x\,dx.\] <p>Integrating by parts twice (the boundary terms vanish because $x(\pi-x)$ and $\sin x$ are both $0$ at the ends):</p> \[\int_0^\pi x(\pi-x)\sin x\,dx=\int_0^\pi(\pi-2x)\cos x\,dx=2\int_0^\pi\sin x\,dx=4 \;\Rightarrow\;\langle Lf,g\rangle=-4.\] \[\langle f,Lg\rangle=\int_0^\pi\sin x\,(-2)\,dx=-2\Big[-\cos x\Big]_0^\pi=-4\ \checkmark\] <p><strong>Counter-example (boundary conditions fail).</strong> On $[0,1]$, $f=x^2$, $g=1$: $\langle Lf,g\rangle=2$ but $\langle f,Lg\rangle=0$. The gap is the boundary term $[gf’-g’f]_0^1=2$.</p> <p><strong>Counter-example (operator).</strong> $L=d/dx$ is not self-adjoint even with zero boundary values: $\langle f’,g\rangle=-\langle f,g’\rangle$ — a sign flip, like an anti-symmetric matrix.</p> <h3 id="2-why-decompose-avec-xvec-c">2. Why decompose $A\vec x=\vec c$?</h3> <p>$A$ holds the physics (density, viscosity, stiffness, modulus, geometry, friction) and $\vec c$ the loads. We avoid forming $A^{-1}$ because factorizations are cheaper in <strong>flops and memory</strong>, and they expose structure: for large models or data, keep only the dominant modes. Keeping the largest eigenvalues (tied to energy content) retains 90–95 % or more of the information with far fewer modes — <strong>Proper Orthogonal Decomposition (POD)</strong> for simulations, <strong>Principal Component Analysis (PCA)</strong> for measured data (mathematically equivalent; the leading directions are the <strong>dominant modes</strong>).</p> <table> <thead> <tr> <th>Method</th> <th>Factorization</th> <th>Applies to</th> <th>How the factors are found</th> </tr> </thead> <tbody> <tr> <td>LU</td> <td>$A = LU$</td> <td>Square</td> <td>Gaussian elimination (multipliers); no eigenvalues</td> </tr> <tr> <td>QR</td> <td>$A = QR$</td> <td>Any matrix, including rectangular</td> <td>Gram–Schmidt, then $R=Q^TA$; no eigenvalues</td> </tr> <tr> <td>EVD</td> <td>$A = Q\Lambda Q^{-1}$</td> <td>Square, diagonalizable</td> <td> <strong>Eigenvalues, then eigenvectors of $A$</strong> form $Q$</td> </tr> <tr> <td>SVD</td> <td>$A = U\Sigma V^T$</td> <td>Any matrix, including rectangular</td> <td> <strong>Eigenvectors of $A^TA$</strong> give $V$, then $\vec u_i=A\vec v_i/\sigma_i$</td> </tr> </tbody> </table> <p>LU and QR are direct, finite procedures. EVD and SVD require solving an eigenproblem first, which for large matrices is done iteratively (the standard algorithm is built on repeated QR factorizations).</p> <h3 id="3-positive-definite-matrices">3. Positive definite matrices</h3> <p>For symmetric $A$, the quadratic form $\vec x^TA\vec x$ (the dot product of $\vec x$ and $A\vec x$) classifies the matrix. For $2\times2$, $\vec x^TA\vec x = a_{11}x_1^2 + (a_{12}+a_{21})x_1x_2 + a_{22}x_2^2$ — every term is degree two. If it is positive, the angle between $\vec x$ and $A\vec x$ is below 90°.</p> <table> <thead> <tr> <th>Class</th> <th>$\vec x^TA\vec x$ (all $\vec x\ne0$)</th> <th>Eigenvalues</th> </tr> </thead> <tbody> <tr> <td>Positive definite</td> <td>$&gt; 0$</td> <td>all $\lambda &gt; 0$</td> </tr> <tr> <td>Positive semi-definite</td> <td>$\ge 0$</td> <td>all $\lambda \ge 0$</td> </tr> <tr> <td>Negative definite</td> <td>$&lt; 0$</td> <td>all $\lambda &lt; 0$</td> </tr> <tr> <td>Negative semi-definite</td> <td>$\le 0$</td> <td>all $\lambda \le 0$</td> </tr> <tr> <td>Indefinite</td> <td>either sign</td> <td>mixed signs</td> </tr> </tbody> </table> <p>Also: if $U$ is invertible, $U^TU$ is positive definite, since $\vec x^TU^TU\vec x=\lVert U\vec x\rVert^2&gt;0$.</p> <p><strong>Examples of each class.</strong></p> \[A_1=\begin{bmatrix}2&amp;1\\1&amp;2\end{bmatrix},\quad A_2=\begin{bmatrix}1&amp;1\\1&amp;1\end{bmatrix},\quad A_3=\begin{bmatrix}-2&amp;0\\0&amp;-3\end{bmatrix},\quad A_4=\begin{bmatrix}-1&amp;-1\\-1&amp;-1\end{bmatrix},\quad A_5=\begin{bmatrix}7&amp;3\\3&amp;-1\end{bmatrix}\] <ul> <li> <strong>Positive definite — $A_1$:</strong> $\lambda=1,3$, both positive. $\vec x^TA_1\vec x=x_1^2+x_2^2+(x_1+x_2)^2&gt;0$ for every nonzero $\vec x$.</li> <li> <strong>Positive semi-definite — $A_2$:</strong> $\lambda=2,0$. $\vec x^TA_2\vec x=(x_1+x_2)^2\ge0$, and it is exactly $0$ at the nonzero vector $\vec x=[1,-1]^T$, which is why it is not positive definite.</li> <li> <strong>Negative definite — $A_3$:</strong> $\lambda=-2,-3$. $\vec x^TA_3\vec x=-2x_1^2-3x_2^2&lt;0$ for every nonzero $\vec x$.</li> <li> <strong>Negative semi-definite — $A_4$:</strong> $\lambda=-2,0$. $\vec x^TA_4\vec x=-(x_1+x_2)^2\le0$, and it is $0$ at $\vec x=[1,-1]^T$.</li> <li> <strong>Indefinite — $A_5$:</strong> $\lambda=8,-2$. $\vec x=[1,0]^T$ gives $+7$ and $\vec x=[0,1]^T$ gives $-1$, so the sign depends on the vector.</li> </ul> <p><strong>Pitfall: positive diagonal entries do not make a matrix positive definite.</strong> The matrix with rows $[1,2]$ and $[2,1]$ has a positive diagonal but $\lambda=3,-1$, so it is indefinite: $\vec x=[1,1]^T$ gives $+6$ while $\vec x=[1,-1]^T$ gives $-2$. The off-diagonal terms matter.</p> <h3 id="4-lu-decomposition">4. LU decomposition</h3> \[A=LU,\qquad L \text{ lower triangular},\quad U \text{ upper triangular}.\] <p>Then $LU\vec x=\vec c$ becomes two cheap solves with $\vec y=U\vec x$: $L\vec y=\vec c$ (forward substitution), then $U\vec x=\vec y$ (back substitution).</p> <p><strong>Three versions</strong> (a factorization has extra freedom that must be fixed):</p> <ol> <li> <strong>Doolittle:</strong> $l_{ii}=1$.</li> <li> <strong>Crout:</strong> $u_{ii}=1$.</li> <li> <strong>Cholesky:</strong> symmetric positive definite $A$ only; $A=LL^T$ ($=U^TU$ with $U=L^T$), about half the work.</li> </ol> <p><strong>Doolittle formulas.</strong> Match entries of $A=LU$ with $l_{ii}=1$, row by row:</p> \[\begin{aligned} u_{1j}&amp;=a_{1j}, \qquad l_{i1}=\frac{a_{i1}}{u_{11}},\\ u_{22}&amp;=a_{22}-l_{21}u_{12}, \qquad u_{23}=a_{23}-l_{21}u_{13},\\ l_{32}&amp;=\frac{a_{32}-l_{31}u_{12}}{u_{22}}, \qquad u_{33}=a_{33}-l_{31}u_{13}-l_{32}u_{23}. \end{aligned}\] <p>The $l_{ij}$ are the multipliers of Gaussian elimination, stored instead of discarded: $R_2\leftarrow R_2-l_{21}R_1$ zeroes $a_{21}$, and $U$ is what remains.</p> <p><strong>Worked example.</strong> $10x_1+x_2+x_3=15$, $x_1+10x_2+x_3=24$, $x_1+x_2+10x_3=33$:</p> \[A=\begin{bmatrix}10&amp;1&amp;1\\1&amp;10&amp;1\\1&amp;1&amp;10\end{bmatrix} =\underbrace{\begin{bmatrix}1&amp;0&amp;0\\\tfrac1{10}&amp;1&amp;0\\\tfrac1{10}&amp;\tfrac1{11}&amp;1\end{bmatrix}}_{L} \underbrace{\begin{bmatrix}10&amp;1&amp;1\\0&amp;\tfrac{99}{10}&amp;\tfrac9{10}\\0&amp;0&amp;\tfrac{108}{11}\end{bmatrix}}_{U}, \qquad \vec c=\begin{bmatrix}15\\24\\33\end{bmatrix}.\] <p>Here $l_{21}=l_{31}=\tfrac1{10}$, $u_{22}=10-\tfrac1{10}=\tfrac{99}{10}$, $u_{23}=1-\tfrac1{10}=\tfrac9{10}$, $l_{32}=\tfrac{1-\frac1{10}}{99/10}=\tfrac1{11}$ and $u_{33}=10-\tfrac1{10}-\tfrac1{11}\cdot\tfrac9{10}=\tfrac{108}{11}$.</p> <p>Forward substitution, $L\vec y=\vec c$, then back substitution, $U\vec x=\vec y$:</p> \[\vec y=\begin{bmatrix}15\\22.5\\\tfrac{324}{11}\end{bmatrix} \;\Rightarrow\; \vec x=\begin{bmatrix}1\\2\\3\end{bmatrix}.\] <p><strong>Edge cases.</strong></p> <ul> <li> <strong>Zero pivot.</strong> The matrix with rows $[0,1]$, $[1,0]$ is invertible but $u_{11}=0$, so $l_{21}$ divides by zero. Swap rows first: $PA=LU$.</li> <li> <strong>Cholesky needs positive definite.</strong> For the indefinite matrix with rows $[1,2]$, $[2,1]$ from the §3 pitfall, $l_{11}=1$, $l_{21}=2$, $l_{22}^2=1-4&lt;0$ — impossible (though that matrix has an ordinary $LU$).</li> <li> <strong>Cholesky that works.</strong> Rows $[4,2]$, $[2,3]$ (positive definite): $l_{11}=2$, $l_{21}=1$, $l_{22}=\sqrt2$.</li> </ul> <h3 id="5-qr-decomposition">5. QR decomposition</h3> \[A=QR,\qquad Q \text{ orthogonal (orthonormal columns)},\quad R \text{ upper triangular}.\] <p>Orthonormal columns give $Q^TQ=I$, so $Q^{-1}=Q^T$ and $A\vec x=\vec c$ reduces to $R\vec x=Q^T\vec c$ (back substitution).</p> <p><strong>Gram–Schmidt</strong> builds $Q$ column by column from the columns $\vec a_i$ of $A$:</p> \[\vec q_1=\frac{\vec a_1}{\lVert\vec a_1\rVert},\qquad \vec q_2=\frac{\vec a_2-(\vec q_1\cdot\vec a_2)\,\vec q_1}{\lVert\vec a_2-(\vec q_1\cdot\vec a_2)\,\vec q_1\rVert},\qquad \vec q_k=\frac{\vec a_k-\sum_{i&lt;k}(\vec q_i\cdot\vec a_k)\,\vec q_i}{\lVert\cdots\rVert},\] <p>and then $R=Q^TA$.</p> <p><strong>Worked example.</strong> $x_1+x_2=5$, $x_1-x_2=1$:</p> \[A=\begin{bmatrix}1&amp;1\\1&amp;-1\end{bmatrix},\quad \vec c=\begin{bmatrix}5\\1\end{bmatrix},\quad \vec a_1=\begin{bmatrix}1\\1\end{bmatrix},\quad \vec a_2=\begin{bmatrix}1\\-1\end{bmatrix}.\] \[\vec q_1=\frac{\vec a_1}{\sqrt2}=\frac1{\sqrt2}\begin{bmatrix}1\\1\end{bmatrix},\qquad \vec q_1\cdot\vec a_2=\tfrac1{\sqrt2}(1-1)=0 \;\Rightarrow\; \vec q_2=\frac{\vec a_2}{\lVert\vec a_2\rVert}=\frac1{\sqrt2}\begin{bmatrix}1\\-1\end{bmatrix}.\] \[Q=\frac1{\sqrt2}\begin{bmatrix}1&amp;1\\1&amp;-1\end{bmatrix},\qquad R=Q^TA=\begin{bmatrix}\sqrt2&amp;0\\0&amp;\sqrt2\end{bmatrix},\qquad Q^T\vec c=\frac1{\sqrt2}\begin{bmatrix}6\\4\end{bmatrix} \;\Rightarrow\; \vec x=\begin{bmatrix}3\\2\end{bmatrix}.\] <p><strong>Why QR?</strong> It handles <strong>overdetermined</strong> systems (more equations than unknowns — typical of fitting data in machine learning); it is numerically stable, since orthogonal $Q$ preserves lengths (and avoids the squared conditioning of $A^TA\vec x=A^T\vec c$); and repeated QR is the standard numerical route to eigenvalues.</p> <p><strong>Edge cases.</strong></p> <ul> <li>Orthogonal columns are not enough — they must be <em>unit length</em>. The candidate with rows $[1,1]$, $[1,-1]$ has perpendicular columns of length $\sqrt2$, so it is not orthogonal until divided by $\sqrt2$. A rotation matrix is orthogonal.</li> <li>A $3\times2$ matrix (3 equations, 2 unknowns) has no LU, but does have a QR.</li> <li>For a square, well-conditioned system QR costs about twice LU, so LU remains cheaper there.</li> </ul> <h3 id="6-eigenvalue-decomposition-evd">6. Eigenvalue decomposition (EVD)</h3> \[A=Q\Lambda Q^{-1},\qquad Q=[\vec v_1\ \cdots\ \vec v_n]\ (\text{eigenvectors}),\quad \Lambda=\operatorname{diag}(\lambda_1,\dots,\lambda_n),\] <p>ordered $\lambda_1&gt;\lambda_2&gt;\dots&gt;\lambda_n$.</p> <p><strong>Why EVD?</strong> (1) Natural frequencies $\omega$ and mode shapes; (2) stability; (3) POD / PCA, keeping the large-$\lambda$ modes; (4) cheap matrix powers, since the inner $Q^{-1}Q$ cancels:</p> \[A^k=Q\Lambda^kQ^{-1}.\] <p><strong>Symmetric case.</strong> Eigenvectors of a symmetric matrix (distinct eigenvalues) are mutually orthogonal, so $Q$ is orthogonal, $Q^{-1}=Q^T$, and $A=Q\Lambda Q^T$ — no inverse needed. Stiffness and mass matrices are symmetric.</p> <p><strong>Worked example.</strong> Take $A_5$ from §3, with rows $[7,3]$ and $[3,-1]$.</p> \[\det(A-\lambda I)=(7-\lambda)(-1-\lambda)-9=\lambda^2-6\lambda-16=(\lambda-8)(\lambda+2)=0 \;\Rightarrow\;\lambda_1=8,\ \lambda_2=-2.\] <p>Solving $(A-\lambda I)\vec v=0$ for each (normalized):</p> \[\lambda_1=8:\ \begin{bmatrix}-1&amp;3\\3&amp;-9\end{bmatrix}\vec v=0\Rightarrow\vec v_1=\frac1{\sqrt{10}}\begin{bmatrix}3\\1\end{bmatrix}, \qquad \lambda_2=-2:\ \begin{bmatrix}9&amp;3\\3&amp;1\end{bmatrix}\vec v=0\Rightarrow\vec v_2=\frac1{\sqrt{10}}\begin{bmatrix}1\\-3\end{bmatrix}.\] \[Q=\frac1{\sqrt{10}}\begin{bmatrix}3&amp;1\\1&amp;-3\end{bmatrix},\quad \Lambda=\begin{bmatrix}8&amp;0\\0&amp;-2\end{bmatrix},\quad Q\Lambda Q^T=\frac1{10}\begin{bmatrix}70&amp;30\\30&amp;-10\end{bmatrix}=A\ \checkmark\] <p><strong>Discrete vs. continuous.</strong> The operator $L=d^2/dx^2$ with zero boundary values on $[0,\pi]$ has $L(\sin nx)=-n^2\sin nx$: $\sin nx$ is an <strong>eigenfunction</strong> with eigenvalue $-n^2$, the same equation $A\vec v=\lambda\vec v$ with a function in place of a vector. As symmetric matrices have orthogonal eigenvectors, self-adjoint operators have orthogonal eigenfunctions — hence $\langle\sin x,\sin2x\rangle=0$ in §1. A matrix has finitely many eigenvectors; a continuous system has infinitely many eigenfunctions.</p> <p><strong>Edge cases.</strong></p> <ul> <li> <strong>Not diagonalizable.</strong> The shear $B$ with rows $[1,2]$, $[0,1]$ has $\lambda=1,1$, but $(B-I)\vec v=0$ forces $v_2=0$: only the direction $[1,0]^T$. Two independent eigenvectors are needed, so $B$ has no EVD. Along that direction nothing rotates and, with $\lambda=1$, nothing stretches.</li> <li> <strong>Rectangular matrices have no eigenvalues</strong> ($A\vec v=\lambda\vec v$ needs a square $A$).</li> <li> <strong>Eigenvectors are orthogonal only for symmetric matrices.</strong> Eigenvalues can also be negative (above) or complex (a 90° rotation has $\lambda=\pm i$).</li> </ul> <h3 id="7-singular-value-decomposition-svd">7. Singular value decomposition (SVD)</h3> \[A=U\Sigma V^T,\qquad A\vec v_i=\sigma_i\vec u_i,\] <p>with $V$ the <strong>right singular matrix</strong>, $U$ the <strong>left singular matrix</strong> (both orthogonal) and $\Sigma$ the diagonal <strong>singular value matrix</strong>. It works for any matrix, including rectangular overdetermined systems ($m&gt;n$).</p> <table> <thead> <tr> <th> </th> <th>EVD</th> <th>SVD</th> </tr> </thead> <tbody> <tr> <td>Applies to</td> <td>square matrices</td> <td>any matrix</td> </tr> <tr> <td>Values</td> <td>$\lambda$ positive, negative, zero or complex</td> <td>$\sigma\ge0$, always real</td> </tr> <tr> <td>Vectors</td> <td>not necessarily orthogonal</td> <td>always orthogonal</td> </tr> <tr> <td>Action</td> <td>stretch only</td> <td>rotate and stretch</td> </tr> </tbody> </table> <p>The singular values are $\sigma_i=\sqrt{\lambda_i}$, where $\lambda_i$ are the eigenvalues of $A^TA$ (or $AA^T$). These matrices are symmetric and positive semi-definite, so $\lambda_i\ge0$ and the vectors are orthogonal.</p> <p><strong>Why SVD?</strong> Data storage (keep the largest $\sigma_i$), POD, and noise filtering (high-frequency noise sits in the smallest $\sigma_i$).</p> <p><strong>Worked example.</strong> Take the shear $B$ from §6, which has no EVD:</p> \[A=\begin{bmatrix}1&amp;2\\0&amp;1\end{bmatrix}.\] \[A^TA=\begin{bmatrix}1&amp;2\\2&amp;5\end{bmatrix},\qquad \det(A^TA-\lambda I)=\lambda^2-6\lambda+1=0\;\Rightarrow\;\lambda=3\pm2\sqrt2\] \[\sigma_1=\sqrt{5.828}=2.414,\qquad \sigma_2=\sqrt{0.172}=0.414.\] <p>Right singular vectors (eigenvectors of $A^TA$, normalized):</p> \[\vec v_1=\begin{bmatrix}0.383\\0.924\end{bmatrix}\ (67.5^\circ),\quad \vec v_2=\begin{bmatrix}-0.924\\0.383\end{bmatrix},\quad \vec v_1\cdot\vec v_2=0.\] <p>Left singular vectors by the shortcut $\vec u_i=\tfrac1{\sigma_i}A\vec v_i$ (this also fixes the signs; the brute-force route, eigenvectors of $AA^T$, needs the signs matched by hand):</p> \[\vec u_1=\frac1{2.414}\begin{bmatrix}2.231\\0.924\end{bmatrix}=\begin{bmatrix}0.924\\0.383\end{bmatrix},\qquad \vec u_2=\frac1{0.414}\begin{bmatrix}-0.158\\0.383\end{bmatrix}=\begin{bmatrix}-0.383\\0.924\end{bmatrix}.\] \[A=\underbrace{\begin{bmatrix}0.924&amp;-0.383\\0.383&amp;0.924\end{bmatrix}}_{U} \underbrace{\begin{bmatrix}2.414&amp;0\\0&amp;0.414\end{bmatrix}}_{\Sigma} \underbrace{\begin{bmatrix}0.383&amp;0.924\\-0.924&amp;0.383\end{bmatrix}}_{V^T}\] <p>$A$ sends the perpendicular pair $\vec v_1,\vec v_2$ to the perpendicular pair $\sigma_1\vec u_1,\sigma_2\vec u_2$ — rotated and stretched by different amounts, which an eigen-direction cannot capture.</p> <p><strong>Edge cases.</strong></p> <ul> <li>A computed $\sigma&lt;0$ is always an error. A negative <em>eigenvalue</em> is fine.</li> <li>For symmetric $A$, $\sigma_i=\lvert\lambda_i\rvert$. They equal the eigenvalues only if all $\lambda_i\ge0$. For $A_5$ in §3: $\lambda=8,-2$ but $\sigma=8,2$.</li> <li>For non-symmetric matrices there is no simple relation: the shear above has $\lambda=1,1$ but $\sigma=2.414,\ 0.414$.</li> </ul> <h3 id="8-data-reconstruction-with-svd">8. Data reconstruction with SVD</h3> <p><strong>Outer-product expansion.</strong> Multiplying out $U\Sigma V^T$ column by column writes any rank-$r$ matrix as a sum of $r$ rank-1 matrices:</p> \[A=\sum_{i=1}^{r}\sigma_i\,\vec u_i\vec v_i^T=\sigma_1\vec u_1\vec v_1^T+\sigma_2\vec u_2\vec v_2^T+\dots+\sigma_r\vec u_r\vec v_r^T,\qquad r\le\min(m,n).\] <p>Each term $\vec u_i\vec v_i^T$ is an $m\times n$ matrix of rank 1, weighted by its singular value. Keeping all $r$ terms reconstructs $A$ exactly. Truncating after $k&lt;r$ terms gives the <strong>rank-$k$ approximation</strong></p> \[A_k=\sum_{i=1}^{k}\sigma_i\,\vec u_i\vec v_i^T .\] <p><strong>Why the first $k$ terms are the right ones (Eckart–Young–Mirsky theorem).</strong> Among <em>all</em> matrices of rank $k$, $A_k$ is the closest to $A$, in both the spectral and Frobenius norms:</p> \[\lVert A-A_k\rVert_2=\sigma_{k+1},\qquad \lVert A-A_k\rVert_F=\sqrt{\sigma_{k+1}^2+\dots+\sigma_r^2}.\] <p>So the error is set entirely by the singular values we throw away. (In class this was called the data compression theorem; in the literature it is the Eckart–Young or Eckart–Young–Mirsky theorem.)</p> <p><strong>Worked example.</strong> Continue with $A$ from §7, where $\sigma_1=2.414$, $\sigma_2=0.414$. The rank-1 approximation is</p> \[A_1=\sigma_1\vec u_1\vec v_1^T =2.414\begin{bmatrix}0.924\\0.383\end{bmatrix}\begin{bmatrix}0.383&amp;0.924\end{bmatrix} =\begin{bmatrix}0.854&amp;2.061\\0.354&amp;0.854\end{bmatrix} \quad\text{vs.}\quad A=\begin{bmatrix}1&amp;2\\0&amp;1\end{bmatrix}.\] <p>Entry-by-entry relative error $(a_{ij}-\hat a_{ij})/a_{ij}$:</p> \[\begin{bmatrix}14.6\%&amp;-3.0\%\\\text{undefined}&amp;14.6\%\end{bmatrix}\] <p>The $(2,1)$ entry is undefined because $a_{21}=0$. This is why the entry-wise error is a poor summary; the matrix-norm error is better behaved:</p> \[\frac{\lVert A-A_1\rVert_F}{\lVert A\rVert_F}=\frac{\sigma_2}{\sqrt{\sigma_1^2+\sigma_2^2}}=\frac{0.414}{\sqrt6}=16.9\%, \qquad \lVert A-A_1\rVert_2=\sigma_2=0.414.\] <p>Adding the second term restores $A$ exactly:</p> \[A_2=A_1+\sigma_2\vec u_2\vec v_2^T =\begin{bmatrix}0.854&amp;2.061\\0.354&amp;0.854\end{bmatrix} +0.414\begin{bmatrix}-0.383\\0.924\end{bmatrix}\begin{bmatrix}-0.924&amp;0.383\end{bmatrix} =\begin{bmatrix}1&amp;2\\0&amp;1\end{bmatrix}\ \checkmark\] <p><strong>Data storage savings.</strong> For an $m\times n$ matrix (tall if $m&gt;n$, short if $m&lt;n$), storing $A$ costs $mn$ numbers. Storing $A_k=U_{m\times k}\Sigma_{k\times k}V_{n\times k}^T$ costs</p> \[\underbrace{mk}_{U_k}+\underbrace{k}_{\text{diagonal of }\Sigma_k}+\underbrace{nk}_{V_k}=k(m+n+1).\] <p>It saves space only when</p> \[k(m+n+1)&lt;mn\quad\Longleftrightarrow\quad k&lt;\frac{mn}{m+n+1}.\] <p>For $m=n=100$: $k&lt;10000/201=49.75$, so $k\le49$ (at $k=50$, $50\times201=10050&gt;10000$ — no saving). With $k=20$:</p> \[\text{saving}=\frac{mn-k(m+n+1)}{mn}=\frac{10000-4020}{10000}=59.8\%\approx60\%.\] <p><strong>Choosing $k$: energy fraction.</strong> The squared singular values measure how much of the matrix’s “energy” (squared Frobenius norm) each mode carries. Pick the smallest $k$ that captures a target, typically 90 % or more:</p> \[E_k=\frac{\sum_{i=1}^{k}\sigma_i^2}{\sum_{i=1}^{r}\sigma_i^2},\qquad 1-E_k=\left(\frac{\lVert A-A_k\rVert_F}{\lVert A\rVert_F}\right)^2 .\] <p>For the example, $E_1=5.828/6=97.1\%$ — one mode carries almost all the energy, yet the relative Frobenius error is still $\sqrt{1-0.971}=16.9\%$. <strong>An energy fraction is a squared quantity, so 97 % energy is not 97 % accuracy.</strong></p> <p><strong>Edge cases.</strong></p> <ul> <li>Ties: if $\sigma_k=\sigma_{k+1}$, the best rank-$k$ approximation is not unique.</li> <li>Compression only pays when the singular values decay quickly. A matrix with flat $\sigma_i$ (e.g. the identity, or white noise) has $E_k=k/r$ and no good low-rank approximation.</li> <li>Truncating also filters noise: small $\sigma_i$ usually carry measurement noise, so $A_k$ can be <em>closer to the true signal</em> than $A$ itself.</li> </ul> <h3 id="recap">Recap</h3> <table> <thead> <tr> <th>Topic</th> <th>Core idea</th> </tr> </thead> <tbody> <tr> <td>Self-adjoint operator</td> <td>$\langle Lf,g\rangle=\langle f,Lg\rangle$; for $d^2/dx^2$ it needs vanishing boundary terms.</td> </tr> <tr> <td>Why decompose</td> <td>Avoid $A^{-1}$; save flops and memory; keep dominant modes (POD / PCA).</td> </tr> <tr> <td>PD / PSD / ND</td> <td>$\vec x^TA\vec x&gt;0\ /\ \ge0\ /\ &lt;0 \iff$ all $\lambda&gt;0\ /\ \ge0\ /\ &lt;0$ (symmetric $A$).</td> </tr> <tr> <td>LU</td> <td>$A=LU$; forward then back substitution. Doolittle ($l_{ii}=1$), Crout ($u_{ii}=1$), Cholesky ($LL^T$).</td> </tr> <tr> <td>QR</td> <td>$A=QR$, $R\vec x=Q^T\vec c$; Gram–Schmidt; any shape.</td> </tr> <tr> <td>EVD</td> <td>$A=Q\Lambda Q^{-1}$ ($Q\Lambda Q^T$ if symmetric); frequencies, powers; square and diagonalizable.</td> </tr> <tr> <td>SVD</td> <td>$A=U\Sigma V^T$, $\sigma=\sqrt{\lambda(A^TA)}\ge0$; any matrix, orthogonal vectors.</td> </tr> <tr> <td>Data reconstruction</td> <td>$A_k=\sum_{i\le k}\sigma_i\vec u_i\vec v_i^T$ is the best rank-$k$ fit; error $=\sigma_{k+1}$ (2-norm).</td> </tr> <tr> <td>Storage</td> <td>$k(m+n+1)$ vs. $mn$; saves only if $k&lt;mn/(m+n+1)$. Choose $k$ by energy $\sum_{i\le k}\sigma_i^2/\sum\sigma_i^2$.</td> </tr> </tbody> </table> <h3 id="check-our-understanding">Check our understanding</h3> <h4 id="true-or-false">True or False</h4> <ol> <li>For $L=d^2/dx^2$ and functions vanishing at both ends of $[a,b]$, $\langle Lf,g\rangle=\langle f,Lg\rangle$.</li> <li>$\langle f’‘,g\rangle=\langle f,g’‘\rangle$ holds for any twice-differentiable $f,g$, whatever their boundary values.</li> <li>In Doolittle’s method every diagonal entry of $L$ is 1.</li> <li>In Crout’s method every diagonal entry of $L$ is 1.</li> <li>Cholesky decomposition applies to any invertible symmetric matrix.</li> <li>Every invertible matrix has an LU decomposition without row swaps.</li> <li>A symmetric matrix with $\vec x^TA\vec x&gt;0$ for all nonzero $\vec x$ has only positive eigenvalues.</li> <li>A symmetric matrix with all positive diagonal entries is positive definite.</li> <li>A positive semi-definite matrix may have a zero eigenvalue.</li> <li>A negative definite matrix has all eigenvalues negative.</li> <li>The matrix with rows $[7,3]$ and $[3,-1]$ is positive definite.</li> <li>If $U$ is invertible, $U^TU$ is positive definite.</li> <li>If $Q$ is orthogonal, $Q^{-1}=Q^T$.</li> <li>QR decomposition applies only to square matrices.</li> <li>POD keeps the largest eigenvalues’ modes, which can retain most of the energy with far fewer modes.</li> <li>Eigenvectors of a symmetric matrix with distinct eigenvalues are mutually orthogonal.</li> <li>If $A=Q\Lambda Q^{-1}$, then $A^k=Q\Lambda^kQ^{-1}$.</li> <li>Eigenvalue decomposition applies directly to rectangular matrices.</li> <li>Singular values are always real and non-negative.</li> <li>The matrix with rows $[1,2]$ and $[0,1]$ has singular values equal to its eigenvalues (both 1).</li> <li>The rank-$k$ SVD truncation $A_k$ is the best rank-$k$ approximation of $A$ in the Frobenius norm.</li> <li>Storing a rank-$k$ approximation of a $100\times100$ matrix saves memory for $k=50$.</li> <li>If the first mode captures 97 % of the energy, the rank-1 approximation is accurate to within 3 %.</li> </ol> <details> <summary><strong>View Answer Key</strong></summary> <ol> <li> <strong>True.</strong> Only boundary terms $[gf’-g’f]_a^b$ remain, and they vanish.</li> <li> <strong>False.</strong> Counter-example: $f=x^2$, $g=1$ on $[0,1]$ gives $2$ vs. $0$.</li> <li><strong>True.</strong></li> <li> <strong>False.</strong> Crout puts the 1’s on the diagonal of $U$.</li> <li> <strong>False.</strong> It must also be positive definite; rows $[1,2]$, $[2,1]$ is symmetric and invertible but gives $l_{22}^2=-3$.</li> <li> <strong>False.</strong> Rows $[0,1]$, $[1,0]$ have a zero first pivot and need a row swap.</li> <li><strong>True.</strong></li> <li> <strong>False.</strong> Rows $[1,2]$, $[2,1]$ have eigenvalues $3,-1$.</li> <li> <strong>True.</strong> That is the difference between PSD ($\lambda\ge0$) and PD ($\lambda&gt;0$).</li> <li><strong>True.</strong></li> <li> <strong>False.</strong> Its eigenvalues are $8$ and $-2$, so it is indefinite.</li> <li> <strong>True.</strong> $\vec x^TU^TU\vec x=\lVert U\vec x\rVert^2&gt;0$.</li> <li><strong>True.</strong></li> <li> <strong>False.</strong> QR exists for any matrix, including rectangular ones.</li> <li><strong>True.</strong></li> <li><strong>True.</strong></li> <li> <strong>True.</strong> The inner $Q^{-1}Q$ factors cancel.</li> <li> <strong>False.</strong> $A\vec v=\lambda\vec v$ needs a square matrix; use SVD.</li> <li> <strong>True.</strong> $\sigma_i=\sqrt{\lambda_i(A^TA)}$ and $A^TA$ is positive semi-definite.</li> <li> <strong>False.</strong> Eigenvalues are $1,1$; singular values are $2.414$ and $0.414$.</li> <li> <strong>True.</strong> Eckart–Young–Mirsky; the error is $\sqrt{\sigma_{k+1}^2+\dots+\sigma_r^2}$.</li> <li> <strong>False.</strong> $50(100+100+1)=10050&gt;10000$; the break-even is $k\le49$.</li> <li> <strong>False.</strong> Energy is squared: the relative Frobenius error is $\sqrt{0.03}\approx17\%$ (our $2\times2$ example).</li> </ol> </details> <h4 id="practice-questions">Practice questions</h4> <p><strong>Q1.</strong> What is the condition on the eigenvalues when the matrix is (a) positive definite, (b) positive semi-definite, (c) negative definite?</p> <details> <summary><strong>View Answer</strong></summary> <p>(a) All $\lambda_i&gt;0$. (b) All $\lambda_i\ge0$ — none negative, zero allowed. (c) All $\lambda_i&lt;0$. Mixed signs mean the matrix is indefinite.</p> </details> <hr> <p><strong>Q2 (Problem 5-5).</strong> Explain the analogy between a discrete system and a continuous function with respect to eigenvectors and eigenvalues.</p> <details> <summary><strong>View Answer</strong></summary> <table> <thead> <tr> <th>Discrete</th> <th>Continuous</th> </tr> </thead> <tbody> <tr> <td>vector $\vec v$</td> <td>function $f(x)$</td> </tr> <tr> <td>matrix $A$</td> <td>linear operator $L$ (e.g. $d^2/dx^2$)</td> </tr> <tr> <td>$A\vec v=\lambda\vec v$</td> <td>$Lf=\lambda f$</td> </tr> <tr> <td>eigenvector, eigenvalue</td> <td>eigenfunction, eigenvalue</td> </tr> <tr> <td>dot product</td> <td>inner product $\int fg\,dx$</td> </tr> <tr> <td>symmetric matrix</td> <td>self-adjoint operator (with boundary conditions)</td> </tr> <tr> <td>$n$ eigenvectors (finite DOF)</td> <td>infinitely many eigenfunctions</td> </tr> </tbody> </table> <p>Symmetric matrices have orthogonal eigenvectors; self-adjoint operators have orthogonal eigenfunctions. Example: $L=d^2/dx^2$ on $[0,\pi]$ with zero boundary values has eigenfunctions $\sin nx$, eigenvalues $-n^2$. In both cases the eigenvalues give natural frequencies and the eigenvectors / eigenfunctions give the mode shapes.</p> </details> <hr> <p><strong>Q3 (Problem 5-5).</strong> Where is QR decomposition better than LU decomposition? What limitations does it <em>not</em> have compared to EVD?</p> <details> <summary><strong>View Answer</strong></summary> <p><strong>Better than LU:</strong> it handles rectangular / overdetermined systems (LU needs a square matrix); it is more stable, because orthogonal $Q$ preserves lengths and needs no pivoting, and it avoids the squared conditioning of $A^TA$; and $Q^{-1}=Q^T$ is free. (LU is still about twice as cheap for a square, well-conditioned system.)</p> <p><strong>Limitations of EVD that QR does not have:</strong> EVD needs a square matrix; QR accepts any shape. EVD needs a diagonalizable matrix (the shear above fails); QR exists for every matrix. EVD’s eigenvectors may be non-orthogonal and its eigenvalues complex; $Q$ in QR is always orthogonal and real.</p> <p><strong>What QR does not give:</strong> natural frequencies, mode shapes or dominant modes — that is what EVD and SVD provide.</p> </details> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Nirmal Prasad Panta. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "A growing collection of your cool projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Comprehensive overview of my academic background and skills.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "post-modeling-and-analysis-of-mechanical-systems-principal-component-analysis-pca",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA)",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-principal-component-analysis/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-gradient-based-optimization",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Gradient-Based Optimization",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-gradient-based-optimization/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-derivatives-gradients-hessians-and-the-material-derivative",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Derivatives, Gradients, Hessians and the Material...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-derivatives-and-gradients/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-linear-operators-and-matrix-decomposition",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-matrix-decomposition/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-4-einstein-39-s-index-notation",
+        
+          title: "Theory of Elasticity — Week 4: Einstein's Index Notation",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week4-index-notation/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-3-a-solid-from-atoms-with-the-lennard-jones-potential",
+        
+          title: "Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week3-lennard-jones-solid/";
+          
+        },
+      },{id: "post-taylor-series-why-it-matters-and-what-linear-and-quadratic-approximation-really-mean",
+        
+          title: "Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/taylor-series/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-2-generalizing-vector-spaces",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter2-generalizing-vector-spaces/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-2-hydrostatics-as-an-idealized-introduction-to-continuum-elasticity",
+        
+          title: "Theory of Elasticity — Week 2: Hydrostatics as an Idealized Introduction to Continuum...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week2-hydrostatics-idealized-continuum/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-1-classify-and-analyze",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter1-classifying-model-equations/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-1-what-39-s-the-matter",
+        
+          title: "Theory of Elasticity — Week 1: What's the Matter?",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week1-continuum-hypothesis/";
+          
+        },
+      },{id: "post-vitruvius-redux",
+        
+          title: "Vitruvius Redux",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vitruvius-redux/";
+          
+        },
+      },{id: "post-reading-notes-computational-design-synthesis-amp-ai",
+        
+          title: "Reading Notes: Computational Design Synthesis & AI",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/reading-notes-design-synthesis/";
+          
+        },
+      },{id: "post-formal-engineering-design-synthesis",
+        
+          title: "Formal Engineering Design Synthesis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-engineering-design-synthesis/";
+          
+        },
+      },{id: "post-formal-design-gramar",
+        
+          title: "Formal Design Gramar",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-design-grammar/";
+          
+        },
+      },{id: "post-a-post-with-marimo-snippets",
+        
+          title: "a post with marimo snippets",
+        
+        description: "running Python in the browser with marimo",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/marimo/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
+        
+          title: "a post with plotly.js",
+        
+        description: "this is what included plotly.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/plotly/";
+          
+        },
+      },{id: "post-a-post-with-image-galleries",
+        
+          title: "a post with image galleries",
+        
+        description: "this is what included image galleries could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/photo-gallery/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-a-post-with-tabs",
+        
+          title: "a post with tabs",
+        
+        description: "this is what included tabs in a post could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/tabs/";
+          
+        },
+      },{id: "post-a-post-with-typograms",
+        
+          title: "a post with typograms",
+        
+        description: "this is what included typograms code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/typograms/";
+          
+        },
+      },{id: "post-a-post-that-can-be-cited",
+        
+          title: "a post that can be cited",
+        
+        description: "this is what a post that can be cited looks like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/post-citation/";
+          
+        },
+      },{id: "post-a-post-with-pseudo-code",
+        
+          title: "a post with pseudo code",
+        
+        description: "this is what included pseudo code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/pseudocode/";
+          
+        },
+      },{id: "post-a-post-with-code-diff",
+        
+          title: "a post with code diff",
+        
+        description: "this is how you can display code diffs",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/code-diff/";
+          
+        },
+      },{id: "post-a-post-with-advanced-image-components",
+        
+          title: "a post with advanced image components",
+        
+        description: "this is what advanced image components could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/advanced-images/";
+          
+        },
+      },{id: "post-a-post-with-vega-lite",
+        
+          title: "a post with vega lite",
+        
+        description: "this is what included vega lite code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/vega-lite/";
+          
+        },
+      },{id: "post-a-post-with-geojson",
+        
+          title: "a post with geojson",
+        
+        description: "this is what included geojson code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/geojson-map/";
+          
+        },
+      },{id: "post-a-post-with-echarts",
+        
+          title: "a post with echarts",
+        
+        description: "this is what included echarts code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/echarts/";
+          
+        },
+      },{id: "post-a-post-with-chart-js",
+        
+          title: "a post with chart.js",
+        
+        description: "this is what included chart.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/chartjs/";
+          
+        },
+      },{id: "post-a-post-with-tikzjax",
+        
+          title: "a post with TikZJax",
+        
+        description: "this is what included TikZ code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tikzjax/";
+          
+        },
+      },{id: "post-a-post-with-bibliography",
+        
+          title: "a post with bibliography",
+        
+        description: "an example of a blog post with bibliography",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/post-bibliography/";
+          
+        },
+      },{id: "post-a-post-with-jupyter-notebook",
+        
+          title: "a post with jupyter notebook",
+        
+        description: "an example of a blog post with jupyter notebook",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/jupyter-notebook/";
+          
+        },
+      },{id: "post-a-post-with-custom-blockquotes",
+        
+          title: "a post with custom blockquotes",
+        
+        description: "an example of a blog post with custom blockquotes",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/custom-blockquotes/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
+        
+          title: "a post with table of contents on a sidebar",
+        
+        description: "an example of a blog post with table of contents on a sidebar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/sidebar-table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-audios",
+        
+          title: "a post with audios",
+        
+        description: "this is what included audios could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/audios/";
+          
+        },
+      },{id: "post-a-post-with-videos",
+        
+          title: "a post with videos",
+        
+        description: "this is what included videos could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/videos/";
+          
+        },
+      },{id: "post-displaying-beautiful-interactive-tables",
+        
+          title: "displaying beautiful interactive tables",
+        
+        description: "an example of how to use interactive tables in al-folio",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tables/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents",
+        
+          title: "a post with table of contents",
+        
+        description: "an example of a blog post with table of contents",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-giscus-comments",
+        
+          title: "a post with giscus comments",
+        
+        description: "an example of a blog post with giscus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/giscus-comments/";
+          
+        },
+      },{id: "post-یک-نوشتهٔ-راست-چین",
+        
+          title: "یک نوشتهٔ راست‌چین",
+        
+        description: "نمونه‌ای از پشتیبانی زبان‌های راست‌چین",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/rtl/";
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "post-a-post-with-redirect",
+        
+          title: "a post with redirect",
+        
+        description: "you can also redirect to assets like pdf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/example_pdf.pdf";
+          
+        },
+      },{id: "post-a-post-with-diagrams",
+        
+          title: "a post with diagrams",
+        
+        description: "an example of a blog post with diagrams",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/diagrams/";
+          
+        },
+      },{id: "post-a-distill-style-blog-post",
+        
+          title: "A distill-style blog post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/distill/";
+          
+        },
+      },{id: "post-a-post-with-twitter",
+        
+          title: "a post with twitter",
+        
+        description: "an example of a blog post with twitter",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/twitter/";
+          
+        },
+      },{id: "post-a-post-with-disqus-comments",
+        
+          title: "a post with disqus comments",
+        
+        description: "an example of a blog post with disqus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/disqus-comments/";
+          
+        },
+      },{id: "post-a-post-with-math",
+        
+          title: "a post with math",
+        
+        description: "an example of a blog post with some math",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/math/";
+          
+        },
+      },{id: "post-a-post-with-code",
+        
+          title: "a post with code",
+        
+        description: "an example of a blog post with some code",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/code/";
+          
+        },
+      },{id: "post-a-post-with-images",
+        
+          title: "a post with images",
+        
+        description: "this is what included images could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/images/";
+          
+        },
+      },{id: "post-a-post-with-formatting-and-links",
+        
+          title: "a post with formatting and links",
+        
+        description: "march & april, looking forward to summer",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/formatting-and-links/";
+          
+        },
+      },{id: "books-formal-engineering-design-synthesis",
+          title: 'Formal Engineering Design Synthesis',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/formal_engineering_design_synthesis/";
+            },},{id: "books-the-structure-of-scientific-revolutions",
+          title: 'The Structure of Scientific Revolutions',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/structure_of_scientific_revolution/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-project-1",
+          title: 'project 1',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-project-3-with-very-long-name",
+          title: 'project 3 with very long name',
+          description: "a project that redirects to another website",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
+            },},{id: "projects-project-4",
+          title: 'project 4',
+          description: "another without an image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
+            },},{id: "projects-project-5",
+          title: 'project 5',
+          description: "a project with a background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
+            },},{id: "projects-project-6",
+          title: 'project 6',
+          description: "a project with no image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
+            },},{id: "projects-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_project/";
+            },},{id: "projects-project-8",
+          title: 'project 8',
+          description: "an other project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/8_project/";
+            },},{id: "projects-project-9",
+          title: 'project 9',
+          description: "another project with an image 🎉",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/9_project/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6E%69%6C.%70%61%6E%74%61%37%37@%74%61%6D%75.%65%64%75", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=a9fiG98AAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/niel-77", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/nirmal-panta", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

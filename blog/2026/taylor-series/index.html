@@ -1,0 +1,749 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean | Nirmal Prasad Panta </title> <meta name="author" content="Nirmal Prasad Panta"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://nirmalprasadpanta.com.np/blog/2026/taylor-series/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Nirmal Prasad Panta </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean</h1> <p class="post-meta"> Created on September 04, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/mathematics"> <i class="fa-solid fa-hashtag fa-sm"></i> Mathematics</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Almost every function you actually want to compute with — $\sin x$, $e^x$, $\sqrt{1+x}$, the solution to a nonlinear differential equation — is hard to evaluate, hard to integrate, or hard to reason about in closed form. Polynomials, by contrast, are the easiest functions there are: adding, multiplying, differentiating, and integrating them is pure algebra. A <strong>Taylor series</strong> is the precise statement of how to replace a complicated function, near a chosen point, with a polynomial that behaves just like it — matching not only its value but its slope, its curvature, and (if you keep going) every higher-order wiggle. This post builds the motivation first, then the formula, then makes exact what “linear approximation” and “quadratic approximation” mean as the first two terms of that same idea.</p> <h3 id="1-the-problem-complicated-functions-simple-tools">1. The problem: complicated functions, simple tools</h3> <p>Suppose you need $\sin(0.1)$. A calculator gives $0.099833\ldots$, but <em>how</em> does it get that number? Trigonometric, exponential, and logarithmic functions aren’t built from finitely many additions and multiplications — there is no algebraic formula that produces $\sin x$ from $x$ in a fixed number of arithmetic steps. Every practical method for evaluating them — by hand, in a textbook table, or inside a CPU’s floating-point unit — falls back on approximating the function by a polynomial that <em>is</em> built from finitely many additions and multiplications, and is accurate enough near the point of interest.</p> <p>The same problem shows up one level up, in equations rather than single evaluations. Physical laws are almost always nonlinear — the pendulum equation $\ddot\theta + \frac{g}{L}\sin\theta = 0$, drag proportional to velocity squared, the exponential term in a chemical reaction rate — and nonlinear equations are, in general, not solvable in closed form. Replacing the nonlinear term with a polynomial approximation, valid near the operating point you care about, turns an intractable equation into a linear (or low-order polynomial) one that standard tools — linear algebra, Laplace transforms, eigenvalue analysis — can actually handle. That replacement is a Taylor series, truncated after one or two terms.</p> <h3 id="2-where-this-actually-gets-used">2. Where this actually gets used</h3> <p>The motivation above isn’t abstract; the same trick recurs across essentially every quantitative field:</p> <ul> <li> <strong>Numerical methods.</strong> The central difference approximation for a second derivative, $\dfrac{d^2T}{dx^2}\Big\vert_{x_i} \approx \dfrac{T_{i+1} + T_{i-1} - 2T_i}{\Delta x^2}$, is derived by Taylor-expanding $T$ about $x_i$ in both directions and subtracting — the whole of finite-difference PDE solving rests on truncated Taylor expansions.</li> <li> <strong>Linearization of nonlinear systems.</strong> Control theory, structural dynamics, and circuit analysis routinely study a nonlinear system’s behavior <em>near an equilibrium point</em> by keeping only the linear (first-order) term of a Taylor expansion — this is where “small-angle approximation,” $\sin\theta \approx \theta$, comes from.</li> <li> <strong>Root-finding and optimization.</strong> Newton’s method for solving $f(x) = 0$ walks along the tangent line — the linear Taylor approximation — of $f$ at the current guess; Newton’s method for <em>minimizing</em> a function instead uses the quadratic approximation, because a parabola (unlike a line) actually has a minimum to jump to.</li> <li> <strong>Error and uncertainty analysis.</strong> If a measured quantity $x$ has a small error $\Delta x$, the resulting error in $f(x)$ is estimated as $f’(x)\,\Delta x$ — the linear term of a Taylor expansion — which is exactly the standard error-propagation formula used across engineering and the sciences.</li> <li> <strong>Evaluating transcendental functions.</strong> $e^x$, $\sin x$, $\cos x$, and $\ln(1+x)$ are computed in practice (in calculators, in software math libraries) via truncated Taylor (or closely related Chebyshev) polynomial approximations, because polynomials are all a processor can natively evaluate.</li> </ul> <p>The throughline in every case: keep the first term (or first two, or first few) of a systematic polynomial approximation, and get something tractable in exchange for accuracy that is provably good <em>near</em> the expansion point — and provably degrades <em>away</em> from it.</p> <h3 id="3-the-taylor-series-equation">3. The Taylor series equation</h3> <p>For a function $f$ that is smooth enough (has enough derivatives) at a point $x = a$, the <strong>Taylor series</strong> of $f$ about $a$ is</p> \[f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n .\] <p>Read term by term, each one fixes up one more way the polynomial could fail to match $f$ at $a$: the zeroth term $f(a)$ matches the <em>value</em>; the first term $f’(a)(x-a)$ matches the <em>slope</em>; the second term $\frac{f’‘(a)}{2}(x-a)^2$ matches the <em>curvature</em>; and so on — the $n$th term is built exactly so that the polynomial’s $n$th derivative at $a$ agrees with $f^{(n)}(a)$, while leaving every lower-order derivative undisturbed (because differentiating $(x-a)^n$ $k &lt; n$ times still leaves a factor of $(x-a)$, which vanishes at $x=a$).</p> <p>The special case $a = 0$ is common enough to have its own name, the <strong>Maclaurin series</strong>:</p> \[f(x) = f(0) + f'(0)\,x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \cdots .\] <p>This is precisely the “powers of $x$ as a basis” idea: ${1, x, x^2, x^3, \dots}$ are the basis functions, and ${\frac{f^{(n)}(a)}{n!}}$ are the coordinates of $f$ in that basis, at least locally.</p> <h3 id="4-linear-approximation-keep-the-first-two-terms">4. Linear approximation: keep the first two terms</h3> <p>Truncating the series after the linear term gives the <strong>linear approximation</strong> (also called the first-order Taylor approximation, or the tangent-line approximation):</p> \[f(x) \approx L(x) = f(a) + f'(a)(x-a).\] <p>Geometrically, $L(x)$ is the equation of the line tangent to $f$ at $x = a$ — same value, same slope, at that one point, and nothing more. It is a good approximation for $x$ close to $a$ and gets worse as $x$ moves away, because it has no way to represent the curving-away of $f$ from a straight line.</p> <p><strong>Worked example.</strong> Take $f(x) = \sin x$ and expand about $a = 0$ (so $f(0)=0$, $f’(x) = \cos x \Rightarrow f’(0) = 1$). The linear approximation is $L(x) = 0 + 1\cdot x = x$ — the familiar small-angle approximation $\sin x \approx x$. At $x = 0.1$: $L(0.1) = 0.1$, versus the true value $\sin(0.1) = 0.0998334\ldots$ — an error of about $1.67\times 10^{-4}$, i.e. good to roughly 3 significant figures with a single multiplication.</p> <p><strong>Where linear approximation breaks down.</strong> At $x = 1$ radian, $L(1) = 1$ versus the true $\sin(1) = 0.8415\ldots$ — an error of about $0.16$, nearly 19% off. The tangent line was only ever a <em>local</em> promise; nothing in its construction guarantees accuracy far from $a$, and $x=1$ is far enough from $0$ (about one radian of curvature) that the straight-line approximation has visibly separated from the curve.</p> <h3 id="5-quadratic-approximation-keep-one-more-term">5. Quadratic approximation: keep one more term</h3> <p>Adding back the second-order term gives the <strong>quadratic approximation</strong>:</p> \[f(x) \approx Q(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2}(x-a)^2.\] <p>$Q(x)$ is the unique parabola through $(a, f(a))$ that matches both $f$’s slope <em>and</em> its curvature at $a$. Because it can bend the same way $f$ does, it tracks $f$ noticeably farther from $a$ than the tangent line does, at the cost of one extra term.</p> <p><strong>Worked example (continuing $\sin x$ about $a=0$).</strong> $f’‘(x) = -\sin x \Rightarrow f’‘(0) = 0$, so the quadratic term vanishes identically: $Q(x) = x$, no different from $L(x)$. This isn’t a mistake — $\sin x$ is an <em>odd</em> function ($\sin(-x) = -\sin x$), so every even-order derivative at $0$ is zero and every even-order term drops out of its Maclaurin series entirely. To see the quadratic term do real work, expand $f(x) = \cos x$ about $a = 0$ instead: $f(0) = 1$, $f’(0) = -\sin 0 = 0$, $f’‘(0) = -\cos 0 = -1$, giving $Q(x) = 1 + 0\cdot x + \frac{-1}{2}x^2 = 1 - \frac{x^2}{2}$. At $x = 0.5$: $Q(0.5) = 1 - 0.125 = 0.875$, versus the true $\cos(0.5) = 0.87758\ldots$ — accurate to better than three decimal places, where the linear approximation $L(x) = 1$ (a flat, zero-slope line, since $f’(0)=0$) would have given a much cruder $1$, missing the curvature entirely.</p> <p><strong>Counter-example: when there’s no linear or quadratic approximation to write down.</strong> Take $f(x) = \vert x\vert$ at $a = 0$. $f$ is continuous everywhere, but $f’(0)$ does not exist — the left- and right-hand slopes disagree ($-1$ versus $+1$), so there is no well-defined tangent line, and no Taylor series (linear, quadratic, or otherwise) can be built at $a=0$ at all. Smoothness — having the required derivative at the expansion point — is not optional; it’s the standing assumption behind every term in Section 3.</p> <h3 id="6-the-general-pattern-and-the-remainder">6. The general pattern and the remainder</h3> <p>The same construction continues indefinitely: an $n$th-order Taylor approximation keeps terms through $(x-a)^n$ and matches $f$’s value and its first $n$ derivatives at $a$. What’s left out — the true error of any truncated approximation — is captured by the <strong>remainder term</strong> $R_n(x) = f(x) - P_n(x)$, where $P_n$ is the degree-$n$ truncation. Taylor’s theorem gives a precise bound on $R_n(x)$ in terms of the $(n+1)$th derivative, which is what justifies statements like “the linear approximation of $\sin x$ is accurate to within $\mathcal{O}(x^3)$” rather than leaving the approximation’s quality as a guess.</p> <p><strong>A subtlety worth flagging.</strong> A function can have derivatives of every order at $a$ — so its full Taylor series exists as an infinite polynomial — and yet that series can fail to converge back to $f(x)$ anywhere except at $a$ itself. The standard example is $f(x) = e^{-1/x^2}$ (with $f(0):=0$), whose every derivative at $0$ is exactly zero, making its Maclaurin series the identically-zero function — while $f(x)$ itself is strictly positive for every $x \neq 0$. Existence of the series (the algebra of Section 3) and the series actually equaling the function (convergence) are two different claims; the second one is not automatic just because the first one holds.</p> <h3 id="recap">Recap</h3> <table> <thead> <tr> <th>Idea</th> <th>What it says</th> </tr> </thead> <tbody> <tr> <td>Motivation</td> <td>Complicated (transcendental, nonlinear) functions are hard to compute or solve with directly; polynomials are easy. Taylor series is the systematic way to trade one for the other, locally.</td> </tr> <tr> <td>Taylor series</td> <td>$f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n$ — each term matches one more derivative of $f$ at $a$.</td> </tr> <tr> <td>Maclaurin series</td> <td>The special case $a = 0$.</td> </tr> <tr> <td>Linear approximation</td> <td>$f(x) \approx f(a) + f’(a)(x-a)$ — the tangent line; matches value and slope only.</td> </tr> <tr> <td>Quadratic approximation</td> <td>$f(x) \approx f(a) + f’(a)(x-a) + \frac{f’‘(a)}{2}(x-a)^2$ — the best-fit parabola; also matches curvature.</td> </tr> <tr> <td>Remainder</td> <td>$R_n(x) = f(x) - P_n(x)$, the truncation error; bounded via the $(n+1)$th derivative (Taylor’s theorem).</td> </tr> <tr> <td>Watch out for</td> <td>Points where $f$ isn’t differentiable (no series exists at all), and series that converge but not to $f$ itself.</td> </tr> </tbody> </table> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Nirmal Prasad Panta. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "A growing collection of your cool projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Comprehensive overview of my academic background and skills.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "post-modeling-and-analysis-of-mechanical-systems-principal-component-analysis-pca",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA)",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-principal-component-analysis/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-gradient-based-optimization",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Gradient-Based Optimization",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-gradient-based-optimization/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-derivatives-gradients-hessians-and-the-material-derivative",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Derivatives, Gradients, Hessians and the Material...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-derivatives-and-gradients/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-linear-operators-and-matrix-decomposition",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-matrix-decomposition/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-4-einstein-39-s-index-notation",
+        
+          title: "Theory of Elasticity — Week 4: Einstein's Index Notation",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week4-index-notation/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-3-a-solid-from-atoms-with-the-lennard-jones-potential",
+        
+          title: "Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week3-lennard-jones-solid/";
+          
+        },
+      },{id: "post-taylor-series-why-it-matters-and-what-linear-and-quadratic-approximation-really-mean",
+        
+          title: "Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/taylor-series/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-2-generalizing-vector-spaces",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter2-generalizing-vector-spaces/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-2-hydrostatics-as-an-idealized-introduction-to-continuum-elasticity",
+        
+          title: "Theory of Elasticity — Week 2: Hydrostatics as an Idealized Introduction to Continuum...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week2-hydrostatics-idealized-continuum/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-1-classify-and-analyze",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter1-classifying-model-equations/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-1-what-39-s-the-matter",
+        
+          title: "Theory of Elasticity — Week 1: What's the Matter?",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week1-continuum-hypothesis/";
+          
+        },
+      },{id: "post-vitruvius-redux",
+        
+          title: "Vitruvius Redux",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vitruvius-redux/";
+          
+        },
+      },{id: "post-reading-notes-computational-design-synthesis-amp-ai",
+        
+          title: "Reading Notes: Computational Design Synthesis & AI",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/reading-notes-design-synthesis/";
+          
+        },
+      },{id: "post-formal-engineering-design-synthesis",
+        
+          title: "Formal Engineering Design Synthesis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-engineering-design-synthesis/";
+          
+        },
+      },{id: "post-formal-design-gramar",
+        
+          title: "Formal Design Gramar",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-design-grammar/";
+          
+        },
+      },{id: "post-a-post-with-marimo-snippets",
+        
+          title: "a post with marimo snippets",
+        
+        description: "running Python in the browser with marimo",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/marimo/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
+        
+          title: "a post with plotly.js",
+        
+        description: "this is what included plotly.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/plotly/";
+          
+        },
+      },{id: "post-a-post-with-image-galleries",
+        
+          title: "a post with image galleries",
+        
+        description: "this is what included image galleries could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/photo-gallery/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-a-post-with-tabs",
+        
+          title: "a post with tabs",
+        
+        description: "this is what included tabs in a post could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/tabs/";
+          
+        },
+      },{id: "post-a-post-with-typograms",
+        
+          title: "a post with typograms",
+        
+        description: "this is what included typograms code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/typograms/";
+          
+        },
+      },{id: "post-a-post-that-can-be-cited",
+        
+          title: "a post that can be cited",
+        
+        description: "this is what a post that can be cited looks like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/post-citation/";
+          
+        },
+      },{id: "post-a-post-with-pseudo-code",
+        
+          title: "a post with pseudo code",
+        
+        description: "this is what included pseudo code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/pseudocode/";
+          
+        },
+      },{id: "post-a-post-with-code-diff",
+        
+          title: "a post with code diff",
+        
+        description: "this is how you can display code diffs",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/code-diff/";
+          
+        },
+      },{id: "post-a-post-with-advanced-image-components",
+        
+          title: "a post with advanced image components",
+        
+        description: "this is what advanced image components could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/advanced-images/";
+          
+        },
+      },{id: "post-a-post-with-vega-lite",
+        
+          title: "a post with vega lite",
+        
+        description: "this is what included vega lite code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/vega-lite/";
+          
+        },
+      },{id: "post-a-post-with-geojson",
+        
+          title: "a post with geojson",
+        
+        description: "this is what included geojson code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/geojson-map/";
+          
+        },
+      },{id: "post-a-post-with-echarts",
+        
+          title: "a post with echarts",
+        
+        description: "this is what included echarts code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/echarts/";
+          
+        },
+      },{id: "post-a-post-with-chart-js",
+        
+          title: "a post with chart.js",
+        
+        description: "this is what included chart.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/chartjs/";
+          
+        },
+      },{id: "post-a-post-with-tikzjax",
+        
+          title: "a post with TikZJax",
+        
+        description: "this is what included TikZ code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tikzjax/";
+          
+        },
+      },{id: "post-a-post-with-bibliography",
+        
+          title: "a post with bibliography",
+        
+        description: "an example of a blog post with bibliography",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/post-bibliography/";
+          
+        },
+      },{id: "post-a-post-with-jupyter-notebook",
+        
+          title: "a post with jupyter notebook",
+        
+        description: "an example of a blog post with jupyter notebook",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/jupyter-notebook/";
+          
+        },
+      },{id: "post-a-post-with-custom-blockquotes",
+        
+          title: "a post with custom blockquotes",
+        
+        description: "an example of a blog post with custom blockquotes",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/custom-blockquotes/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
+        
+          title: "a post with table of contents on a sidebar",
+        
+        description: "an example of a blog post with table of contents on a sidebar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/sidebar-table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-audios",
+        
+          title: "a post with audios",
+        
+        description: "this is what included audios could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/audios/";
+          
+        },
+      },{id: "post-a-post-with-videos",
+        
+          title: "a post with videos",
+        
+        description: "this is what included videos could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/videos/";
+          
+        },
+      },{id: "post-displaying-beautiful-interactive-tables",
+        
+          title: "displaying beautiful interactive tables",
+        
+        description: "an example of how to use interactive tables in al-folio",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tables/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents",
+        
+          title: "a post with table of contents",
+        
+        description: "an example of a blog post with table of contents",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-giscus-comments",
+        
+          title: "a post with giscus comments",
+        
+        description: "an example of a blog post with giscus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/giscus-comments/";
+          
+        },
+      },{id: "post-یک-نوشتهٔ-راست-چین",
+        
+          title: "یک نوشتهٔ راست‌چین",
+        
+        description: "نمونه‌ای از پشتیبانی زبان‌های راست‌چین",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/rtl/";
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "post-a-post-with-redirect",
+        
+          title: "a post with redirect",
+        
+        description: "you can also redirect to assets like pdf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/example_pdf.pdf";
+          
+        },
+      },{id: "post-a-post-with-diagrams",
+        
+          title: "a post with diagrams",
+        
+        description: "an example of a blog post with diagrams",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/diagrams/";
+          
+        },
+      },{id: "post-a-distill-style-blog-post",
+        
+          title: "A distill-style blog post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/distill/";
+          
+        },
+      },{id: "post-a-post-with-twitter",
+        
+          title: "a post with twitter",
+        
+        description: "an example of a blog post with twitter",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/twitter/";
+          
+        },
+      },{id: "post-a-post-with-disqus-comments",
+        
+          title: "a post with disqus comments",
+        
+        description: "an example of a blog post with disqus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/disqus-comments/";
+          
+        },
+      },{id: "post-a-post-with-math",
+        
+          title: "a post with math",
+        
+        description: "an example of a blog post with some math",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/math/";
+          
+        },
+      },{id: "post-a-post-with-code",
+        
+          title: "a post with code",
+        
+        description: "an example of a blog post with some code",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/code/";
+          
+        },
+      },{id: "post-a-post-with-images",
+        
+          title: "a post with images",
+        
+        description: "this is what included images could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/images/";
+          
+        },
+      },{id: "post-a-post-with-formatting-and-links",
+        
+          title: "a post with formatting and links",
+        
+        description: "march & april, looking forward to summer",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/formatting-and-links/";
+          
+        },
+      },{id: "books-formal-engineering-design-synthesis",
+          title: 'Formal Engineering Design Synthesis',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/formal_engineering_design_synthesis/";
+            },},{id: "books-the-structure-of-scientific-revolutions",
+          title: 'The Structure of Scientific Revolutions',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/structure_of_scientific_revolution/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-project-1",
+          title: 'project 1',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-project-3-with-very-long-name",
+          title: 'project 3 with very long name',
+          description: "a project that redirects to another website",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
+            },},{id: "projects-project-4",
+          title: 'project 4',
+          description: "another without an image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
+            },},{id: "projects-project-5",
+          title: 'project 5',
+          description: "a project with a background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
+            },},{id: "projects-project-6",
+          title: 'project 6',
+          description: "a project with no image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
+            },},{id: "projects-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_project/";
+            },},{id: "projects-project-8",
+          title: 'project 8',
+          description: "an other project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/8_project/";
+            },},{id: "projects-project-9",
+          title: 'project 9',
+          description: "another project with an image 🎉",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/9_project/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6E%69%6C.%70%61%6E%74%61%37%37@%74%61%6D%75.%65%64%75", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=a9fiG98AAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/niel-77", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/nirmal-panta", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

@@ -1,0 +1,749 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Theory of Elasticity — Week 4: Einstein's Index Notation | Nirmal Prasad Panta </title> <meta name="author" content="Nirmal Prasad Panta"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://nirmalprasadpanta.com.np/blog/2026/elasticity-week4-index-notation/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Nirmal Prasad Panta </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Theory of Elasticity — Week 4: Einstein's Index Notation</h1> <p class="post-meta"> Created on September 21, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/theory-of-elasticity"> <i class="fa-solid fa-hashtag fa-sm"></i> Theory of Elasticity</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Index notation compresses long component equations into one line. The motivating case is the momentum equation of a compressible viscous fluid, which is unreadable in components and compact in indices.</p> <h3 id="1-motivation">1. Motivation</h3> \[\rho\left(\frac{\partial u_i}{\partial t} + u_k\frac{\partial u_i}{\partial x_k}\right) = -\frac{\partial p}{\partial x_i} + \frac{\partial}{\partial x_k}\left[\mu\left(\frac{\partial u_i}{\partial x_k} + \frac{\partial u_k}{\partial x_i} - \frac{2}{3}\delta_{ik}\frac{\partial u_l}{\partial x_l}\right)\right] + \frac{\partial}{\partial x_i}\left(\zeta\frac{\partial u_k}{\partial x_k}\right) + \rho g_i\] <p>With the <strong>comma convention</strong> $\dfrac{\partial(\cdot)}{\partial x_i} = (\cdot)_{,i}$ and a dot for $\partial/\partial t$:</p> \[\rho\left(\dot u_i + u_k u_{i,k}\right) = -p_{,i} + \mu_{,k}\left(u_{i,k} + u_{k,i} - \tfrac{2}{3}\delta_{ik}u_{l,l}\right) + \mu\left(u_{i,kk} + u_{k,ik} - \tfrac{2}{3}\delta_{ik}u_{l,lk}\right) + \zeta_{,i}u_{k,k} + \zeta u_{k,ki} + \rho g_i\] <p>The last two terms are the product rule applied to $(\zeta u_{k,k})_{,i}$. One equation stands for three (free index $i$), each with sums over $k$ and $l$.</p> <h3 id="2-summation-convention">2. Summation convention</h3> <table> <thead> <tr> <th>Rule</th> <th>Meaning</th> <th>Example</th> </tr> </thead> <tbody> <tr> <td><strong>Dummy index</strong></td> <td>An index repeated twice in one term is summed over $1,2,3$</td> <td>$a_{ii} = a_{11}+a_{22}+a_{33}$</td> </tr> <tr> <td><strong>Free index</strong></td> <td>An index appearing once per term is not summed; it must appear in every term of the equation</td> <td>$a_{ij}b_j = \sum_{j=1}^{3} a_{ij}b_j$, free index $i$</td> </tr> <tr> <td><strong>Renaming</strong></td> <td>A dummy index is a placeholder and can be renamed</td> <td>$a_i b_i = a_k b_k$</td> </tr> <tr> <td><strong>Rank</strong></td> <td>Number of free indices</td> <td>$p$: 0, $u_i$: 1, $\varepsilon_{ij}$: 2</td> </tr> </tbody> </table> <p><strong>Matrix product.</strong> $C_{ik} = a_{ij}b_{jk}$ has dummy $j$ and free $i,k$, so it is a matrix. For $n=3$:</p> \[C_{i1} = a_{i1}b_{11} + a_{i2}b_{21} + a_{i3}b_{31}\] <p><strong>Valid:</strong> $c_i = a_{ij}b_j$ (free $i$ on both sides), $s = a_i b_i$ (no free index, scalar), $T_{ij} = a_i b_j$ (free $i,j$, outer product).</p> <p><strong>Not valid:</strong></p> <ul> <li>$a_{ii}b_i$ has $i$ repeated three times; the convention allows at most two.</li> <li>$c_i = a_j b_j$ has free index $i$ on the left only, so the two sides have different rank.</li> <li>$c_i = a_{ij}b_{jj}$ has $j$ repeated three times.</li> </ul> <p>Index equations must balance: every term has the same free indices.</p> <h3 id="3-kronecker-delta">3. Kronecker delta</h3> \[\delta_{ij} = \begin{cases} 1 &amp; i = j \\ 0 &amp; i \neq j \end{cases} \qquad \delta_{12} = 0,\quad \delta_{22} = 1\] <p>It is the identity matrix, and its properties follow from the definition:</p> <table> <thead> <tr> <th>Identity</th> <th>Reason</th> </tr> </thead> <tbody> <tr> <td>$\delta_{kk} = \delta_{11}+\delta_{22}+\delta_{33} = 3$</td> <td>trace of the identity</td> </tr> <tr> <td>$\delta_{ij}a_j = a_i$</td> <td>replaces the dummy index, hence “substitution”</td> </tr> <tr> <td>$\delta_{ij}\delta_{jk} = \delta_{ik}$</td> <td>identity times identity</td> </tr> <tr> <td>$\delta_{ij}\delta_{ij} = \delta_{ii} = 3$</td> <td>sum of nine terms, three of them equal to 1</td> </tr> </tbody> </table> <p><strong>Counter-examples:</strong> $\delta_{ii} \neq 1$ (it is 3, not the single entry $\delta_{11}$), and $\delta_{ij}a_j \neq a_j$ (the free index of the result is $i$).</p> <h3 id="4-permutation-levi-civita-symbol">4. Permutation (Levi-Civita) symbol</h3> \[\epsilon_{ijk} = \begin{cases} +1 &amp; (i,j,k) \text{ an even permutation of } (1,2,3) \\ -1 &amp; \text{odd permutation} \\ 0 &amp; \text{not a permutation (repeated index)} \end{cases}\] <p>Even permutations are the cyclic orders (same sense as $1\to2\to3$); odd permutations are the reversed orders.</p> <table> <thead> <tr> <th>Value</th> <th>Triples</th> </tr> </thead> <tbody> <tr> <td>$+1$</td> <td>$\epsilon_{123},\ \epsilon_{231},\ \epsilon_{312}$</td> </tr> <tr> <td>$-1$</td> <td>$\epsilon_{321},\ \epsilon_{213},\ \epsilon_{132}$</td> </tr> <tr> <td>$0$</td> <td>$\epsilon_{233},\ \epsilon_{121}$, any triple with a repeated index</td> </tr> </tbody> </table> <p>Swapping any two indices flips the sign: $\epsilon_{ijk} = -\epsilon_{jik}$. Six of the 27 components are nonzero.</p> <h3 id="5-cross-product">5. Cross product</h3> \[(\mathbf a \times \mathbf b)_i = \epsilon_{ijk}\,a_j b_k\] <p>Check for $i=1$. Only $\epsilon_{123}=+1$ and $\epsilon_{132}=-1$ survive, because every other $\epsilon_{1jk}$ has a repeated index:</p> \[(\mathbf a\times\mathbf b)_1 = \epsilon_{123}a_2b_3 + \epsilon_{132}a_3b_2 = a_2 b_3 - a_3 b_2\] <p>Cyclic permutation gives the other two components, $a_3b_1 - a_1b_3$ and $a_1b_2 - a_2b_1$.</p> <p><strong>Counter-example:</strong> $a_2 b_1 - a_1 b_2 \neq a_1 b_2 - a_2 b_1$. The product is antisymmetric, so $\mathbf a\times\mathbf b = -\mathbf b\times\mathbf a$ and $\mathbf a\times\mathbf a = \mathbf 0$ (from $\epsilon_{ijk}a_ja_k = 0$, since $a_ja_k$ is symmetric in $j,k$ while $\epsilon_{ijk}$ is antisymmetric).</p> <h3 id="6-differential-operators-in-index-form">6. Differential operators in index form</h3> <p>With $p$ a scalar field and $\mathbf u$ a vector field:</p> <table> <thead> <tr> <th>Operator</th> <th>Symbol</th> <th>Index form</th> <th>Rank of result</th> </tr> </thead> <tbody> <tr> <td>Gradient of scalar</td> <td>$\nabla p$</td> <td>$p_{,i}\,\mathbf e_i$</td> <td>1 (raises by 1)</td> </tr> <tr> <td>Gradient of vector</td> <td>$\nabla\mathbf u$</td> <td>$u_{i,j}\,\mathbf e_i\otimes\mathbf e_j$</td> <td>2 (raises by 1)</td> </tr> <tr> <td>Divergence</td> <td>$\nabla\cdot\mathbf u$</td> <td>$\operatorname{tr}(\nabla\mathbf u) = u_{i,i}$</td> <td>0 (lowers by 1)</td> </tr> <tr> <td>Curl</td> <td>$\nabla\times\mathbf u$</td> <td>$\epsilon_{ijk}\,u_{k,j}\,\mathbf e_i$</td> <td>1 (keeps rank)</td> </tr> <tr> <td>Laplacian of scalar</td> <td>$\nabla^2 p = \nabla\cdot\nabla p$</td> <td>$p_{,ii}$</td> <td>0 (keeps rank)</td> </tr> <tr> <td>Laplacian of vector</td> <td>$\nabla^2\mathbf u$</td> <td>$u_{i,kk}\,\mathbf e_i$</td> <td>1 (keeps rank)</td> </tr> </tbody> </table> <p>The comma always opens a new index that belongs to the derivative: $u_{i,j}$ is the derivative of component $i$ with respect to $x_j$. In the momentum equation of section 1, $u_k u_{i,k} = (\mathbf u\cdot\nabla)u_i$ is the convective term.</p> <p><strong>Counter-example:</strong> $u_{i,j} \neq u_{j,i}$ in general. The gradient of a vector field is not symmetric, and its symmetric part defines the strain (section 7).</p> <h3 id="7-strain-from-displacement">7. Strain from displacement</h3> <p>A <strong>rigid-body motion</strong> keeps all distances between points unchanged, so it produces no strain. The <strong>strain</strong> measures only the part of the displacement gradient that changes distances:</p> \[\varepsilon_{ij} = \tfrac{1}{2}\left(u_{i,j} + u_{j,i}\right)\] <p><strong>Example: simple shear of a rectangle</strong> $L_x \times L_y$, with the top edge displaced by $\tfrac{1}{2}L_x$:</p> \[\mathbf u = \begin{bmatrix} \tfrac{1}{2}\dfrac{L_x}{L_y}\,x_2 \\ 0 \\ 0 \end{bmatrix}\] <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/elasticity/shear_strain-480.webp 480w,/assets/img/elasticity/shear_strain-800.webp 800w,/assets/img/elasticity/shear_strain-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/elasticity/shear_strain.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">Simple shear: horizontal displacement grows linearly with height. Only $\varepsilon_{12}=\varepsilon_{21}$ is nonzero.</figcaption> </figure> <p>The only nonzero displacement gradient is $u_{1,2}$, so $u_{2,1} = 0$ and</p> \[\varepsilon_{12} = \tfrac{1}{2}\left(u_{1,2} + u_{2,1}\right) = \tfrac{1}{2}u_{1,2} = \tfrac{1}{2}\cdot\tfrac{1}{2}\frac{L_x}{L_y} = \frac{1}{4}\frac{L_x}{L_y}\] <p>All other components vanish, and $\varepsilon_{12}=\varepsilon_{21}$ by symmetry.</p> <p><strong>Counter-example (rigid rotation).</strong> A small rotation $\mathbf u = \boldsymbol\omega\times\mathbf x$ has $u_{1,2} = -\omega_3$ and $u_{2,1} = +\omega_3$, so</p> \[\varepsilon_{12} = \tfrac{1}{2}\left(-\omega_3 + \omega_3\right) = 0\] <p>The displacement gradient is nonzero, yet the strain is zero. This is why strain uses the symmetric part $\tfrac{1}{2}(u_{i,j}+u_{j,i})$ and not $u_{i,j}$ itself.</p> <p><strong>Counter-example (uniform translation).</strong> $\mathbf u = \mathbf c$ gives $u_{i,j}=0$ and hence zero strain; displacement and strain are different things.</p> <h3 id="recap">Recap</h3> <table> <thead> <tr> <th>Object</th> <th>Index form</th> </tr> </thead> <tbody> <tr> <td>Trace</td> <td>$a_{ii}$</td> </tr> <tr> <td>Matrix–vector product</td> <td>$a_{ij}b_j$</td> </tr> <tr> <td>Matrix product</td> <td>$a_{ij}b_{jk}$</td> </tr> <tr> <td>Identity matrix</td> <td>$\delta_{ij}$, with $\delta_{ii}=3$</td> </tr> <tr> <td>Cross product</td> <td>$\epsilon_{ijk}a_jb_k$</td> </tr> <tr> <td>Gradient / divergence / curl</td> <td>$p_{,i}$, $u_{i,i}$, $\epsilon_{ijk}u_{k,j}$</td> </tr> <tr> <td>Laplacian</td> <td>$p_{,ii}$, $u_{i,kk}$</td> </tr> <tr> <td>Strain</td> <td>$\tfrac{1}{2}(u_{i,j}+u_{j,i})$</td> </tr> </tbody> </table> <h3 id="check-understanding">Check Understanding</h3> <details> <summary><strong>Q1.</strong> Is $c_i = a_{ij}b_j + d_k$ a valid index equation?</summary> <p>No. The first term has free index $i$ and the second has free index $k$, so the terms do not balance. A valid version is $c_i = a_{ij}b_j + d_i$.</p> </details> <details> <summary><strong>Q2.</strong> Evaluate $\delta_{ij}\delta_{ij}$ and $\delta_{ij}a_ia_j$.</summary> <table> <tbody> <tr> <td>$\delta_{ij}\delta_{ij} = \delta_{jj} = 3$. And $\delta_{ij}a_ia_j = a_ja_j =</td> <td>\mathbf a</td> <td>^2$.</td> </tr> </tbody> </table> </details> <details> <summary><strong>Q3.</strong> Find $\epsilon_{312}$, $\epsilon_{213}$, and $\epsilon_{113}$.</summary> <p>$\epsilon_{312} = +1$ (cyclic: $3\to1\to2$), $\epsilon_{213} = -1$ (one swap from $123$), and $\epsilon_{113} = 0$ (repeated index).</p> </details> <details> <summary><strong>Q4.</strong> Use the permutation symbol to find $(\mathbf a\times\mathbf b)_3$ for $\mathbf a=(1,2,0)$, $\mathbf b=(0,1,3)$.</summary> <p>$(\mathbf a\times\mathbf b)<em>3 = \epsilon</em>{312}a_1b_2 + \epsilon_{321}a_2b_1 = a_1b_2 - a_2b_1 = 1\cdot1 - 2\cdot0 = 1$.</p> </details> <details> <summary><strong>Q5.</strong> Write $\nabla\cdot(\nabla\times\mathbf u)$ in index form and show that it is zero.</summary> <p>$(\nabla\times\mathbf u)<em>i = \epsilon</em>{ijk}u_{k,j}$, so $\nabla\cdot(\nabla\times\mathbf u) = \epsilon_{ijk}u_{k,ji}$. The second derivative $u_{k,ji}$ is symmetric in $i,j$ (derivatives commute), while $\epsilon_{ijk}$ is antisymmetric in $i,j$, so the contraction vanishes.</p> </details> <details> <summary><strong>Q6.</strong> For the displacement $\mathbf u = (\gamma x_2,\ -\gamma x_1,\ 0)$, compute $\varepsilon_{ij}$. Is the motion a deformation?</summary> <p>$u_{1,2} = \gamma$ and $u_{2,1} = -\gamma$, so $\varepsilon_{12} = \tfrac{1}{2}(\gamma - \gamma) = 0$ and all other components vanish. The strain is zero: this is a rigid rotation (about $x_3$, by angle $-\gamma$ for small $\gamma$), not a deformation.</p> </details> <details> <summary><strong>Q7.</strong> Expand $\sigma_{ij} = \lambda\,\varepsilon_{kk}\,\delta_{ij} + 2G\,\varepsilon_{ij}$ for $i=j=1$ and for $i=1,\ j=2$.</summary> <p>$\sigma_{11} = \lambda(\varepsilon_{11}+\varepsilon_{22}+\varepsilon_{33}) + 2G\varepsilon_{11}$, and $\sigma_{12} = 2G\varepsilon_{12}$, since $\delta_{12}=0$ removes the first term.</p> </details> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Nirmal Prasad Panta. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "A growing collection of your cool projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Comprehensive overview of my academic background and skills.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "post-modeling-and-analysis-of-mechanical-systems-principal-component-analysis-pca",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA)",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-principal-component-analysis/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-gradient-based-optimization",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Gradient-Based Optimization",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-gradient-based-optimization/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-derivatives-gradients-hessians-and-the-material-derivative",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Derivatives, Gradients, Hessians and the Material...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-derivatives-and-gradients/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-linear-operators-and-matrix-decomposition",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-matrix-decomposition/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-4-einstein-39-s-index-notation",
+        
+          title: "Theory of Elasticity — Week 4: Einstein's Index Notation",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week4-index-notation/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-3-a-solid-from-atoms-with-the-lennard-jones-potential",
+        
+          title: "Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week3-lennard-jones-solid/";
+          
+        },
+      },{id: "post-taylor-series-why-it-matters-and-what-linear-and-quadratic-approximation-really-mean",
+        
+          title: "Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/taylor-series/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-2-generalizing-vector-spaces",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter2-generalizing-vector-spaces/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-2-hydrostatics-as-an-idealized-introduction-to-continuum-elasticity",
+        
+          title: "Theory of Elasticity — Week 2: Hydrostatics as an Idealized Introduction to Continuum...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week2-hydrostatics-idealized-continuum/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-1-classify-and-analyze",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter1-classifying-model-equations/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-1-what-39-s-the-matter",
+        
+          title: "Theory of Elasticity — Week 1: What's the Matter?",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week1-continuum-hypothesis/";
+          
+        },
+      },{id: "post-vitruvius-redux",
+        
+          title: "Vitruvius Redux",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vitruvius-redux/";
+          
+        },
+      },{id: "post-reading-notes-computational-design-synthesis-amp-ai",
+        
+          title: "Reading Notes: Computational Design Synthesis & AI",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/reading-notes-design-synthesis/";
+          
+        },
+      },{id: "post-formal-engineering-design-synthesis",
+        
+          title: "Formal Engineering Design Synthesis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-engineering-design-synthesis/";
+          
+        },
+      },{id: "post-formal-design-gramar",
+        
+          title: "Formal Design Gramar",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-design-grammar/";
+          
+        },
+      },{id: "post-a-post-with-marimo-snippets",
+        
+          title: "a post with marimo snippets",
+        
+        description: "running Python in the browser with marimo",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/marimo/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
+        
+          title: "a post with plotly.js",
+        
+        description: "this is what included plotly.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/plotly/";
+          
+        },
+      },{id: "post-a-post-with-image-galleries",
+        
+          title: "a post with image galleries",
+        
+        description: "this is what included image galleries could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/photo-gallery/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-a-post-with-tabs",
+        
+          title: "a post with tabs",
+        
+        description: "this is what included tabs in a post could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/tabs/";
+          
+        },
+      },{id: "post-a-post-with-typograms",
+        
+          title: "a post with typograms",
+        
+        description: "this is what included typograms code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/typograms/";
+          
+        },
+      },{id: "post-a-post-that-can-be-cited",
+        
+          title: "a post that can be cited",
+        
+        description: "this is what a post that can be cited looks like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/post-citation/";
+          
+        },
+      },{id: "post-a-post-with-pseudo-code",
+        
+          title: "a post with pseudo code",
+        
+        description: "this is what included pseudo code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/pseudocode/";
+          
+        },
+      },{id: "post-a-post-with-code-diff",
+        
+          title: "a post with code diff",
+        
+        description: "this is how you can display code diffs",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/code-diff/";
+          
+        },
+      },{id: "post-a-post-with-advanced-image-components",
+        
+          title: "a post with advanced image components",
+        
+        description: "this is what advanced image components could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/advanced-images/";
+          
+        },
+      },{id: "post-a-post-with-vega-lite",
+        
+          title: "a post with vega lite",
+        
+        description: "this is what included vega lite code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/vega-lite/";
+          
+        },
+      },{id: "post-a-post-with-geojson",
+        
+          title: "a post with geojson",
+        
+        description: "this is what included geojson code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/geojson-map/";
+          
+        },
+      },{id: "post-a-post-with-echarts",
+        
+          title: "a post with echarts",
+        
+        description: "this is what included echarts code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/echarts/";
+          
+        },
+      },{id: "post-a-post-with-chart-js",
+        
+          title: "a post with chart.js",
+        
+        description: "this is what included chart.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/chartjs/";
+          
+        },
+      },{id: "post-a-post-with-tikzjax",
+        
+          title: "a post with TikZJax",
+        
+        description: "this is what included TikZ code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tikzjax/";
+          
+        },
+      },{id: "post-a-post-with-bibliography",
+        
+          title: "a post with bibliography",
+        
+        description: "an example of a blog post with bibliography",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/post-bibliography/";
+          
+        },
+      },{id: "post-a-post-with-jupyter-notebook",
+        
+          title: "a post with jupyter notebook",
+        
+        description: "an example of a blog post with jupyter notebook",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/jupyter-notebook/";
+          
+        },
+      },{id: "post-a-post-with-custom-blockquotes",
+        
+          title: "a post with custom blockquotes",
+        
+        description: "an example of a blog post with custom blockquotes",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/custom-blockquotes/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
+        
+          title: "a post with table of contents on a sidebar",
+        
+        description: "an example of a blog post with table of contents on a sidebar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/sidebar-table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-audios",
+        
+          title: "a post with audios",
+        
+        description: "this is what included audios could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/audios/";
+          
+        },
+      },{id: "post-a-post-with-videos",
+        
+          title: "a post with videos",
+        
+        description: "this is what included videos could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/videos/";
+          
+        },
+      },{id: "post-displaying-beautiful-interactive-tables",
+        
+          title: "displaying beautiful interactive tables",
+        
+        description: "an example of how to use interactive tables in al-folio",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tables/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents",
+        
+          title: "a post with table of contents",
+        
+        description: "an example of a blog post with table of contents",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-giscus-comments",
+        
+          title: "a post with giscus comments",
+        
+        description: "an example of a blog post with giscus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/giscus-comments/";
+          
+        },
+      },{id: "post-یک-نوشتهٔ-راست-چین",
+        
+          title: "یک نوشتهٔ راست‌چین",
+        
+        description: "نمونه‌ای از پشتیبانی زبان‌های راست‌چین",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/rtl/";
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "post-a-post-with-redirect",
+        
+          title: "a post with redirect",
+        
+        description: "you can also redirect to assets like pdf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/example_pdf.pdf";
+          
+        },
+      },{id: "post-a-post-with-diagrams",
+        
+          title: "a post with diagrams",
+        
+        description: "an example of a blog post with diagrams",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/diagrams/";
+          
+        },
+      },{id: "post-a-distill-style-blog-post",
+        
+          title: "A distill-style blog post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/distill/";
+          
+        },
+      },{id: "post-a-post-with-twitter",
+        
+          title: "a post with twitter",
+        
+        description: "an example of a blog post with twitter",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/twitter/";
+          
+        },
+      },{id: "post-a-post-with-disqus-comments",
+        
+          title: "a post with disqus comments",
+        
+        description: "an example of a blog post with disqus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/disqus-comments/";
+          
+        },
+      },{id: "post-a-post-with-math",
+        
+          title: "a post with math",
+        
+        description: "an example of a blog post with some math",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/math/";
+          
+        },
+      },{id: "post-a-post-with-code",
+        
+          title: "a post with code",
+        
+        description: "an example of a blog post with some code",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/code/";
+          
+        },
+      },{id: "post-a-post-with-images",
+        
+          title: "a post with images",
+        
+        description: "this is what included images could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/images/";
+          
+        },
+      },{id: "post-a-post-with-formatting-and-links",
+        
+          title: "a post with formatting and links",
+        
+        description: "march & april, looking forward to summer",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/formatting-and-links/";
+          
+        },
+      },{id: "books-formal-engineering-design-synthesis",
+          title: 'Formal Engineering Design Synthesis',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/formal_engineering_design_synthesis/";
+            },},{id: "books-the-structure-of-scientific-revolutions",
+          title: 'The Structure of Scientific Revolutions',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/structure_of_scientific_revolution/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-project-1",
+          title: 'project 1',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-project-3-with-very-long-name",
+          title: 'project 3 with very long name',
+          description: "a project that redirects to another website",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
+            },},{id: "projects-project-4",
+          title: 'project 4',
+          description: "another without an image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
+            },},{id: "projects-project-5",
+          title: 'project 5',
+          description: "a project with a background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
+            },},{id: "projects-project-6",
+          title: 'project 6',
+          description: "a project with no image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
+            },},{id: "projects-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_project/";
+            },},{id: "projects-project-8",
+          title: 'project 8',
+          description: "an other project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/8_project/";
+            },},{id: "projects-project-9",
+          title: 'project 9',
+          description: "another project with an image 🎉",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/9_project/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6E%69%6C.%70%61%6E%74%61%37%37@%74%61%6D%75.%65%64%75", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=a9fiG98AAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/niel-77", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/nirmal-panta", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

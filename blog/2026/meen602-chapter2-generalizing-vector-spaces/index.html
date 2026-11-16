@@ -1,0 +1,749 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces | Nirmal Prasad Panta </title> <meta name="author" content="Nirmal Prasad Panta"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://nirmalprasadpanta.com.np/blog/2026/meen602-chapter2-generalizing-vector-spaces/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Nirmal Prasad Panta </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces</h1> <p class="post-meta"> Created on September 01, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/modeling-and-analysis-of-mechanical-systems"> <i class="fa-solid fa-hashtag fa-sm"></i> Modeling and Analysis of Mechanical Systems</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Chapter 1 gave us a way to classify an equation once we already had it written down. Chapters 2 and 3 back up one step further and ask what the <em>objects</em> inside those equations actually are — a state, a signal, a deflected shape — and build the machinery (vector spaces, norms, projections, orthogonal bases) needed to work with them precisely. This post covers the first piece of that machinery: what a vector really is, once we stop thinking of it as just “an arrow,” and how a whole space of such objects — discrete or continuous — is built from a short list of rules.</p> <h3 id="1-from-continuous-systems-to-lumped-ones--discretization-revisited">1. From continuous systems to lumped ones — discretization revisited</h3> <p>Chapter 1 sorted models into algebraic, ODE, and PDE, and tied that to degrees of freedom (DOF): finite for a lumped ODE model, infinite for a continuous PDE model. <strong>Discretization</strong> is the bridge between the two: it replaces a continuous field, known at <em>every</em> point, with its values at a finite set of grid points — trading an infinite-DOF PDE model for a finite-DOF, approximate lumped model that a computer can actually solve. (It is easy to say this backwards — discretization does not “build” a continuous system out of a lumped one; it goes the other way, lumped-from-continuous, by sampling.)</p> <p>The standard tool is the <strong>central difference approximation</strong>. For a function $T(x)$ sampled at points $x_{i-1}, x_i, x_{i+1}$ spaced $\Delta x$ apart, Taylor-expanding $T$ about $x_i$ in both directions and subtracting gives</p> \[\frac{d^2T}{dx^2}\bigg|_{x_i} \approx \frac{T_{i+1} + T_{i-1} - 2T_i}{\Delta x^2}.\] <p>Substitute an approximation like this into a PDE — e.g., the steady heat equation $\dfrac{d^2T}{dx^2} = 0$ — and every derivative becomes an algebraic combination of the finite set of nodal values $T_i$. The infinite-dimensional problem “find $T(x)$ everywhere” becomes the finite-dimensional problem “find the numbers $T_1, T_2, \dots, T_n$” — precisely trading a continuous vector (a function) for a discrete one (a tuple of numbers), which is the theme of this whole chapter.</p> <p><strong>A note on first-order PDEs.</strong> Chapter 1’s elliptic/parabolic/hyperbolic trichotomy, via the discriminant $\Delta = B^2-4AC$, was built for <em>second-order</em> PDEs. A general <strong>first-order</strong> PDE doesn’t have that discriminant to compute — but it always has real characteristic curves along which it reduces to an ODE (the same idea used to solve the advection equation $u_t + c\,u_x = 0$ by following $x - ct = \text{const}$). Having real characteristics is exactly the hyperbolic signature, so a scalar first-order PDE is always a propagation (marching) problem in character — it is standard shorthand to call this “hyperbolic,” even though it doesn’t come from evaluating a discriminant the way a second-order equation’s classification does.</p> <h3 id="2-state-variables-and-the-state-vector">2. State variables and the state vector</h3> <p>A <strong>state variable</strong> is one of the minimum set of variables whose values at some time $t_0$, together with the system’s inputs from $t_0$ onward, are enough to determine the system’s behavior for all $t \ge t_0$. “Minimum” is doing the real work in that definition: any extra variable that is just a function of the others (or of time) isn’t a new state variable, and dropping a genuinely independent one makes the description incomplete.</p> <p>Take the simple pendulum: a point mass $m$ on a rigid, massless rod of length $L$. Summing moments about the pivot gives $mL^2\ddot\theta + mgL\sin\theta = 0$, which simplifies (the mass cancels) to</p> \[\ddot\theta + \frac{g}{L}\sin\theta = 0.\] <p>This is second order in $\theta$, so it takes <strong>two</strong> numbers, $\theta$ and $\dot\theta$, to pin down the pendulum’s future motion — the angle alone isn’t enough, since the same angle with the pendulum swinging one way versus the other leads to completely different futures. Define the state variables $x_1 = \theta$ and $x_2 = \dot\theta$, collected into a <strong>state vector</strong> $\vec x = \begin{bmatrix} x_1 \\ x_2\end{bmatrix}$. The single second-order equation becomes the first-order pair</p> \[\dot x_1 = x_2, \qquad \dot x_2 = -\frac{g}{L}\sin x_1,\] <p>which is exactly the order-reduction trick from Chapter 1 ($n$th-order ODE $\to$ $n$ first-order ODEs), now with the new variables given a name — state variables — and packaged as a single vector living in a two-dimensional <strong>state space</strong> (here also called <em>phase space</em>).</p> <h3 id="3-what-a-vector-actually-is">3. What a vector actually is</h3> <p>The everyday picture of a vector — an arrow with a length and a direction, or a column of numbers — is a special case of something more general. A <strong>vector</strong> is any object that belongs to a collection of similar objects that can be <em>added together</em> and <em>scaled</em> by numbers, with the result always landing back in the same collection. That closure is the entire content of the idea: it doesn’t matter whether the object is an arrow, a list of numbers, or a function, only that “add two of them” and “scale one of them” both make sense and don’t leave the collection.</p> <p>A <strong>linear combination</strong> of vectors $\vec x$ and $\vec y$ is any expression $a\vec x + b\vec y$ built from scalar multiples added together; a sum of many vectors, $\sum_i \lambda_i \vec v_i$, is a linear combination of all of them at once. Nearly everything in this chapter — span, basis, orthogonalization — is a statement about which linear combinations are reachable and which representation of them is most useful.</p> <h3 id="4-notation-conventions">4. Notation conventions</h3> <p>To keep scalars, vectors, and spaces visually distinct from here on:</p> <ul> <li>Lowercase italic letters ($a$, $b$, $\lambda$) denote <strong>scalars</strong> — ordinary real (or complex) numbers.</li> <li>An arrow over a lowercase letter ($\vec a$, $\vec x$) denotes a <strong>vector</strong>.</li> <li>Script capital letters ($\mathcal{V}$) denote a <strong>vector space</strong> (also called a <em>linear space</em>) — the whole collection a vector belongs to, together with its addition and scaling rules.</li> </ul> <h3 id="5-generalizing-vector-tuples-and-functions">5. Generalizing “vector”: tuples and functions</h3> <p>The point of this chapter’s first learning outcome is that “vector” stretches to cover objects that don’t look anything like arrows, as long as they obey the same rules. Two important generalizations:</p> <ul> <li> <strong>Discrete vectors: $n$-tuples.</strong> An $n$-tuple is a finite, <em>ordered</em> list of $n$ elements (most often real numbers), written $(v_1, v_2, \dots, v_n)$ or as a column. Order matters — $(1,2)$ and $(2,1)$ are different tuples — and repeated values are allowed, so $(3,3,1)$ is a perfectly good 3-tuple. Every column vector in $\mathbb{R}^n$, and every state vector from §2, is an $n$-tuple.</li> <li> <strong>Continuous vectors: functions.</strong> A function $f(x)$ can be added to another function and scaled by a constant, and the result is again a function — so a function is a vector too, just one with infinitely many “components” (its value at every point $x$, rather than at a finite list of indices). This is exactly the discretization idea from §1 run in reverse: sampling a function at $n$ points turns the infinite-dimensional function-vector into a finite-dimensional $n$-tuple-vector, which is why a PDE’s continuous field and a finite-difference grid of numbers are two views of the same underlying object.</li> </ul> <h3 id="6-vector-spaces-the-axioms">6. Vector spaces: the axioms</h3> <p>A <strong>vector space</strong> (or <em>linear space</em>) $\mathcal{V}$ over the real numbers is a set of vectors, together with a rule for adding two vectors and a rule for scaling a vector by a real number $\lambda$, such that the following hold for all $\vec a, \vec b, \vec c \in \mathcal{V}$ and all scalars $\lambda, \lambda_1, \lambda_2 \in \mathbb{R}$:</p> <ol> <li> <strong>Closure under addition:</strong> $\vec a + \vec b \in \mathcal{V}$.</li> <li> <strong>Closure under scalar multiplication:</strong> $\lambda \vec a \in \mathcal{V}$.</li> <li> <strong>Commutativity of addition:</strong> $\vec a + \vec b = \vec b + \vec a$.</li> <li> <strong>Associativity of addition:</strong> $(\vec a + \vec b) + \vec c = \vec a + (\vec b + \vec c)$.</li> <li> <strong>Additive identity (zero vector):</strong> there exists $\vec 0 \in \mathcal{V}$ such that $\vec a + \vec 0 = \vec a$.</li> <li> <strong>Additive inverse:</strong> for every $\vec a$ there exists $-\vec a \in \mathcal{V}$ such that $\vec a + (-\vec a) = \vec 0$.</li> <li> <strong>Associativity of scalar multiplication:</strong> $\lambda_1(\lambda_2 \vec a) = (\lambda_1\lambda_2)\vec a$.</li> <li> <strong>Distributivity over vector addition:</strong> $\lambda(\vec a + \vec b) = \lambda \vec a + \lambda \vec b$.</li> <li> <strong>Distributivity over scalar addition:</strong> $(\lambda_1 + \lambda_2)\vec a = \lambda_1 \vec a + \lambda_2 \vec a$.</li> <li> <strong>Identity of scalar multiplication:</strong> $1\cdot \vec a = \vec a$.</li> </ol> <p>Two clarifications worth being precise about: the scalars $\lambda$ multiplying a vector are numbers, <em>not</em> elements of $\mathcal{V}$ itself — writing “$\lambda \in \mathcal{V}$” mixes up the space with the field of scalars it’s built over. And multiplying by the zero <em>scalar</em> isn’t a separate axiom; it’s a direct consequence of the ten rules above, $0\cdot \vec a = \vec 0$ for every $\vec a \in \mathcal{V}$ (not to be confused with axiom 5, the existence of a zero <em>vector</em>).</p> <ul> <li> <em>Vector spaces:</em> <ul> <li>$\mathbb{R}^n$ with ordinary componentwise addition and scaling — the standard example, satisfies all ten rules directly.</li> <li>$2\times 2$ real matrices under matrix addition and scalar multiplication — sums and scalar multiples of $2\times 2$ matrices are still $2\times 2$ matrices, and all ten rules carry over componentwise.</li> <li>The set of all real-valued continuous functions on $[0,1]$ — the sum of two continuous functions is continuous, a scaled continuous function is continuous, and the zero function and additive inverses ($-f$) stay in the set.</li> <li>The set of solutions to a <em>linear, homogeneous</em> ODE, e.g., $m\ddot u + ku = 0$ — if $u_1(t)$ and $u_2(t)$ both solve it, so does $c_1u_1 + c_2u_2$ for any constants $c_1, c_2$ (this is exactly the superposition property from Chapter 1’s linearity test), so the solution set is closed under both operations.</li> </ul> </li> <li> <em>Not vector spaces</em> (rule violated named): <ul> <li>Vectors in $\mathbb{R}^2$ with both components non-negative — closed under addition, but <strong>fails closure under scalar multiplication</strong>: scaling $(1,1)$ by $\lambda=-1$ gives $(-1,-1)$, which has left the set.</li> <li>The set of solutions to a <em>non-homogeneous</em> linear ODE, e.g., $m\ddot u + ku = F_0$ — if $u_1$ and $u_2$ both solve it, their sum $u_1+u_2$ solves $m\ddot u + ku = 2F_0$, not the original equation, so <strong>closure under addition fails</strong>. (This is why Chapter 1 kept homogeneous and non-homogeneous carefully separate — only the homogeneous solution set is a vector space.)</li> <li>The set of solutions to a <em>non-linear</em> ODE, e.g., the exact pendulum $\ddot\theta + \frac{g}{L}\sin\theta = 0$ — superposition doesn’t hold ($\sin$ isn’t additive), so a sum of two solutions generally isn’t a solution: <strong>closure under addition fails</strong>.</li> <li>Unit vectors in $\mathbb{R}^2$ (all $\vec a$ with $\lVert \vec a \rVert = 1$) — scaling by any $\lambda \ne \pm 1$ changes the length, so the result leaves the set: <strong>fails closure under scalar multiplication</strong>. (It also has no zero vector, violating rule 5 on its own.)</li> </ul> </li> </ul> <h3 id="7-basis-vectors">7. Basis vectors</h3> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/meen602/fig-basis-span.svg" sizes="95vw"></source> <img src="/assets/img/meen602/fig-basis-span.svg" class="img-fluid rounded" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> <p>A <strong>basis</strong> of a vector space $\mathcal{V}$ is a set of vectors that is (a) <strong>linearly independent</strong> — no vector in the set can be written as a linear combination of the others — and (b) <strong>spanning</strong> — every vector in $\mathcal{V}$ can be written as <em>some</em> linear combination of the basis vectors. Both properties matter: independence keeps the basis from having redundant members, and spanning guarantees nothing in $\mathcal{V}$ is left out of reach.</p> <ul> <li> <em>Bases:</em> <ul> <li>The standard unit vectors $\vec i, \vec j, \vec k$ in $\mathbb{R}^3$ — linearly independent (none is a combination of the other two), and every $\vec a = a_1\vec i + a_2\vec j + a_3\vec k$, so they span $\mathbb{R}^3$ as well.</li> <li>Sines and cosines, ${1, \cos x, \sin x, \cos 2x, \sin 2x, \dots}$, as the basis functions of a <strong>Fourier series</strong> — any sufficiently well-behaved periodic function can be written as a linear combination (weighted sum) of these.</li> <li>Powers of $x$, ${1, x, x^2, x^3, \dots}$, as the basis functions of a <strong>Taylor series</strong> — any sufficiently smooth function can be written (locally) as a linear combination of these.</li> </ul> </li> <li> <em>Not bases</em> (which property fails): <ul> <li>${\vec i, \vec j, 2\vec i}$ in $\mathbb{R}^2$ — spans $\mathbb{R}^2$, but $2\vec i$ is a linear combination of $\vec i$ alone, so the set <strong>fails independence</strong>; it’s a spanning set, just not a <em>minimal</em> one.</li> <li>${\vec i, \vec j}$ treated as a claimed basis of $\mathbb{R}^3$ — linearly independent, but $\vec k$ (or any vector with a nonzero third component) can’t be written using only $\vec i$ and $\vec j$, so it <strong>fails to span</strong>.</li> <li>${1, \cos^2 x}$ as a claimed basis for constants and $\cos 2x$ together — looks like two functions, but since $\cos 2x = 2\cos^2 x - 1$, this pair can only reach a one-dimensional slice of the space it’s meant to span; it isn’t independent enough (nor rich enough) to serve as a general Fourier-type basis.</li> </ul> </li> </ul> <h3 id="8-vector-span">8. Vector span</h3> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/meen602/fig-vector-ops.svg" sizes="95vw"></source> <img src="/assets/img/meen602/fig-vector-ops.svg" class="img-fluid rounded" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> <p>The <strong>span</strong> of a set of vectors is the set of <em>all</em> vectors reachable by taking linear combinations of them — every possible choice of scalars, all at once. For a single vector $\vec a = \begin{bmatrix}2\\3\end{bmatrix}$,</p> \[\operatorname{span}(\vec a) = \left\{\lambda \vec a : \lambda \in \mathbb{R}\right\} = \left\{\lambda\begin{bmatrix}2\\3\end{bmatrix} : \lambda \in \mathbb{R}\right\},\] <p>which traces out the entire line through the origin in the direction of $\vec a$. Because $\lambda = 0$ is an allowed choice, the <strong>zero vector is always part of any span</strong> — every span contains the origin.</p> <p>Two independent vectors reach further. For $\vec a = \begin{bmatrix}1\\0\end{bmatrix}$ and $\vec b = \begin{bmatrix}0\\1\end{bmatrix}$,</p> \[\operatorname{span}(\vec a, \vec b) = \left\{\lambda_1\vec a + \lambda_2 \vec b\right\} = \left\{\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix} : \lambda_1, \lambda_2 \in \mathbb{R}\right\},\] <p>and since $\lambda_1, \lambda_2$ can be <em>any</em> pair of real numbers, this reaches every point of the plane — $\operatorname{span}(\vec a, \vec b) = \mathbb{R}^2$. The same pattern extends to three dimensions: with $\vec i = [1,0,0]^T$, $\vec j = [0,1,0]^T$, $\vec k = [0,0,1]^T$, any vector in $\mathbb{R}^3$ is</p> \[\vec a = \lambda_1 \vec i + \lambda_2 \vec j + \lambda_3 \vec k,\] <p>so $\vec i, \vec j, \vec k$ both span $\mathbb{R}^3$ <em>and</em> (from §7) form a basis for it — span tells you what’s reachable, and a basis is a minimal spanning set.</p> <p>The <strong>magnitude</strong> (or <em>norm</em>) of a vector, written $\lvert \vec a \rvert$ or $\lVert \vec a \rVert$, measures how “big” it is — this quantity, and how it generalizes into inner products and dot products for comparing vectors, is the subject the next post picks up.</p> <h3 id="recap">Recap</h3> <table> <thead> <tr> <th>Topic</th> <th>Core question it answers</th> </tr> </thead> <tbody> <tr> <td>Discretization</td> <td>Turns a continuous, infinite-DOF field into a finite set of nodal values — sampling, not the reverse.</td> </tr> <tr> <td>First-order PDEs</td> <td>Always have real characteristics, so they behave as propagation (hyperbolic-type) problems even without a discriminant to compute.</td> </tr> <tr> <td>State variables</td> <td>The minimum set of variables (packaged as a state vector) whose initial values plus future inputs fix the system’s future.</td> </tr> <tr> <td>What a vector is</td> <td>Any object in a collection closed under addition and scalar multiplication — not just an arrow.</td> </tr> <tr> <td>Discrete vs. continuous vectors</td> <td>$n$-tuples (finite, ordered, duplicates allowed) vs. functions (infinite-dimensional vectors).</td> </tr> <tr> <td>Vector space axioms</td> <td>Ten rules (closure, commutativity, associativity, identities, inverses, distributivity) a set must satisfy to be a linear space.</td> </tr> <tr> <td>Basis</td> <td>Linearly independent <strong>and</strong> spanning — minimal enough, but still reaches everything.</td> </tr> <tr> <td>Span</td> <td>Every vector reachable by linear combination; always contains the zero vector.</td> </tr> </tbody> </table> <h3 id="check-our-understanding--chapter-2-practice-questions-part-1">Check our understanding — Chapter 2 practice questions (Part 1)</h3> <p>Try each one before expanding the answer underneath it.</p> <p><strong>Q1. Discretization direction.</strong> A colleague says, “I built my continuous temperature field by discretizing my lumped nodal model.” What’s wrong with that sentence, and how would you correctly describe the relationship between a continuous heat-conduction PDE and a finite-difference grid of temperatures?</p> <details> <summary><strong>View Answer</strong></summary> <table> <tbody> <tr> <td>The direction is backwards. Discretization starts from a <strong>continuous</strong> model (a PDE, infinite DOF — a temperature defined at every point) and produces an <strong>approximate, finite-DOF lumped model</strong> by sampling it at a finite set of grid points and replacing derivatives with finite-difference formulas, e.g. $\frac{d^2T}{dx^2}\big</td> <td> <em>{x_i} \approx \frac{T</em>{i+1}+T_{i-1}-2T_i}{\Delta x^2}$. A lumped nodal model doesn’t “build” the continuous field — it’s a finite approximation <em>of</em> it, and refining the grid (more nodes, smaller $\Delta x$) is what makes the lumped model converge back toward the true continuous solution.</td> </tr> </tbody> </table> </details> <hr> <p><strong>Q2. State variables for a spring-mass-damper.</strong> A damped spring-mass system is governed by $m\ddot x + c\dot x + kx = 0$.</p> <ol type="a"> <li>How many state variables does this system need, and why exactly that many?</li> <li>Define a state vector and rewrite the second-order equation as a first-order system.</li> <li>Is position $x$ alone a valid single state variable for this system? Why or why not?</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li> <strong>Two.</strong> The equation is second order, so its general solution carries two arbitrary constants — equivalently, knowing $x$ alone at one instant doesn't tell you where the mass is heading, since the same position could be reached while moving in either direction (or at any speed). Position and velocity together are the minimum set that fixes the future motion.</li> <li>Let $x_1 = x$, $x_2 = \dot x$, so $\vec x = \begin{bmatrix}x_1\\x_2\end{bmatrix}$. Then $\dot x_1 = x_2$ and $\dot x_2 = -\frac{k}{m}x_1 - \frac{c}{m}x_2$ (solving the original equation for $\ddot x$ and substituting).</li> <li> <strong>No</strong> — $x$ alone is not a complete state; it fails the "minimum set that determines the future" test because velocity is an independent piece of information not recoverable from position at a single instant.</li> </ol> </details> <hr> <p><strong>Q3. Testing the vector space axioms.</strong> Consider the set $S$ of all $2\times 2$ matrices with determinant equal to zero, under ordinary matrix addition and scalar multiplication.</p> <ol type="a"> <li>Is $S$ closed under scalar multiplication? Justify.</li> <li>Is $S$ closed under addition? Give a specific counterexample if not.</li> <li>Is $S$ a vector space?</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li> <strong>Yes.</strong> If $\det(A) = 0$, then $\det(\lambda A) = \lambda^2 \det(A) = 0$ for any scalar $\lambda$, so $\lambda A$ still has zero determinant and stays in $S$.</li> <li> <strong>No.</strong> Take $A = \begin{bmatrix}1&amp;0\\0&amp;0\end{bmatrix}$ and $B = \begin{bmatrix}0&amp;0\\0&amp;1\end{bmatrix}$ — both have $\det = 0$, so both are in $S$. But $A + B = \begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix}$ has determinant $1 \ne 0$, so $A+B \notin S$: closure under addition fails.</li> <li> <strong>No.</strong> Failing even one of the ten axioms — here, closure under addition — disqualifies $S$ from being a vector space, regardless of how many of the other rules it satisfies.</li> </ol> </details> <hr> <p><strong>Q4. Basis or not?</strong> In $\mathbb{R}^3$, consider the three vectors $\vec u_1 = [1,1,0]^T$, $\vec u_2 = [0,1,1]^T$, $\vec u_3 = [1,2,1]^T$.</p> <ol type="a"> <li>Show that $\vec u_3$ is a linear combination of $\vec u_1$ and $\vec u_2$.</li> <li>Do $\{\vec u_1, \vec u_2, \vec u_3\}$ form a basis for $\mathbb{R}^3$? Which of the two basis requirements fails, and what does that tell you about $\operatorname{span}(\vec u_1, \vec u_2, \vec u_3)$?</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li>$\vec u_1 + \vec u_2 = [1,1,0]^T + [0,1,1]^T = [1,2,1]^T = \vec u_3$, so $\vec u_3 = 1\cdot\vec u_1 + 1\cdot\vec u_2$.</li> <li> <strong>No.</strong> Because $\vec u_3$ is a combination of the other two, the set <strong>fails linear independence</strong> (part (a) of the basis test in §7) — it isn't a minimal spanning set. Consequently $\operatorname{span}(\vec u_1,\vec u_2,\vec u_3)$ is only the two-dimensional plane spanned by $\vec u_1$ and $\vec u_2$ alone (adding a dependent vector never extends the span), not all of $\mathbb{R}^3$.</li> </ol> </details> <hr> <p><strong>Q5. Functions as vectors.</strong> Let $\mathcal{P}_2$ be the set of all polynomials of degree at most 2 in $x$ (i.e., $a_0 + a_1x + a_2x^2$ for real $a_0, a_1, a_2$), with ordinary function addition and scalar multiplication.</p> <ol type="a"> <li>Verify $\mathcal{P}_2$ is closed under addition and scalar multiplication.</li> <li>Propose a basis for $\mathcal{P}_2$ using the Taylor-series basis functions from §7, and justify why it satisfies both basis requirements.</li> <li>Is $\mathcal{P}_2$ finite- or infinite-dimensional? Contrast this with the set of *all* polynomials (any degree).</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li>Adding two degree-$\le 2$ polynomials, $(a_0+a_1x+a_2x^2) + (b_0+b_1x+b_2x^2) = (a_0+b_0)+(a_1+b_1)x+(a_2+b_2)x^2$, is still degree $\le 2$; scaling by $\lambda$ similarly keeps every coefficient (and the degree bound) intact. Both operations stay inside $\mathcal{P}_2$.</li> <li>$\{1, x, x^2\}$ — the first three Taylor basis functions. They're <strong>linearly independent</strong> (no combination $c_0\cdot 1 + c_1 x + c_2 x^2$ is identically zero unless $c_0=c_1=c_2=0$), and every element of $\mathcal{P}_2$ is by definition exactly $a_0\cdot 1 + a_1\cdot x + a_2\cdot x^2$, so they <strong>span</strong> $\mathcal{P}_2$ as well.</li> <li> <strong>Finite-dimensional</strong> — 3 basis functions, so $\mathcal{P}_2$ is a 3-dimensional vector space, even though its elements are functions. The set of all polynomials of any degree needs the full infinite basis $\{1, x, x^2, x^3, \dots\}$, making it infinite-dimensional — the same discrete-looking-but-secretly-continuous distinction as a truncated versus full Fourier series.</li> </ol> </details> <hr> <p><strong>Q6. Span and the zero vector.</strong> A student claims: “$\operatorname{span}(\vec a)$ for a nonzero vector $\vec a$ is just the single point $\vec a$ itself, since that’s the vector we started with.”</p> <ol type="a"> <li>Is the student correct? If not, describe $\operatorname{span}(\vec a)$ correctly.</li> <li>Does $\operatorname{span}(\vec a)$ contain the zero vector? Explain using the definition of span.</li> <li>If $\vec a$ itself is the zero vector, what is $\operatorname{span}(\vec a)$?</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li> <strong>No.</strong> $\operatorname{span}(\vec a) = \{\lambda \vec a : \lambda \in \mathbb{R}\}$ is every scalar multiple of $\vec a$ — an entire line through the origin in the direction of $\vec a$ — not just the single vector $\vec a$ (which is only the case $\lambda = 1$).</li> <li> <strong>Yes.</strong> Choosing $\lambda = 0$ is always a valid scalar choice, and $0\cdot\vec a = \vec 0$, so the zero vector is always in the span of any set of vectors, nonzero or not.</li> <li>If $\vec a = \vec 0$, then $\lambda \vec a = \vec 0$ for every $\lambda$, so $\operatorname{span}(\vec a) = \{\vec 0\}$ — just the origin, a single point rather than a line.</li> </ol> </details> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Nirmal Prasad Panta. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "A growing collection of your cool projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Comprehensive overview of my academic background and skills.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "post-modeling-and-analysis-of-mechanical-systems-principal-component-analysis-pca",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA)",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-principal-component-analysis/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-gradient-based-optimization",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Gradient-Based Optimization",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-gradient-based-optimization/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-derivatives-gradients-hessians-and-the-material-derivative",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Derivatives, Gradients, Hessians and the Material...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-derivatives-and-gradients/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-linear-operators-and-matrix-decomposition",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-matrix-decomposition/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-4-einstein-39-s-index-notation",
+        
+          title: "Theory of Elasticity — Week 4: Einstein's Index Notation",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week4-index-notation/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-3-a-solid-from-atoms-with-the-lennard-jones-potential",
+        
+          title: "Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week3-lennard-jones-solid/";
+          
+        },
+      },{id: "post-taylor-series-why-it-matters-and-what-linear-and-quadratic-approximation-really-mean",
+        
+          title: "Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/taylor-series/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-2-generalizing-vector-spaces",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter2-generalizing-vector-spaces/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-2-hydrostatics-as-an-idealized-introduction-to-continuum-elasticity",
+        
+          title: "Theory of Elasticity — Week 2: Hydrostatics as an Idealized Introduction to Continuum...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week2-hydrostatics-idealized-continuum/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-1-classify-and-analyze",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter1-classifying-model-equations/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-1-what-39-s-the-matter",
+        
+          title: "Theory of Elasticity — Week 1: What's the Matter?",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week1-continuum-hypothesis/";
+          
+        },
+      },{id: "post-vitruvius-redux",
+        
+          title: "Vitruvius Redux",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vitruvius-redux/";
+          
+        },
+      },{id: "post-reading-notes-computational-design-synthesis-amp-ai",
+        
+          title: "Reading Notes: Computational Design Synthesis & AI",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/reading-notes-design-synthesis/";
+          
+        },
+      },{id: "post-formal-engineering-design-synthesis",
+        
+          title: "Formal Engineering Design Synthesis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-engineering-design-synthesis/";
+          
+        },
+      },{id: "post-formal-design-gramar",
+        
+          title: "Formal Design Gramar",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-design-grammar/";
+          
+        },
+      },{id: "post-a-post-with-marimo-snippets",
+        
+          title: "a post with marimo snippets",
+        
+        description: "running Python in the browser with marimo",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/marimo/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
+        
+          title: "a post with plotly.js",
+        
+        description: "this is what included plotly.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/plotly/";
+          
+        },
+      },{id: "post-a-post-with-image-galleries",
+        
+          title: "a post with image galleries",
+        
+        description: "this is what included image galleries could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/photo-gallery/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-a-post-with-tabs",
+        
+          title: "a post with tabs",
+        
+        description: "this is what included tabs in a post could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/tabs/";
+          
+        },
+      },{id: "post-a-post-with-typograms",
+        
+          title: "a post with typograms",
+        
+        description: "this is what included typograms code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/typograms/";
+          
+        },
+      },{id: "post-a-post-that-can-be-cited",
+        
+          title: "a post that can be cited",
+        
+        description: "this is what a post that can be cited looks like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/post-citation/";
+          
+        },
+      },{id: "post-a-post-with-pseudo-code",
+        
+          title: "a post with pseudo code",
+        
+        description: "this is what included pseudo code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/pseudocode/";
+          
+        },
+      },{id: "post-a-post-with-code-diff",
+        
+          title: "a post with code diff",
+        
+        description: "this is how you can display code diffs",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/code-diff/";
+          
+        },
+      },{id: "post-a-post-with-advanced-image-components",
+        
+          title: "a post with advanced image components",
+        
+        description: "this is what advanced image components could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/advanced-images/";
+          
+        },
+      },{id: "post-a-post-with-vega-lite",
+        
+          title: "a post with vega lite",
+        
+        description: "this is what included vega lite code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/vega-lite/";
+          
+        },
+      },{id: "post-a-post-with-geojson",
+        
+          title: "a post with geojson",
+        
+        description: "this is what included geojson code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/geojson-map/";
+          
+        },
+      },{id: "post-a-post-with-echarts",
+        
+          title: "a post with echarts",
+        
+        description: "this is what included echarts code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/echarts/";
+          
+        },
+      },{id: "post-a-post-with-chart-js",
+        
+          title: "a post with chart.js",
+        
+        description: "this is what included chart.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/chartjs/";
+          
+        },
+      },{id: "post-a-post-with-tikzjax",
+        
+          title: "a post with TikZJax",
+        
+        description: "this is what included TikZ code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tikzjax/";
+          
+        },
+      },{id: "post-a-post-with-bibliography",
+        
+          title: "a post with bibliography",
+        
+        description: "an example of a blog post with bibliography",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/post-bibliography/";
+          
+        },
+      },{id: "post-a-post-with-jupyter-notebook",
+        
+          title: "a post with jupyter notebook",
+        
+        description: "an example of a blog post with jupyter notebook",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/jupyter-notebook/";
+          
+        },
+      },{id: "post-a-post-with-custom-blockquotes",
+        
+          title: "a post with custom blockquotes",
+        
+        description: "an example of a blog post with custom blockquotes",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/custom-blockquotes/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
+        
+          title: "a post with table of contents on a sidebar",
+        
+        description: "an example of a blog post with table of contents on a sidebar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/sidebar-table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-audios",
+        
+          title: "a post with audios",
+        
+        description: "this is what included audios could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/audios/";
+          
+        },
+      },{id: "post-a-post-with-videos",
+        
+          title: "a post with videos",
+        
+        description: "this is what included videos could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/videos/";
+          
+        },
+      },{id: "post-displaying-beautiful-interactive-tables",
+        
+          title: "displaying beautiful interactive tables",
+        
+        description: "an example of how to use interactive tables in al-folio",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tables/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents",
+        
+          title: "a post with table of contents",
+        
+        description: "an example of a blog post with table of contents",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-giscus-comments",
+        
+          title: "a post with giscus comments",
+        
+        description: "an example of a blog post with giscus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/giscus-comments/";
+          
+        },
+      },{id: "post-یک-نوشتهٔ-راست-چین",
+        
+          title: "یک نوشتهٔ راست‌چین",
+        
+        description: "نمونه‌ای از پشتیبانی زبان‌های راست‌چین",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/rtl/";
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "post-a-post-with-redirect",
+        
+          title: "a post with redirect",
+        
+        description: "you can also redirect to assets like pdf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/example_pdf.pdf";
+          
+        },
+      },{id: "post-a-post-with-diagrams",
+        
+          title: "a post with diagrams",
+        
+        description: "an example of a blog post with diagrams",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/diagrams/";
+          
+        },
+      },{id: "post-a-distill-style-blog-post",
+        
+          title: "A distill-style blog post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/distill/";
+          
+        },
+      },{id: "post-a-post-with-twitter",
+        
+          title: "a post with twitter",
+        
+        description: "an example of a blog post with twitter",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/twitter/";
+          
+        },
+      },{id: "post-a-post-with-disqus-comments",
+        
+          title: "a post with disqus comments",
+        
+        description: "an example of a blog post with disqus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/disqus-comments/";
+          
+        },
+      },{id: "post-a-post-with-math",
+        
+          title: "a post with math",
+        
+        description: "an example of a blog post with some math",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/math/";
+          
+        },
+      },{id: "post-a-post-with-code",
+        
+          title: "a post with code",
+        
+        description: "an example of a blog post with some code",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/code/";
+          
+        },
+      },{id: "post-a-post-with-images",
+        
+          title: "a post with images",
+        
+        description: "this is what included images could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/images/";
+          
+        },
+      },{id: "post-a-post-with-formatting-and-links",
+        
+          title: "a post with formatting and links",
+        
+        description: "march & april, looking forward to summer",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/formatting-and-links/";
+          
+        },
+      },{id: "books-formal-engineering-design-synthesis",
+          title: 'Formal Engineering Design Synthesis',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/formal_engineering_design_synthesis/";
+            },},{id: "books-the-structure-of-scientific-revolutions",
+          title: 'The Structure of Scientific Revolutions',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/structure_of_scientific_revolution/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-project-1",
+          title: 'project 1',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-project-3-with-very-long-name",
+          title: 'project 3 with very long name',
+          description: "a project that redirects to another website",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
+            },},{id: "projects-project-4",
+          title: 'project 4',
+          description: "another without an image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
+            },},{id: "projects-project-5",
+          title: 'project 5',
+          description: "a project with a background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
+            },},{id: "projects-project-6",
+          title: 'project 6',
+          description: "a project with no image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
+            },},{id: "projects-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_project/";
+            },},{id: "projects-project-8",
+          title: 'project 8',
+          description: "an other project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/8_project/";
+            },},{id: "projects-project-9",
+          title: 'project 9',
+          description: "another project with an image 🎉",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/9_project/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6E%69%6C.%70%61%6E%74%61%37%37@%74%61%6D%75.%65%64%75", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=a9fiG98AAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/niel-77", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/nirmal-panta", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

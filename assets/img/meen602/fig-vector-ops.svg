@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="620" height="300" fill="#f7f7f5" rx="10" />
+  <text x="310" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">Vector addition and scalar multiplication</text>
+
+  <!-- LEFT PANEL: addition (tip-to-tail / parallelogram) -->
+  <text x="150" y="52" text-anchor="middle" font-size="13" fill="#1a1a1a">a) tip-to-tail addition</text>
+  <g stroke="#c9c9c4" stroke-width="1">
+    <line x1="40" y1="260" x2="260" y2="260" />
+    <line x1="40" y1="260" x2="40" y2="70" />
+  </g>
+  <!-- a vector (60,-30) from origin -->
+  <line x1="40" y1="260" x2="130" y2="200" stroke="#1a1a1a" stroke-width="2.2" marker-end="url(#arrowblk)" />
+  <text x="128" y="215" font-size="14" fill="#1a1a1a">a</text>
+  <!-- b vector placed tip of a -->
+  <line x1="130" y1="200" x2="190" y2="110" stroke="#3a5a8c" stroke-width="2.2" marker-end="url(#arrowblue)" />
+  <text x="196" y="130" font-size="14" fill="#3a5a8c">b</text>
+  <!-- resultant a+b from origin -->
+  <line x1="40" y1="260" x2="190" y2="110" stroke="#8c3a3a" stroke-width="2.4" marker-end="url(#arrowred)" />
+  <text x="185" y="95" font-size="14" fill="#8c3a3a">a + b</text>
+  <!-- dashed parallelogram completion -->
+  <line x1="40" y1="260" x2="100" y2="230" stroke="#3a5a8c" stroke-width="1.4" stroke-dasharray="3 3" />
+  <line x1="100" y1="230" x2="190" y2="110" stroke="#1a1a1a" stroke-width="1.4" stroke-dasharray="3 3" opacity="0" />
+
+  <!-- divider -->
+  <line x1="310" y1="45" x2="310" y2="285" stroke="#d8d8d3" stroke-width="1.5" />
+
+  <!-- RIGHT PANEL: scalar multiplication -->
+  <text x="470" y="52" text-anchor="middle" font-size="13" fill="#1a1a1a">b) scalar multiplication</text>
+  <g stroke="#c9c9c4" stroke-width="1">
+    <line x1="360" y1="260" x2="600" y2="260" />
+    <line x1="360" y1="260" x2="360" y2="70" />
+  </g>
+  <!-- a -->
+  <line x1="360" y1="260" x2="410" y2="205" stroke="#1a1a1a" stroke-width="2.2" marker-end="url(#arrowblk)" />
+  <text x="415" y="215" font-size="14" fill="#1a1a1a">a</text>
+  <!-- 2a same direction, twice length -->
+  <line x1="360" y1="260" x2="460" y2="150" stroke="#8c3a3a" stroke-width="2.4" marker-end="url(#arrowred)" />
+  <text x="465" y="150" font-size="14" fill="#8c3a3a">2a</text>
+  <!-- -1a opposite direction -->
+  <line x1="360" y1="260" x2="310" y2="315" stroke="#3a5a8c" stroke-width="2.2" marker-end="url(#arrowblue)" opacity="0" />
+
+  <defs>
+    <marker id="arrowblk" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1a1a1a" />
+    </marker>
+    <marker id="arrowblue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#3a5a8c" />
+    </marker>
+    <marker id="arrowred" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#8c3a3a" />
+    </marker>
+  </defs>
+</svg>

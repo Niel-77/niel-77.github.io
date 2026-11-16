@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="460" height="340" fill="#f7f7f5" rx="10" />
+  <text x="230" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">Standard basis spanning the plane</text>
+
+  <!-- axes -->
+  <g stroke="#c9c9c4" stroke-width="1">
+    <line x1="40" y1="280" x2="420" y2="280" />
+    <line x1="230" y1="300" x2="230" y2="60" />
+  </g>
+  <text x="415" y="275" font-size="12" fill="#8a8a85">x</text>
+  <text x="238" y="70" font-size="12" fill="#8a8a85">y</text>
+
+  <!-- faint grid of a few sample linear combinations -->
+  <g stroke="#e2e2dd" stroke-width="1">
+    <line x1="230" y1="280" x2="330" y2="180" />
+    <line x1="230" y1="280" x2="170" y2="130" />
+    <line x1="230" y1="280" x2="370" y2="230" />
+  </g>
+
+  <!-- basis vector i -->
+  <line x1="230" y1="280" x2="300" y2="280" stroke="#1a1a1a" stroke-width="2.4" marker-end="url(#arrowblk2)" />
+  <text x="305" y="278" font-size="14" fill="#1a1a1a">i</text>
+
+  <!-- basis vector j -->
+  <line x1="230" y1="280" x2="230" y2="210" stroke="#1a1a1a" stroke-width="2.4" marker-end="url(#arrowblk2)" />
+  <text x="236" y="205" font-size="14" fill="#1a1a1a">j</text>
+
+  <!-- example vector a = 2i + 1.5j -->
+  <line x1="230" y1="280" x2="370" y2="175" stroke="#8c3a3a" stroke-width="2.4" marker-end="url(#arrowred2)" />
+  <text x="376" y="172" font-size="14" fill="#8c3a3a">a = λ₁i + λ₂j</text>
+
+  <!-- construction dashed lines -->
+  <line x1="370" y1="280" x2="370" y2="175" stroke="#3a5a8c" stroke-width="1.2" stroke-dasharray="4 3" />
+  <line x1="230" y1="175" x2="370" y2="175" stroke="#3a5a8c" stroke-width="1.2" stroke-dasharray="4 3" />
+  <text x="372" y="298" font-size="12" fill="#3a5a8c">λ₁</text>
+  <text x="190" y="172" font-size="12" fill="#3a5a8c">λ₂</text>
+
+  <defs>
+    <marker id="arrowblk2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1a1a1a" />
+    </marker>
+    <marker id="arrowred2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#8c3a3a" />
+    </marker>
+  </defs>
+</svg>

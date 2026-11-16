@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 380" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="420" height="380" fill="#f7f7f5" rx="10" />
+  <text x="210" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#1a1a1a">Spring–mass free vibration</text>
+
+  <!-- fixed support (hatched ceiling) -->
+  <rect x="140" y="55" width="140" height="14" fill="#1a1a1a" />
+  <g stroke="#1a1a1a" stroke-width="1.5">
+    <line x1="145" y1="69" x2="130" y2="85" />
+    <line x1="165" y1="69" x2="150" y2="85" />
+    <line x1="185" y1="69" x2="170" y2="85" />
+    <line x1="205" y1="69" x2="190" y2="85" />
+    <line x1="225" y1="69" x2="210" y2="85" />
+    <line x1="245" y1="69" x2="230" y2="85" />
+    <line x1="265" y1="69" x2="250" y2="85" />
+  </g>
+
+  <!-- spring (zigzag) -->
+  <polyline points="210,69 210,90 190,100 230,112 190,124 230,136 190,148 230,160 210,172 210,190"
+            fill="none" stroke="#1a1a1a" stroke-width="2" />
+  <text x="255" y="130" font-size="15" fill="#1a1a1a">k</text>
+
+  <!-- equilibrium reference line -->
+  <line x1="130" y1="190" x2="290" y2="190" stroke="#3a5a8c" stroke-width="1" stroke-dasharray="4 4" />
+  <text x="300" y="195" font-size="12" fill="#3a5a8c">equilibrium</text>
+
+  <!-- mass block, displaced downward -->
+  <rect x="165" y="220" width="90" height="70" rx="4" fill="#ffffff" stroke="#1a1a1a" stroke-width="2" />
+  <text x="210" y="262" text-anchor="middle" font-size="16" fill="#1a1a1a">m</text>
+  <!-- connect spring to mass -->
+  <line x1="210" y1="190" x2="210" y2="220" stroke="#1a1a1a" stroke-width="2" />
+
+  <!-- displacement arrow u(t) -->
+  <line x1="320" y1="192" x2="320" y2="255" stroke="#8c3a3a" stroke-width="1.8" marker-end="url(#arrowu)" />
+  <text x="335" y="228" font-size="14" fill="#8c3a3a">u(t)</text>
+
+  <!-- ground hatching under the whole thing (visual anchor) -->
+  <line x1="60" y1="330" x2="360" y2="330" stroke="#1a1a1a" stroke-width="1.5" />
+  <g stroke="#1a1a1a" stroke-width="1.2">
+    <line x1="70" y1="330" x2="55" y2="345" />
+    <line x1="100" y1="330" x2="85" y2="345" />
+    <line x1="130" y1="330" x2="115" y2="345" />
+    <line x1="160" y1="330" x2="145" y2="345" />
+    <line x1="190" y1="330" x2="175" y2="345" />
+    <line x1="220" y1="330" x2="205" y2="345" />
+    <line x1="250" y1="330" x2="235" y2="345" />
+    <line x1="280" y1="330" x2="265" y2="345" />
+    <line x1="310" y1="330" x2="295" y2="345" />
+    <line x1="340" y1="330" x2="325" y2="345" />
+  </g>
+
+  <defs>
+    <marker id="arrowu" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#8c3a3a" />
+    </marker>
+  </defs>
+</svg>

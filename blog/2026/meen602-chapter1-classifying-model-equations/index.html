@@ -1,0 +1,749 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze | Nirmal Prasad Panta </title> <meta name="author" content="Nirmal Prasad Panta"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://nirmalprasadpanta.com.np/blog/2026/meen602-chapter1-classifying-model-equations/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Nirmal Prasad Panta </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze</h1> <p class="post-meta"> Created on August 29, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/modeling-and-analysis-of-mechanical-systems"> <i class="fa-solid fa-hashtag fa-sm"></i> Modeling and Analysis of Mechanical Systems</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Before trying to solve any equation, it helps to be able to look at it and immediately place it: where did it come from, what mathematical species is it, and what extra information does it need to pin down one specific solution? This post builds that vocabulary from the ground up, then works two full examples end to end.</p> <h3 id="1-what-is-a-model">1. What is a model?</h3> <p>Mechanical members and components — gears, beams, springs, shafts, trusses, and so on — assemble into a <strong>mechanical system</strong>. These systems do three things: convert motion, support loads, and transfer or store energy (of some kind).</p> <p>A <strong>model</strong> is the mathematical description of a mechanical system or a mechanical process. Models split into two families, depending on where they come from:</p> <ul> <li> <strong>Physics-based models</strong> are built from conservation principles (conservation of mass, energy, momentum) together with constitutive equations — relationships found experimentally and valid across a range of cases (Hooke’s law, Fourier’s law, and the like). Every term in the model traces back to a physical mechanism we could point to.</li> <li> <strong>Data-driven models</strong> fit a mathematical structure directly to measured data, with no reference to physical law at all — weather forecasting and large-scale simulation surrogates are the standard examples.</li> </ul> <p><strong>We’ll focus on physics-based models throughout</strong> — that’s the lens for everything that follows.</p> <h3 id="2-three-types-of-models">2. Three types of models</h3> <p>A physics-based model takes one of three mathematical forms, in increasing order of richness:</p> <ol> <li> <strong>Algebraic expressions</strong> — no derivatives at all. Example: the static form of Hooke’s law, $F = kx$, relating variables at a single instant with no rate of change involved.</li> <li> <p><strong>Ordinary differential equations (ODEs)</strong> — the unknown depends on a single independent variable (usually time $t$), so its rate of change enters the model. Example: a lumped mass-spring oscillator,</p> \[m\frac{d^2x}{dt^2} + kx = 0.\] <p>Time derivatives show up constantly in mechanics, so it’s standard to compress them using <strong>Newton’s dot notation</strong>: one dot per derivative with respect to time, $\dot x = \frac{dx}{dt}$ and $\ddot x = \frac{d^2x}{dt^2}$. The equation above is then usually written $m\ddot x + kx = 0$ — same equation, just more compact. We’ll use dot notation from here on.</p> </li> <li> <p><strong>Partial differential equations (PDEs)</strong> — the unknown depends on more than one independent variable at once (e.g., both position $x$ and time $t$). Example: a vibrating elastic rod,</p> \[\rho A\, \frac{\partial^2 u}{\partial t^2} = EA\, \frac{\partial^2 u}{\partial x^2}.\] <p>Partial derivatives get their own shorthand too — a subscript for each variable differentiated against: $u_t = \frac{\partial u}{\partial t}$, $u_{tt} = \frac{\partial^2 u}{\partial t^2}$, and likewise $u_{xx} = \frac{\partial^2 u}{\partial x^2}$. So the rod equation above is usually written $\rho A\, u_{tt} = EA\, u_{xx}$. We’ll use subscript notation from here on too.</p> </li> </ol> <p>This progression tracks how many independent numbers it takes to pin down the system’s state. An algebraic model is defined pointwise; a lumped ODE model needs a fixed, finite set of coordinates — its <strong>degrees of freedom (DOF)</strong>; a continuous PDE model needs a value at <em>every</em> point in space, i.e., infinitely many DOF. So “discrete vs. continuous” is really the ODE/PDE distinction restated in terms of how many numbers we’re tracking:</p> <table> <thead> <tr> <th>System</th> <th>Model type</th> <th>DOF</th> </tr> </thead> <tbody> <tr> <td>Static spring under a known load</td> <td>Algebraic</td> <td>—</td> </tr> <tr> <td>Single mass on a spring</td> <td>ODE</td> <td>1</td> </tr> <tr> <td>Two masses connected by springs (in series)</td> <td>Coupled ODEs</td> <td>2</td> </tr> <tr> <td>Cantilever beam (deflection at every point along its length)</td> <td>PDE</td> <td>$\infty$</td> </tr> </tbody> </table> <h3 id="3-four-properties-of-a-model">3. Four properties of a model</h3> <p>Once the model’s type (algebraic/ODE/PDE) is settled, four further yes/no questions describe its character.</p> <p><strong>Linear vs. non-linear.</strong> The formal test is two conditions together, stated on a general input–output system:</p> <ul> <li> <em>Superposition (addition):</em> if input $i_1$ produces response $r_1$, and input $i_2$ produces response $r_2$, then applying $i_1 + i_2$ together produces exactly $r_1 + r_2$.</li> <li> <em>Proportionality (scaling):</em> scaling the input by a constant $k$ scales the output by the same $k$ — input $ki$ produces output $kr$.</li> </ul> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/meen602/fig-linear-system.svg" sizes="95vw"></source> <img src="/assets/img/meen602/fig-linear-system.svg" class="img-fluid rounded" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> <p>A system that satisfies both is linear; if either fails, it’s non-linear. Quick test: every occurrence of the unknown and its derivatives must appear <strong>alone, to the first power</strong> — never raised to a power, never inside a nonlinear function ($\sin$, $\exp$, $\sqrt{\ \ }$, …), never multiplied by another unknown or by itself. Coefficients are free to depend on the <em>independent</em> variables ($t$, $x$); linearity is a statement about the unknown only.</p> <ul> <li> <em>Linear:</em> <ul> <li>$m\ddot u + c\dot u + ku = 0$ — $u$, $\dot u$, $\ddot u$ each appear once, first power, constant coefficients.</li> <li>$EI\,w’’’’ = q(x)$ — all $w$ terms are first power; the load $q(x)$ carries no $w$. (Non-homogeneous but still linear — the two properties are independent.)</li> <li>$\ddot u + t^2 u = 0$ — the variable coefficient $t^2$ multiplies the <em>independent</em> variable, not the unknown, so this stays linear.</li> <li>$m_1\ddot x_1 + k(x_1 - x_2) = 0$ — coupled, but each unknown appears to the first power.</li> </ul> </li> <li> <em>Non-linear</em> (offending term named): <ul> <li>$I\ddot\theta + k\theta + \varepsilon\theta^3 = T_0\cos\Omega t$ — the $\theta^3$ term is a power of the unknown; it breaks proportionality.</li> <li>$\ddot\theta + \dfrac{g}{L}\sin\theta = 0$ (exact pendulum) — $\sin\theta$ is a nonlinear function of the unknown.</li> <li>$u_t + u\,u_x = \nu\,u_{xx}$ (Burgers’ equation) — $u\,u_x$ is the unknown multiplied by its own derivative.</li> <li>$\dot T = -\sigma\left(T^4 - T_\infty^4\right)$ (radiative cooling) — the $T^4$ term.</li> </ul> </li> </ul> <p><strong>Homogeneous vs. non-homogeneous.</strong> <em>If every term contains the dependent variable or one of its derivatives, the equation is homogeneous.</em> The moment one isolated term appears that doesn’t involve the dependent variable at all — a forcing, source, or load term — the equation is non-homogeneous. Quick test: move every term that carries the unknown to the left-hand side; the equation is homogeneous if and only if what’s left on the right is exactly zero.</p> <ul> <li> <em>Homogeneous</em> — every term carries the unknown: <ul> <li>$m\ddot u + c\dot u + ku = 0$ — each term has $u$, $\dot u$, or $\ddot u$.</li> <li>$\dot\theta + \beta\theta = 0$ — both terms contain $\theta$.</li> <li>$u_{tt} - c^2 u_{xx} = 0$ — both terms contain $u$.</li> <li>$\ddot u + t^2 u = 0$ — still homogeneous: the variable coefficient $t^2$ is <em>attached to</em> $u$, not standing alone.</li> <li>$m_1\ddot x_1 + k(x_1 - x_2) = 0$ — $x_1$ and $x_2$ are both unknowns, so even a coupled system can be fully homogeneous.</li> </ul> </li> <li> <em>Non-homogeneous</em> — one term stands alone with no unknown in it: <ul> <li>$m\ddot u + ku = F_0\cos\Omega t$ — the forcing term $F_0\cos\Omega t$ has no $u$.</li> <li>$EI\,w’’’’ = q(x)$ — the distributed load $q(x)$ depends only on position.</li> <li>$u_{tt} - c^2 u_{xx} = g$ — the gravity term $g$ sits by itself.</li> <li>$\dot T + \beta T = \beta T_\infty$ — the constant $\beta T_\infty$ carries no $T$. This is exactly the cooling equation of §5; the substitution $\theta = T - T_\infty$ absorbs that constant and <em>converts</em> it to the homogeneous $\dot\theta + \beta\theta = 0$ — a change of variable can move an equation between the two categories.</li> </ul> </li> </ul> <p><strong>Deterministic vs. probabilistic.</strong> A <strong>deterministic</strong> model produces exactly the same output every time for the same input — no randomness anywhere in it. A <strong>probabilistic (stochastic)</strong> model has randomness or uncertainty built into it, so the same nominal input produces a distribution of possible outputs rather than one fixed answer. Every physics-based model built purely from conservation laws and constitutive relations, as we’re using here, is deterministic by default.</p> <p><strong>Single vs. coupled.</strong> One equation with one unknown, versus a system of equations whose unknowns appear in each other’s equations.</p> <h3 id="4-auxiliary-conditions-ivp-vs-bvp">4. Auxiliary conditions: IVP vs. BVP</h3> <p>Pinning down one specific solution out of an ODE or PDE’s general solution requires <strong>auxiliary conditions</strong> — as many of them as the equation’s order. There are two kinds:</p> <ul> <li> <strong>Initial value problem (IVP):</strong> all auxiliary conditions are specified at a single value of the independent variable (e.g., everything given at $t=0$).</li> <li> <strong>Boundary value problem (BVP):</strong> auxiliary conditions are specified at more than one value of the independent variable (e.g., one condition at $x=0$, another at $x=L$). Because a BVP needs conditions imposed at two separated points, the underlying equation must be <strong>second order or higher</strong> — a first-order ODE only carries one constant of integration, which isn’t enough to independently satisfy conditions at two different points in general.</li> </ul> <h3 id="5-worked-example--transient-cooling-of-a-lumped-mass">5. Worked example — transient cooling of a lumped mass</h3> <p>A small body at uniform temperature $T=T_i$ at $t=0$ is exposed to a surrounding fluid at $T_\infty$. Assume the body is small/conductive enough that its temperature is spatially uniform at every instant (the <em>lumped-capacitance</em> assumption) — so $T=T(t)$ alone, with no spatial dependence, which is exactly why this is an ODE model rather than a PDE one. Find $T(t)$.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/meen602/fig-lumped-cooling.svg" sizes="95vw"></source> <img src="/assets/img/meen602/fig-lumped-cooling.svg" class="img-fluid rounded" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> <p><strong>Set up the physics — conservation of energy.</strong></p> \[E_{in} + E_{gen} = E_{stored} + E_{loss}.\] <p>With no generation and no input other than the initial temperature itself, $E_{stored} + E_{loss} = 0$, i.e., rate of change of internal energy plus rate of heat loss to the surroundings equals zero:</p> \[\frac{d}{dt}\left(mc_v T\right) + hA\left(T - T_\infty\right) = 0.\] <p><strong>Reduce to a standard ODE.</strong> With $m$, $c_v$ constant,</p> \[\frac{dT}{dt} = -\frac{hA}{mc_v}\left(T-T_\infty\right) = -\beta\left(T-T_\infty\right), \qquad \beta = \frac{hA}{mc_v},\] <p>with auxiliary condition $t=0,\ T=T_i$ — a single point, so this is an <strong>IVP</strong>.</p> <p><strong>Solve it.</strong> Substitute $\theta = T - T_\infty$, so $\dot\theta = \dot T$:</p> \[\dot\theta = -\beta\theta \quad\Leftarrow\ \text{homogeneous (every term contains } \theta \text{ or its derivative)}.\] <p>Separating variables, $\int \frac{d\theta}{\theta} = -\beta \int dt \ \Rightarrow\ \ln\theta = -\beta t + C \ \Rightarrow\ \theta = Ce^{-\beta t}$. Applying the initial condition ($t=0,\ \theta = T_i - T_\infty$) gives $C = T_i - T_\infty$, so</p> \[\boxed{T(t) = T_\infty + \left(T_i - T_\infty\right)e^{-\beta t}.}\] <p><strong>Classification of this model:</strong> physics-based (from conservation of energy), an ODE (lumped — $T$ depends on $t$ alone), linear, homogeneous (once shifted to $\theta$), deterministic, single, and an IVP.</p> <h3 id="6-worked-example--spring-mass-free-vibration">6. Worked example — spring-mass free vibration</h3> <p>A mass $m$ on a spring of stiffness $k$, displacement $u(t)$, no damping or forcing:</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/meen602/fig-spring-mass.svg" sizes="95vw"></source> <img src="/assets/img/meen602/fig-spring-mass.svg" class="img-fluid rounded" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> \[m\ddot u + ku = 0, \qquad u(0) = u_0,\ \dot u(0) = 0 \quad (\text{an IVP}).\] <p><strong>Classification:</strong> physics-based (Newton’s second law), an ODE, linear, homogeneous (both terms contain $u$ or its derivative), deterministic, single.</p> <p>Because it’s linear and homogeneous, the full solution is just the complementary function — no particular integral needed. Solving via the characteristic equation gives</p> \[u(t) = C_1\cos(\omega_n t) + C_2\sin(\omega_n t), \qquad \omega_n = \sqrt{\frac{k}{m}}.\] <p>Applying the initial conditions: $u(0)=C_1=u_0$, and $\dot u(0) = C_2\omega_n = 0 \Rightarrow C_2 = 0$, so</p> \[u(t) = u_0\cos(\omega_n t),\] <p>i.e., free vibration at the system’s natural frequency $\omega_n$.</p> <h3 id="7-from-odes-to-numerical-solutions">7. From ODEs to numerical solutions</h3> <p>Two facts bridge directly into solving these equations numerically:</p> <ul> <li> <strong>Order reduction.</strong> Any $n$th-order ODE can be rewritten as a system of $n$ first-order ODEs by introducing $(n-1)$ new variables (e.g., letting $v=\dot u$ turns the spring-mass equation above into two coupled first-order equations for $u$ and $v$). This is the standard trick that lets a single numerical time-stepping scheme handle an ODE of any order.</li> <li> <strong>Euler’s method</strong>, derived by integrating $\frac{dy}{dx}=f(x,y)$ over one step $[x_0, x_0+h]$:</li> </ul> \[\int_{y_0}^{y_0+h} dy = \int_{x_0}^{x_0+h} f(x,y)\,dx.\] <ul> <li> <strong>Explicit (forward) Euler</strong> evaluates the integrand at the known, left-hand point: $y_{0+h} = y_0 + h\,f(x_0, y_0)$.</li> <li> <strong>Implicit (backward) Euler</strong> evaluates it at the unknown, right-hand point instead: $y_{0+h} = y_0 + h\,f(x_0+h,\ y_{0+h})$ — which has to be solved for $y_{0+h}$ since it appears on both sides.</li> </ul> <p>This is the starting point for solving ODEs numerically — the natural next step once an equation has been classified.</p> <h3 id="8-classifying-pdes">8. Classifying PDEs</h3> <p>PDEs get an extra classification layer on top of everything above — both a mathematical label and a physical one, and the two are tied together.</p> <p><strong>Mathematical classification.</strong> For the general second-order linear PDE in two independent variables, $A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + (\text{lower-order terms}) = 0$, the discriminant $\Delta = B^2-4AC$ sorts it into one of three families:</p> <table> <thead> <tr> <th>Discriminant</th> <th>Type</th> <th>Canonical form</th> <th>Mechanical-system example</th> </tr> </thead> <tbody> <tr> <td>$\Delta &lt; 0$</td> <td><strong>Elliptic</strong></td> <td>Laplace’s equation, $\nabla^2 u = 0$</td> <td>Steady-state temperature or steady membrane/torsion deflection — no time dependence at all</td> </tr> <tr> <td>$\Delta = 0$</td> <td><strong>Parabolic</strong></td> <td>Diffusion/heat equation, $u_t = \alpha\, u_{xx}$</td> <td>Transient (unsteady) heat conduction along a bar</td> </tr> <tr> <td>$\Delta &gt; 0$</td> <td><strong>Hyperbolic</strong></td> <td>Wave equation, $u_{tt} = c^2 u_{xx}$</td> <td>A vibrating string or elastic rod</td> </tr> </tbody> </table> <p>($\nabla^2$, the <em>Laplacian</em>, is itself a shorthand: $\nabla^2 u = u_{xx} + u_{yy}$ in two dimensions, the sum of the unmixed second partial derivatives — extending to $u_{xx}+u_{yy}+u_{zz}$ in three.)</p> <p><strong>Reading off $A$, $B$, $C$.</strong> Move everything to one side, then match the coefficients of the three second-order terms $u_{xx}$, $u_{xy}$, $u_{yy}$. The two independent variables can be any pair — $(x, y)$ for a spatial field, or $(x, t)$ when one of them is time. A missing second-order term just means its coefficient is zero.</p> <ul> <li>Laplace, $u_{xx} + u_{yy} = 0$: $A = 1,\ B = 0,\ C = 1$, so $\Delta = 0 - 4(1)(1) = -4 &lt; 0$ → <strong>elliptic</strong>.</li> <li>Heat, $\alpha\,u_{xx} - u_t = 0$: the only second-order term is $u_{xx}$, so $A = \alpha,\ B = 0,\ C = 0$ (there is no $u_{tt}$), giving $\Delta = 0 - 4(\alpha)(0) = 0$ → <strong>parabolic</strong>.</li> <li>Wave, $c^2 u_{xx} - u_{tt} = 0$: $A = c^2,\ B = 0,\ C = -1$, so $\Delta = 0 - 4(c^2)(-1) = 4c^2 &gt; 0$ → <strong>hyperbolic</strong>.</li> </ul> <p>The sign of $\Delta$ is really counting how many real <strong>characteristic directions</strong> the equation has — curves in the $(x, t)$ plane along which information travels: <strong>two</strong> for hyperbolic, <strong>one</strong> for parabolic, <strong>none</strong> for elliptic.</p> <p><strong>Physical classification.</strong> Parabolic and hyperbolic equations are <strong>marching (propagation) problems</strong>: given the state everywhere at one instant, the solution advances forward step by step. Elliptic equations are <strong>jury (equilibrium) problems</strong>: there’s no time-like variable to march along, so the interior solution depends simultaneously on the boundary data all the way around the domain — the whole domain has to be considered together, the way a jury weighs all the evidence at once. The lumped-cooling example above, run long enough that $dT/dt\to 0$, degenerates from a marching problem into an equilibrium one — a nice bridge between the two worlds.</p> <p><strong>Propagation speed and the domain of dependence.</strong> The number of characteristics above is the same thing as <em>how fast information travels</em>, and that fixes the <strong>domain of dependence</strong> of a point — the set of earlier/boundary data that can affect the solution there.</p> <ul> <li> <strong>Hyperbolic — finite speed.</strong> A disturbance moves at a fixed, finite speed $c$ along the two characteristics. The solution at $(x, t)$ depends only on the initial data in the interval $[x - ct,\ x + ct]$ — a <em>finite</em> domain of dependence, the base of a backward-pointing wedge. Conversely, a disturbance made at one point can only reach the forward wedge $\vert x’ - x \vert \le c\,(t’ - t)$, its zone of influence. Outside that wedge nothing has changed yet, so wavefronts stay sharp.</li> <li> <strong>Parabolic — infinite speed, but decaying.</strong> There is only one characteristic direction ($t = \text{const}$), and the propagation speed is formally infinite: a change anywhere is felt <em>everywhere</em> at the next instant. But the influence decays exponentially with distance, so the domain of dependence is the whole line at earlier times, weighted heavily toward nearby points — you see smooth smearing, not a clean front.</li> <li> <strong>Elliptic — no propagation.</strong> No time-like direction, no real characteristics, no wavefront. Every interior point depends on the <em>entire</em> boundary at once, so its domain of dependence is the whole domain. That is precisely why elliptic problems are “jury” problems — there is no direction along which to march information in, so all the boundary evidence must be weighed simultaneously.</li> </ul> <h3 id="recap">Recap</h3> <table> <thead> <tr> <th>Topic</th> <th>Core question it answers</th> </tr> </thead> <tbody> <tr> <td>What is a model</td> <td>Physics-based (conservation + constitutive laws) or data-driven — we’ll focus on physics-based.</td> </tr> <tr> <td>Three model types</td> <td>Algebraic, ODE, or PDE — tracking finite DOF (discrete) vs. infinite DOF (continuous).</td> </tr> <tr> <td>Four properties</td> <td>Linear/non-linear (superposition + proportionality), homogeneous/non-homogeneous, deterministic/probabilistic, single/coupled.</td> </tr> <tr> <td>Auxiliary conditions</td> <td>IVP (all conditions at one point) vs. BVP (conditions at ≥2 points, requiring order ≥ 2).</td> </tr> <tr> <td>Worked examples</td> <td>Lumped cooling and spring-mass free vibration — both physics-based, ODE, linear, homogeneous, deterministic, single, IVP.</td> </tr> <tr> <td>Numerical solutions</td> <td>Order reduction ($n$th-order → $n$ first-order ODEs) and Euler’s method (explicit/implicit).</td> </tr> <tr> <td>PDE classification</td> <td>Elliptic/parabolic/hyperbolic by the sign of $\Delta = B^2 - 4AC$ (0, 1, or 2 real characteristics); marching (finite or infinite propagation speed) vs. jury (no propagation — whole-boundary domain of dependence) physically.</td> </tr> </tbody> </table> <h3 id="check-our-understanding--chapter-1-practice-questions">Check our understanding — Chapter 1 practice questions</h3> <p>Try each one before expanding the answer underneath it.</p> <p><strong>Q1. Classify the model.</strong> A gym installs pressure sensors in a treadmill belt and fits a regression model that predicts belt wear directly from millions of logged (speed, load, time) readings — with no reference to friction coefficients, belt stiffness, or any other physical parameter. Meanwhile, a colleague models the same belt’s vibration using $m\ddot x + c\dot x + kx = F(t)$, where $m, c, k$ are measured mass, damping, and stiffness.</p> <ol type="a"> <li>Which model is physics-based and which is data-driven, and what's the distinguishing test?</li> <li>The vibration model above is a single lumped mass. What is the DOF of this model, and how would the DOF change if we modeled the belt as a continuous, distributed-mass loop instead?</li> <li>Is the lumped vibration model an algebraic, ODE, or PDE model — and what would it become if we modeled the belt as a continuous loop instead?</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li>The regression model is <em>data-driven</em> — it fits input/output data directly with no physical parameter we could point to and measure independently; the vibration model is <em>physics-based</em> because $m$, $c$, $k$ each correspond to a measurable physical property and the equation comes from Newton's second law.</li> <li>The lumped model has <strong>1 DOF</strong> (a single coordinate $x$ describes the whole system); modeled as a continuous loop, the DOF becomes <strong>infinite</strong>, since displacement is now a field $u(s,t)$ defined at every point $s$ around the belt.</li> <li>It's an <strong>ODE</strong> model (derivatives in time only, finite DOF); modeled as a continuous loop it would become a <strong>PDE</strong> model, since displacement would then depend on both position $s$ and time $t$ at once.</li> </ol> </details> <hr> <p><strong>Q2. Analyze the mathematical properties.</strong> A rotating shaft with a nonlinear stiffening spring is modeled as $I\ddot\theta + c\dot\theta + k\theta + \varepsilon\theta^3 = T_0\cos(\Omega t)$, with $\theta(0) = \theta_0$ and $\dot\theta(0) = 0$ given. Classify this equation fully:</p> <ol type="a"> <li>Is it an algebraic, ODE, or PDE model?</li> <li>Linear or non-linear?</li> <li>Homogeneous or non-homogeneous?</li> <li>Deterministic or probabilistic?</li> <li>Single or coupled?</li> <li>IVP or BVP?</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li>An <strong>ODE</strong> — the only independent variable is $t$.</li> <li> <strong>Non-linear</strong> — the $\theta^3$ term breaks both superposition and proportionality (the equation isn't a linear combination of $\theta$ and its derivatives alone).</li> <li> <strong>Non-homogeneous</strong> — the $T_0\cos(\Omega t)$ term doesn't contain $\theta$ or any of its derivatives, so it's a forcing term.</li> <li> <strong>Deterministic</strong> — every coefficient and input is a fixed value, so the same initial conditions always produce the same $\theta(t)$; there's no randomness built into the model.</li> <li> <strong>Single</strong> — one equation, one unknown ($\theta$).</li> <li> <strong>IVP</strong> — both conditions ($\theta_0$ and $\dot\theta(0)$) are specified at the same instant, $t=0$.</li> </ol> </details> <hr> <p><strong>Q3. Coupled systems and degrees of freedom.</strong> Two railcars of mass $m_1$ and $m_2$ are connected by a coupler spring $k$ and each has its own damper to the ground, $c_1$ and $c_2$:</p> \[m_1\ddot x_1 + c_1\dot x_1 + k(x_1-x_2) = 0, \qquad m_2\ddot x_2 + c_2\dot x_2 + k(x_2-x_1) = 0.\] <ol type="a"> <li>How many degrees of freedom does this system have, and how can we tell just from the equations (without being told directly)?</li> <li>Is this system of equations single or coupled? Justify using the specific terms that make it so.</li> <li>If we were instead told the initial positions and velocities of both cars, what kind of problem (IVP or BVP) would this be, and why does that make physical sense for a <em>vibration</em> problem as opposed to a static deflection problem?</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li> <strong>2 DOF</strong> — there are two independent coordinates, $x_1$ and $x_2$, each needing its own second-order equation.</li> <li> <strong>Coupled</strong> — the term $k(x_1-x_2)$ in the first equation and $k(x_2-x_1)$ in the second means each railcar's equation contains the <em>other</em> car's coordinate, so the two equations can't be solved independently.</li> <li>It's an <strong>IVP</strong>, because all the given data ($x_1(0), \dot x_1(0), x_2(0), \dot x_2(0)$) is specified at a single instant, $t=0$ — vibration problems evolve forward in time from a known starting state, unlike static/BVP problems where conditions are imposed at separated spatial locations (like the two ends of a beam).</li> </ol> </details> <hr> <p><strong>Q4. Classify the PDEs.</strong> Consider three field problems on a metal plate: (i) the temperature distribution once it has fully reached steady state, $\nabla^2 T = 0$; (ii) the temperature right after a hot iron touches the plate and heat is still spreading, $\partial T/\partial t = \alpha\nabla^2 T$; (iii) the out-of-plane deflection of the plate after being struck, $\partial^2 w/\partial t^2 = c^2\nabla^2 w$.</p> <ol type="a"> <li>For each of the three PDEs, read off $A$, $B$, $C$, form the discriminant $\Delta = B^2 - 4AC$, and use its sign to state the mathematical classification (elliptic, parabolic, or hyperbolic) and the physical classification (marching/propagation vs. jury/equilibrium).</li> <li>Problems (ii) and (i) describe the <em>same physical plate</em>. Why does the governing PDE — and its classification — change between them?</li> <li>For problem (i), explain in our own words why it's called a "jury" problem: what has to be true about the boundary before we can find $T$ at a single interior point?</li> <li>Rank the three problems by how fast a localized disturbance propagates, and state what each solution's value at an interior point depends on — its domain of dependence.</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li>Put each equation in the form $A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + \dots = 0$ and take one space dimension where needed so there are two independent variables: <ul> <li>(i) $T_{xx} + T_{yy} = 0$: $A = 1,\ B = 0,\ C = 1$, so $\Delta = 0 - 4(1)(1) = -4 &lt; 0$ → <strong>elliptic</strong>, a <strong>jury/equilibrium</strong> problem.</li> <li>(ii) $\alpha\,T_{xx} - T_t = 0$ — the only second-order term is $T_{xx}$, so $A = \alpha,\ B = 0,\ C = 0$, giving $\Delta = 0 - 4(\alpha)(0) = 0$ → <strong>parabolic</strong>, a <strong>marching/propagation</strong> problem (marches forward in time).</li> <li>(iii) $c^2 w_{xx} - w_{tt} = 0$: $A = c^2,\ B = 0,\ C = -1$, so $\Delta = 0 - 4(c^2)(-1) = 4c^2 &gt; 0$ → <strong>hyperbolic</strong>, also a <strong>marching/propagation</strong> problem.</li> </ul> </li> <li>The physics changes from <em>transient</em> to <em>steady-state</em>: once $\partial T/\partial t \to 0$, the time-derivative term in the parabolic equation drops out, leaving only the spatial Laplacian — so $C$ goes from $0$ back to a nonzero value in the $(x,y)$ variables, $\Delta$ flips from $0$ to negative, and the equation degenerates from parabolic to elliptic. The marching (time-stepping) problem becomes an equilibrium problem.</li> <li>In an elliptic/jury problem the interior solution depends <strong>simultaneously</strong> on the boundary values everywhere around the domain — we need to know the temperature all along the entire boundary before we can determine $T$ at any single interior point, since there's no time-like direction to sweep through one section at a time; all the "evidence" (boundary data) has to be weighed together at once, as a jury would.</li> <li>Fastest to slowest "cleanness" of propagation: <ul> <li>(iii) hyperbolic — <strong>finite speed $c$</strong>. The deflection at $(x, t)$ depends only on the initial data within distance $ct$ of $x$, i.e. the interval $[x - ct,\ x + ct]$ cut out by the two characteristics — a finite domain of dependence with a sharp wavefront.</li> <li>(ii) parabolic — <strong>infinite mathematical speed but exponentially decaying influence</strong>. $T$ at a point depends on the <em>entire</em> earlier temperature field, weighted toward nearby points; the disturbance is felt everywhere immediately but smears out smoothly with no front.</li> <li>(i) elliptic — <strong>no propagation</strong>. $T$ at an interior point depends on the <em>whole boundary</em> at once; there is no earlier state and no wavefront.</li> </ul> </li> </ol> </details> <hr> <p><strong>Q5. Putting it all together.</strong> A guitar string of length $L$, fixed at both ends, is modeled by $u_{tt} = c^2 u_{xx}$ for $0 &lt; x &lt; L$, with $u(0,t) = u(L,t) = 0$ for all $t$, and initial pluck shape $u(x,0) = f(x)$, $u_t(x,0) = 0$.</p> <ol type="a"> <li>Is this system discrete or continuous, and how many degrees of freedom does it have?</li> <li>Classify the equation as ODE/PDE, linear/non-linear, and homogeneous/non-homogeneous.</li> <li>This problem has conditions specified at $x=0$ and $x=L$ <em>and</em> at $t=0$ — is it purely an IVP, purely a BVP, or something else? Explain.</li> <li>Mathematically and physically classify the PDE itself.</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li> <strong>Continuous</strong> — the string's displacement $u(x,t)$ is a field defined at every point $x$, so it has <strong>infinite DOF</strong>.</li> <li>It's a <strong>PDE</strong> (derivatives in both $x$ and $t$), <strong>linear</strong> (superposition of solutions holds — no products or powers of $u$ or its derivatives), and <strong>homogeneous</strong> (no forcing term appears; every term contains $u$ or a derivative of $u$).</li> <li>It's a <strong>mixed initial-boundary value problem</strong>: the two spatial conditions at $x=0, L$ make it a BVP <em>in space</em>, while the two conditions at $t=0$ make it an IVP <em>in time</em> — continuous vibrating-system problems typically need both simultaneously.</li> <li>It's the canonical <strong>hyperbolic</strong> equation (discriminant $B^2-4AC &gt; 0$ for $u_{tt}-c^2u_{xx}=0$), and physically a <strong>marching (propagation)</strong> problem — the pluck shape at $t=0$ is advanced forward in time as a wave traveling at speed $c$.</li> </ol> </details> <hr> <p><strong>Q6. Auxiliary conditions and model character.</strong> A structural engineer proposes two models for the same beam: (i) a deterministic finite-element model built from $E$, $I$, and the applied load, giving one deflection curve for one set of inputs; (ii) a Monte Carlo model that treats Young’s modulus as a random variable (to capture manufacturing variability) and reports a distribution of possible deflection curves. Separately, she wants to solve the beam’s governing ODE, $EI\,d^4w/dx^4 = q(x)$, using conditions at both ends of the beam, $w(0)=w(L)=0$.</p> <ol type="a"> <li>Which model, (i) or (ii), is deterministic and which is probabilistic? What's the defining difference?</li> <li>Is the beam problem $EI\,w'''' = q(x)$ with $w(0)=w(L)=0$ an IVP or a BVP?</li> <li>Why must this kind of two-ended problem be governed by an ODE of order two or higher — what would go wrong if it were only first order?</li> </ol> <details> <summary><strong>View Answer</strong></summary> <ol type="a"> <li>Model (i) is <strong>deterministic</strong> — the same $E$, $I$, and load always produce the same deflection curve, with no randomness anywhere in the model. Model (ii) is <strong>probabilistic (stochastic)</strong> — because Young's modulus is treated as a random variable, the same nominal inputs produce a distribution of possible outputs rather than one fixed answer.</li> <li>A <strong>BVP</strong> — the conditions are given at two separated values of the independent variable $x$ ($x=0$ and $x=L$), not both at a single point.</li> <li>A first-order ODE's general solution has only one arbitrary constant of integration, enough to satisfy exactly one auxiliary condition — imposing two independent conditions at separate points would generally overdetermine it, with no solution except by coincidence. An equation of order two or higher has two or more constants of integration, giving it enough freedom to satisfy conditions imposed at two separate points.</li> </ol> </details> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Nirmal Prasad Panta. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "A growing collection of your cool projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Comprehensive overview of my academic background and skills.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "post-modeling-and-analysis-of-mechanical-systems-principal-component-analysis-pca",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA)",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-principal-component-analysis/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-gradient-based-optimization",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Gradient-Based Optimization",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-gradient-based-optimization/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-derivatives-gradients-hessians-and-the-material-derivative",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Derivatives, Gradients, Hessians and the Material...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-derivatives-and-gradients/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-linear-operators-and-matrix-decomposition",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-matrix-decomposition/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-4-einstein-39-s-index-notation",
+        
+          title: "Theory of Elasticity — Week 4: Einstein's Index Notation",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week4-index-notation/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-3-a-solid-from-atoms-with-the-lennard-jones-potential",
+        
+          title: "Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week3-lennard-jones-solid/";
+          
+        },
+      },{id: "post-taylor-series-why-it-matters-and-what-linear-and-quadratic-approximation-really-mean",
+        
+          title: "Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/taylor-series/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-2-generalizing-vector-spaces",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter2-generalizing-vector-spaces/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-2-hydrostatics-as-an-idealized-introduction-to-continuum-elasticity",
+        
+          title: "Theory of Elasticity — Week 2: Hydrostatics as an Idealized Introduction to Continuum...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week2-hydrostatics-idealized-continuum/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-1-classify-and-analyze",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter1-classifying-model-equations/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-1-what-39-s-the-matter",
+        
+          title: "Theory of Elasticity — Week 1: What's the Matter?",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week1-continuum-hypothesis/";
+          
+        },
+      },{id: "post-vitruvius-redux",
+        
+          title: "Vitruvius Redux",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vitruvius-redux/";
+          
+        },
+      },{id: "post-reading-notes-computational-design-synthesis-amp-ai",
+        
+          title: "Reading Notes: Computational Design Synthesis & AI",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/reading-notes-design-synthesis/";
+          
+        },
+      },{id: "post-formal-engineering-design-synthesis",
+        
+          title: "Formal Engineering Design Synthesis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-engineering-design-synthesis/";
+          
+        },
+      },{id: "post-formal-design-gramar",
+        
+          title: "Formal Design Gramar",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-design-grammar/";
+          
+        },
+      },{id: "post-a-post-with-marimo-snippets",
+        
+          title: "a post with marimo snippets",
+        
+        description: "running Python in the browser with marimo",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/marimo/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
+        
+          title: "a post with plotly.js",
+        
+        description: "this is what included plotly.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/plotly/";
+          
+        },
+      },{id: "post-a-post-with-image-galleries",
+        
+          title: "a post with image galleries",
+        
+        description: "this is what included image galleries could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/photo-gallery/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-a-post-with-tabs",
+        
+          title: "a post with tabs",
+        
+        description: "this is what included tabs in a post could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/tabs/";
+          
+        },
+      },{id: "post-a-post-with-typograms",
+        
+          title: "a post with typograms",
+        
+        description: "this is what included typograms code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/typograms/";
+          
+        },
+      },{id: "post-a-post-that-can-be-cited",
+        
+          title: "a post that can be cited",
+        
+        description: "this is what a post that can be cited looks like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/post-citation/";
+          
+        },
+      },{id: "post-a-post-with-pseudo-code",
+        
+          title: "a post with pseudo code",
+        
+        description: "this is what included pseudo code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/pseudocode/";
+          
+        },
+      },{id: "post-a-post-with-code-diff",
+        
+          title: "a post with code diff",
+        
+        description: "this is how you can display code diffs",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/code-diff/";
+          
+        },
+      },{id: "post-a-post-with-advanced-image-components",
+        
+          title: "a post with advanced image components",
+        
+        description: "this is what advanced image components could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/advanced-images/";
+          
+        },
+      },{id: "post-a-post-with-vega-lite",
+        
+          title: "a post with vega lite",
+        
+        description: "this is what included vega lite code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/vega-lite/";
+          
+        },
+      },{id: "post-a-post-with-geojson",
+        
+          title: "a post with geojson",
+        
+        description: "this is what included geojson code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/geojson-map/";
+          
+        },
+      },{id: "post-a-post-with-echarts",
+        
+          title: "a post with echarts",
+        
+        description: "this is what included echarts code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/echarts/";
+          
+        },
+      },{id: "post-a-post-with-chart-js",
+        
+          title: "a post with chart.js",
+        
+        description: "this is what included chart.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/chartjs/";
+          
+        },
+      },{id: "post-a-post-with-tikzjax",
+        
+          title: "a post with TikZJax",
+        
+        description: "this is what included TikZ code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tikzjax/";
+          
+        },
+      },{id: "post-a-post-with-bibliography",
+        
+          title: "a post with bibliography",
+        
+        description: "an example of a blog post with bibliography",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/post-bibliography/";
+          
+        },
+      },{id: "post-a-post-with-jupyter-notebook",
+        
+          title: "a post with jupyter notebook",
+        
+        description: "an example of a blog post with jupyter notebook",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/jupyter-notebook/";
+          
+        },
+      },{id: "post-a-post-with-custom-blockquotes",
+        
+          title: "a post with custom blockquotes",
+        
+        description: "an example of a blog post with custom blockquotes",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/custom-blockquotes/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
+        
+          title: "a post with table of contents on a sidebar",
+        
+        description: "an example of a blog post with table of contents on a sidebar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/sidebar-table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-audios",
+        
+          title: "a post with audios",
+        
+        description: "this is what included audios could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/audios/";
+          
+        },
+      },{id: "post-a-post-with-videos",
+        
+          title: "a post with videos",
+        
+        description: "this is what included videos could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/videos/";
+          
+        },
+      },{id: "post-displaying-beautiful-interactive-tables",
+        
+          title: "displaying beautiful interactive tables",
+        
+        description: "an example of how to use interactive tables in al-folio",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tables/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents",
+        
+          title: "a post with table of contents",
+        
+        description: "an example of a blog post with table of contents",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-giscus-comments",
+        
+          title: "a post with giscus comments",
+        
+        description: "an example of a blog post with giscus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/giscus-comments/";
+          
+        },
+      },{id: "post-یک-نوشتهٔ-راست-چین",
+        
+          title: "یک نوشتهٔ راست‌چین",
+        
+        description: "نمونه‌ای از پشتیبانی زبان‌های راست‌چین",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/rtl/";
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "post-a-post-with-redirect",
+        
+          title: "a post with redirect",
+        
+        description: "you can also redirect to assets like pdf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/example_pdf.pdf";
+          
+        },
+      },{id: "post-a-post-with-diagrams",
+        
+          title: "a post with diagrams",
+        
+        description: "an example of a blog post with diagrams",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/diagrams/";
+          
+        },
+      },{id: "post-a-distill-style-blog-post",
+        
+          title: "A distill-style blog post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/distill/";
+          
+        },
+      },{id: "post-a-post-with-twitter",
+        
+          title: "a post with twitter",
+        
+        description: "an example of a blog post with twitter",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/twitter/";
+          
+        },
+      },{id: "post-a-post-with-disqus-comments",
+        
+          title: "a post with disqus comments",
+        
+        description: "an example of a blog post with disqus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/disqus-comments/";
+          
+        },
+      },{id: "post-a-post-with-math",
+        
+          title: "a post with math",
+        
+        description: "an example of a blog post with some math",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/math/";
+          
+        },
+      },{id: "post-a-post-with-code",
+        
+          title: "a post with code",
+        
+        description: "an example of a blog post with some code",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/code/";
+          
+        },
+      },{id: "post-a-post-with-images",
+        
+          title: "a post with images",
+        
+        description: "this is what included images could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/images/";
+          
+        },
+      },{id: "post-a-post-with-formatting-and-links",
+        
+          title: "a post with formatting and links",
+        
+        description: "march & april, looking forward to summer",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/formatting-and-links/";
+          
+        },
+      },{id: "books-formal-engineering-design-synthesis",
+          title: 'Formal Engineering Design Synthesis',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/formal_engineering_design_synthesis/";
+            },},{id: "books-the-structure-of-scientific-revolutions",
+          title: 'The Structure of Scientific Revolutions',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/structure_of_scientific_revolution/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-project-1",
+          title: 'project 1',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-project-3-with-very-long-name",
+          title: 'project 3 with very long name',
+          description: "a project that redirects to another website",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
+            },},{id: "projects-project-4",
+          title: 'project 4',
+          description: "another without an image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
+            },},{id: "projects-project-5",
+          title: 'project 5',
+          description: "a project with a background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
+            },},{id: "projects-project-6",
+          title: 'project 6',
+          description: "a project with no image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
+            },},{id: "projects-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_project/";
+            },},{id: "projects-project-8",
+          title: 'project 8',
+          description: "an other project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/8_project/";
+            },},{id: "projects-project-9",
+          title: 'project 9',
+          description: "another project with an image 🎉",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/9_project/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6E%69%6C.%70%61%6E%74%61%37%37@%74%61%6D%75.%65%64%75", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=a9fiG98AAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/niel-77", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/nirmal-panta", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

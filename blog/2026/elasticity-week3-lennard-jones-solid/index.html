@@ -1,0 +1,749 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones Potential | Nirmal Prasad Panta </title> <meta name="author" content="Nirmal Prasad Panta"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://nirmalprasadpanta.com.np/blog/2026/elasticity-week3-lennard-jones-solid/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Nirmal Prasad Panta </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">Submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones Potential</h1> <p class="post-meta"> Created on September 08, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/theory-of-elasticity"> <i class="fa-solid fa-hashtag fa-sm"></i> Theory of Elasticity</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Build a solid from pairwise atomic bonds, then derive its pressure–volume law. The result shows why a solid, unlike a gas, can support <strong>tensile pressure</strong>.</p> <h3 id="1-model-simple-cubic-lattice">1. Model: simple cubic lattice</h3> <p>Atoms sit at $\mathbf r = a\,(i,j,k)$ with integer $i,j,k$, where $a$ is the <strong>lattice parameter</strong>. The distance from the atom at the origin to atom $(i,j,k)$ is</p> \[r_{ijk} = a\sqrt{i^2+j^2+k^2}\] <ul> <li>One atom per unit cell, so $V_{\text{cell}} = a^3$.</li> <li>$N$ = number of atoms = number of unit cells, so the system volume is $V = Na^3$.</li> <li>Example neighbors of the origin: $a(0,2,0)$ and $a(0,2,2)$, at distances $2a$ and $2\sqrt2\,a$.</li> </ul> <h3 id="2-lennard-jones-potential">2. Lennard-Jones potential</h3> <p>Bond energy between two atoms a distance $r$ apart:</p> \[\phi(r) = 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6}\right]\] <table> <thead> <tr> <th>Term</th> <th>Role</th> </tr> </thead> <tbody> <tr> <td>$(\sigma/r)^{12}$</td> <td>Repulsion, short-ranged and steep</td> </tr> <tr> <td>$(\sigma/r)^{6}$</td> <td>Attraction, longer-ranged</td> </tr> <tr> <td>$\epsilon$</td> <td>Well depth: how strong the attraction is; loosely related to melting temperature</td> </tr> <tr> <td>$\sigma$</td> <td>Distance where $\phi = 0$; only loosely related to atomic size</td> </tr> </tbody> </table> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/elasticity/lj_pair_potential-480.webp 480w,/assets/img/elasticity/lj_pair_potential-800.webp 800w,/assets/img/elasticity/lj_pair_potential-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/elasticity/lj_pair_potential.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">Lennard-Jones pair potential: steep repulsion plus weaker, longer-ranged attraction.</figcaption> </figure> <p>Fitted values:</p> <table> <thead> <tr> <th>Element</th> <th>Atomic #</th> <th>$\sigma$ (Å)</th> <th>$\epsilon$ (eV)</th> </tr> </thead> <tbody> <tr> <td>He</td> <td>2</td> <td>2.56</td> <td>0.00088</td> </tr> <tr> <td>Fe</td> <td>26</td> <td>2.32</td> <td>0.401</td> </tr> <tr> <td>Ni</td> <td>28</td> <td>2.55</td> <td>0.245</td> </tr> <tr> <td>Cu</td> <td>29</td> <td>2.38</td> <td>0.415</td> </tr> </tbody> </table> <p><strong>Example: Fe, nearest-neighbor-diagonal bond.</strong> Atoms $(0,0,0)$ and $(0,-1,1)$ are $a\sqrt2$ apart. Take $a = 2\sigma$, so $r = 2\sqrt2\,\sigma$ and $(2\sqrt2)^6 = 512$:</p> \[\phi = 4\epsilon\left[\frac{1}{(2\sqrt2)^{12}} - \frac{1}{(2\sqrt2)^{6}}\right] = 4(0.401)\,\frac{1}{512}\left(\frac{1}{512}-1\right) \approx -3.13\times10^{-3}\,\text{eV} \approx -7.8\times10^{-3}\,\epsilon\] <p>Bonds this long are very weak compared with $\epsilon$.</p> <h3 id="3-energy-per-atom">3. Energy per atom</h3> <p>Sum the bond energy of the atom at the origin with every other atom. The $\tfrac12$ avoids counting each bond twice:</p> \[U = \frac12\sum_{\substack{i,j,k=-\infty\\(i,j,k)\neq(0,0,0)}}^{\infty}\phi(r_{ijk}) = 2\epsilon\left[\left(\frac{\sigma}{a}\right)^{12}\!\!\sum\frac{1}{(i^2+j^2+k^2)^6} - \left(\frac{\sigma}{a}\right)^{6}\!\!\sum\frac{1}{(i^2+j^2+k^2)^3}\right]\] \[\boxed{U(a) = 2\epsilon\left[S_{12}\left(\frac{\sigma}{a}\right)^{12} - S_6\left(\frac{\sigma}{a}\right)^{6}\right]}, \qquad S_{12} \approx 6.2021,\quad S_6 \approx 8.4019\] <p>$S_{12}, S_6$ are lattice sums over all integer triples except the origin. They depend only on the lattice geometry, and the $r^{-12}$ sum converges much faster than the $r^{-6}$ sum.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/elasticity/lj_energy_per_atom-480.webp 480w,/assets/img/elasticity/lj_energy_per_atom-800.webp 800w,/assets/img/elasticity/lj_energy_per_atom-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/elasticity/lj_energy_per_atom.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">Energy per atom versus lattice parameter. The minimum sets the equilibrium spacing $a_0$.</figcaption> </figure> <p>Total energy of $N$ atoms: $U_{\text{sys}} = N\,U(a)$.</p> <h3 id="4-pressure">4. Pressure</h3> <p>$V = Na^3$, so $a = (V/N)^{1/3}$ and</p> \[P = -\frac{\partial U_{\text{sys}}}{\partial V} = -\frac{\partial\,(N U)}{\partial\,(N a^3)} = -\frac{1}{3a^2}\frac{dU}{da}\] <p>With $\dfrac{dU}{da} = 2\epsilon\left[-\dfrac{12\,S_{12}\sigma^{12}}{a^{13}} + \dfrac{6\,S_6\sigma^6}{a^{7}}\right]$:</p> \[P = 4\epsilon\left[\frac{2S_{12}\sigma^{12}}{a^{15}} - \frac{S_6\sigma^{6}}{a^{9}}\right]\] <p>Substituting $a^{15} = V^5/N^5$ and $a^{9} = V^3/N^3$:</p> \[\boxed{P(V) = 4\epsilon\left[\frac{2S_{12}N^5\sigma^{12}}{V^5} - \frac{S_6N^3\sigma^{6}}{V^3}\right]}\] <ul> <li>Small $V$: the $V^{-5}$ repulsion dominates, $P&gt;0$ (compression).</li> <li>Large $V$: the $V^{-3}$ attraction dominates, $P&lt;0$ (tension).</li> </ul> <h3 id="5-key-points-on-the-pv-curve">5. Key points on the $P$–$V$ curve</h3> <table> <thead> <tr> <th>Point</th> <th>Condition</th> <th>Result</th> </tr> </thead> <tbody> <tr> <td>Equilibrium (unloaded)</td> <td>$P = 0$</td> <td>$a_0 = \sigma\,(2S_{12}/S_6)^{1/6} \approx 1.067\,\sigma$</td> </tr> <tr> <td>Binding energy per atom</td> <td>$U(a_0)$</td> <td>$-S_6^2\epsilon/(2S_{12}) \approx -5.69\,\epsilon$</td> </tr> <tr> <td>Maximum tension (theoretical strength)</td> <td>$dP/da = 0$</td> <td>$a \approx 1.162\,\sigma$, $P_{\min} \approx -3.48\,\epsilon/\sigma^3$</td> </tr> </tbody> </table> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/elasticity/lj_pressure_volume-480.webp 480w,/assets/img/elasticity/lj_pressure_volume-800.webp 800w,/assets/img/elasticity/lj_pressure_volume-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/elasticity/lj_pressure_volume.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">Pressure versus volume for the lattice. The shaded region is tensile pressure, which a gas cannot support. The gas curve is illustrative, with an arbitrary constant.</figcaption> </figure> <p>For Fe parameters, $a_0 \approx 2.48$ Å and $P_{\min} \approx -18$ GPa. Stretching past $a \approx 1.162\,\sigma$ makes the solid weaker, not stronger, which is the model’s picture of failure.</p> <p><strong>Equilibrium derivation.</strong> $P = 0 \Leftrightarrow dU/da = 0$:</p> \[\frac{12\,S_{12}\sigma^{12}}{a^{13}} = \frac{6\,S_6\sigma^{6}}{a^{7}} \;\Longrightarrow\; a^6 = \frac{2S_{12}}{S_6}\,\sigma^6 \;\Longrightarrow\; a_0 = \sigma\left(\frac{2S_{12}}{S_6}\right)^{1/6} \approx 1.067\,\sigma\] <p>So $a_0 \propto \sigma$: the equilibrium spacing is set by the potential, not chosen freely. Energy at equilibrium:</p> \[U_{\text{sys}} = 2\epsilon N\left[S_{12}\left(\frac{\sigma}{a_0}\right)^{12} - S_6\left(\frac{\sigma}{a_0}\right)^{6}\right] = 2\epsilon N(-2.8456) \approx -5.69\,\epsilon N\] <h3 id="6-deforming-the-lattice-at-fixed-volume">6. Deforming the lattice at fixed volume</h3> <p>Stretch the lattice by $\lambda$ along $x$ and shrink by $1/\sqrt\lambda$ along $y,z$:</p> \[\mathbf r_{ijk} = a\left(\lambda\, i,\ \frac{j}{\sqrt\lambda},\ \frac{k}{\sqrt\lambda}\right), \qquad |\mathbf r_{ijk}| = a\sqrt{\lambda^2 i^2 + \frac{j^2}{\lambda} + \frac{k^2}{\lambda}}\] <ul> <li>Volume is unchanged ($\lambda\cdot\lambda^{-1/2}\cdot\lambda^{-1/2} = 1$), so this changes shape only.</li> <li>$\lambda = 1$ is the cubic lattice, $\lambda&gt;1$ is expansion along $x$, $\lambda&lt;1$ is compression.</li> <li>$U$ keeps the same form, but the lattice sums now depend on $\lambda$:</li> </ul> \[U = 2\epsilon\left[S_{12}(\lambda)\left(\frac{\sigma}{a}\right)^{12} - S_6(\lambda)\left(\frac{\sigma}{a}\right)^{6}\right], \qquad S_n(\lambda) = \sum_{\substack{i,j,k\\(i,j,k)\neq 0}}\left(\lambda^2 i^2 + \frac{j^2+k^2}{\lambda}\right)^{-n/2}\] <table> <thead> <tr> <th>$\lambda$</th> <th>$S_6(\lambda)$</th> <th>$S_{12}(\lambda)$</th> </tr> </thead> <tbody> <tr> <td>$1/2$ (compression)</td> <td>132.34</td> <td>8194.16</td> </tr> <tr> <td>$1$ (cubic)</td> <td>8.4019</td> <td>6.2021</td> </tr> <tr> <td>$2$ (expansion)</td> <td>37.696</td> <td>260.10</td> </tr> </tbody> </table> <p>Compression packs atoms closer along $x$, so the sums blow up and the repulsive $S_{12}$ term dominates.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/elasticity/lj_energy_vs_lambda-480.webp 480w,/assets/img/elasticity/lj_energy_vs_lambda-800.webp 800w,/assets/img/elasticity/lj_energy_vs_lambda-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/elasticity/lj_energy_vs_lambda.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">Energy per atom at $a = a_0$ as the lattice is stretched ($\lambda&gt;1$) or squeezed ($\lambda&lt;1$) at constant volume. The cubic lattice is the minimum.</figcaption> </figure> <p>At $a = a_0$, $\lambda=1$ gives the lowest energy, $\approx -5.69\,\epsilon$ per atom. Either direction of this shape change raises it, so the cubic lattice is an energy minimum with respect to this deformation.</p> <h3 id="7-solid-vs-gas">7. Solid vs gas</h3> <ul> <li> <strong>Ideal gas, isothermal:</strong> $P \propto 1/V$. $P$ is always positive and has no equilibrium volume.</li> <li> <strong>Lattice:</strong> $P(V)$ crosses zero at $V_0 = Na_0^3$ and dips negative for $V&gt;V_0$.</li> </ul> <table> <thead> <tr> <th>System</th> <th>Can it support $P&lt;0$?</th> <th>Why</th> </tr> </thead> <tbody> <tr> <td>Ideal gas</td> <td>No</td> <td>No bonds to resist expansion</td> </tr> <tr> <td>Liquid, short of cavitation</td> <td>Briefly</td> <td>Attraction between neighbors</td> </tr> <tr> <td>Solid</td> <td>Yes</td> <td>Bonded lattice resists being stretched</td> </tr> </tbody> </table> <p>This is the continuum link: near $V_0$, $P$ is approximately linear in $V - V_0$ with slope set by $K = -V\,dP/dV$ (Week 2), the bulk modulus.</p> <h3 id="8-shape-change-fluids-vs-solids">8. Shape change: fluids vs solids</h3> <p>Take a cube of side $a$ (state $S_0$, undeformed) and stretch it to $2a \times a/\sqrt2 \times a/\sqrt2$ (state $S_t$, current). The cell volume stays $a^3$, so $V_0 = V_t$: a <strong>volume-preserving (isochoric)</strong> deformation, i.e. pure shape change. This is the $\lambda = 2$ lattice of Section 6.</p> <table> <thead> <tr> <th> </th> <th>Energy cost of this shape change</th> <th>Reason</th> </tr> </thead> <tbody> <tr> <td>Fluid</td> <td>None: $U_t = U_0$</td> <td>No resistance to pure shape change (no shear stiffness)</td> </tr> <tr> <td>Solid</td> <td>Large: $U_t \gg U_0$</td> <td>Bonds are stretched and compressed</td> </tr> </tbody> </table> <p>Check with the Lennard-Jones lattice at $a = a_0$: $U_0 \approx -5.69\,\epsilon$ per atom, but at $\lambda = 2$, $U_t \approx +188\,\epsilon$.</p> <h3 id="9-spring-energy-anharmonicity-thermal-expansion">9. Spring energy, anharmonicity, thermal expansion</h3> <p>A linear spring stores $\tfrac12 k x^2$, with $x$ the change in length from the rest length $l_0$. Near $a_0$ the lattice behaves like this spring, with $k = d^2U/da^2$ at $a_0$.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/elasticity/lj_vs_spring-480.webp 480w,/assets/img/elasticity/lj_vs_spring-800.webp 800w,/assets/img/elasticity/lj_vs_spring-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/elasticity/lj_vs_spring.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">Lennard-Jones energy versus its harmonic-spring approximation. They agree near $a_0$ only.</figcaption> </figure> <table> <thead> <tr> <th> </th> <th>Harmonic spring</th> <th>Lennard-Jones</th> </tr> </thead> <tbody> <tr> <td>Shape</td> <td>Symmetric parabola</td> <td>Asymmetric: steep wall, long tail</td> </tr> <tr> <td>Compressing to $l \to 0$</td> <td>Finite energy (unphysical: matter collapsing to nothing)</td> <td>Energy $\to\infty$ (repulsion forbids it)</td> </tr> <tr> <td>Stretching far</td> <td>Energy grows without bound</td> <td>Energy levels off at $0$ (bond breaks)</td> </tr> <tr> <td>Valid</td> <td>Small $x$ only</td> <td>All $a$ in the model</td> </tr> </tbody> </table> <p><strong>Thermal expansion.</strong> Raising the temperature gives atoms more energy, so they oscillate between a turning point $l_{\min}$ and a larger $l_{\max}$. Because the well is asymmetric, the midpoint $l_{eq}$ moves outward as $T$ rises. A symmetric spring would give no thermal expansion.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/elasticity/lj_thermal_expansion-480.webp 480w,/assets/img/elasticity/lj_thermal_expansion-800.webp 800w,/assets/img/elasticity/lj_thermal_expansion-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/elasticity/lj_thermal_expansion.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" loading="lazy" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> <figcaption class="caption">Higher-energy oscillations in an asymmetric well have a larger mean spacing, which is thermal expansion.</figcaption> </figure> <h3 id="10-incompressibility-and-poissons-ratio">10. Incompressibility and Poisson’s ratio</h3> \[\nu = -\frac{\varepsilon_{\text{lateral}}}{\varepsilon_{\text{axial}}}\] <p>For an isochoric (volume-preserving) deformation, $\nu = \tfrac12$.</p> <table> <thead> <tr> <th>Condition</th> <th>Statement</th> </tr> </thead> <tbody> <tr> <td>Exact</td> <td>$\det\mathbf F = 1$</td> </tr> <tr> <td>Small strain</td> <td>$\text{tr}(\boldsymbol\varepsilon) = \varepsilon_{kk} = 0$</td> </tr> </tbody> </table> <p>Why $\nu = \tfrac12$: for small strain, $\varepsilon_{\text{axial}} + 2\varepsilon_{\text{lateral}} = 0$, so $\varepsilon_{\text{lateral}} = -\tfrac12\varepsilon_{\text{axial}}$.</p> <table> <thead> <tr> <th>Material</th> <th>$\nu$</th> <th>Comment</th> </tr> </thead> <tbody> <tr> <td>Rubber</td> <td>$\approx 0.5$</td> <td>Nearly incompressible, so it satisfies the condition</td> </tr> <tr> <td>Steel</td> <td>$\approx 0.3$</td> <td>Changes volume under axial load</td> </tr> <tr> <td>Cork</td> <td>$\approx 0$</td> <td>Barely expands sideways when compressed</td> </tr> </tbody> </table> <p>So $\nu = \tfrac12$ is the incompressible limit, not a universal value.</p> <h3 id="11-deformation-gradient-and-strain">11. Deformation gradient and strain</h3> <p>The deformation gradient $\mathbf F$ maps undeformed to current vectors. Its columns are the images of the basis vectors $\mathbf e_1,\mathbf e_2,\mathbf e_3$.</p> <p><strong>Volume-preserving stretch:</strong></p> \[\mathbf F = \begin{bmatrix}\lambda &amp; 0 &amp; 0\\ 0 &amp; 1/\sqrt\lambda &amp; 0\\ 0 &amp; 0 &amp; 1/\sqrt\lambda\end{bmatrix}, \qquad \det\mathbf F = 1\] <p><strong>Example: unit square sheared to a parallelogram.</strong> $\mathbf e_1 \to (2,0,0)$ (base of length 2) and $\mathbf e_2 \to 3(\cos45^\circ,\sin45^\circ,0)$ (slanted side of length 3 at $45^\circ$), with $\mathbf e_3$ unchanged:</p> \[\mathbf F = \begin{bmatrix}2 &amp; 3/\sqrt2 &amp; 0\\ 0 &amp; 3/\sqrt2 &amp; 0\\ 0 &amp; 0 &amp; 1\end{bmatrix}, \qquad \det\mathbf F = 3\sqrt2 \approx 4.24 \ne 1\] <p>This deformation is not volume-preserving. The out-of-plane direction does not change.</p> <p><strong>Counter-example (volume-preserving shear):</strong></p> \[\mathbf F = \begin{bmatrix}1 &amp; \gamma &amp; 0\\ 0 &amp; 1 &amp; 0\\ 0 &amp; 0 &amp; 1\end{bmatrix}, \qquad \det\mathbf F = 1 \text{ for any } \gamma\] <p><strong>Strain</strong> (small deformation, with $\mathbf F = \mathbf I + \nabla\mathbf u$):</p> \[\boldsymbol\varepsilon = \tfrac12\left(\mathbf F + \mathbf F^T\right) - \mathbf I, \qquad \varepsilon_{ij} = \tfrac12\left(u_{i,j} + u_{j,i}\right)\] <p><strong>Caution:</strong> $\text{tr}(\boldsymbol\varepsilon)=0$ follows from $\det\mathbf F=1$ only to first order in the strain. For the stretch above, $\text{tr}(\boldsymbol\varepsilon) = (\lambda-1) + 2(\lambda^{-1/2}-1) \approx \tfrac34(\lambda-1)^2$, which is small only for $\lambda$ near 1. At $\lambda=2$ it is $\approx 0.41$, so the small-strain formula is not valid for the $\lambda=2$ example of Section 8.</p> <h3 id="recap">Recap</h3> <table> <thead> <tr> <th>Quantity</th> <th>Result</th> </tr> </thead> <tbody> <tr> <td>Pair potential</td> <td>$\phi = 4\epsilon[(\sigma/r)^{12} - (\sigma/r)^6]$</td> </tr> <tr> <td>Energy per atom</td> <td>$U = 2\epsilon[S_{12}(\sigma/a)^{12} - S_6(\sigma/a)^6]$</td> </tr> <tr> <td>Pressure</td> <td>$P = -\dfrac{1}{3a^2}\dfrac{dU}{da} = 4\epsilon\left[\dfrac{2S_{12}N^5\sigma^{12}}{V^5} - \dfrac{S_6N^3\sigma^6}{V^3}\right]$</td> </tr> <tr> <td>Equilibrium</td> <td>$a_0 \approx 1.067\,\sigma$</td> </tr> <tr> <td>Distinguishing feature</td> <td>$P&lt;0$ for $V&gt;V_0$: solids support tension</td> </tr> <tr> <td>Shape change</td> <td>Free in fluids ($U_t = U_0$), costly in solids ($U_t \gg U_0$)</td> </tr> <tr> <td>Thermal expansion</td> <td>Asymmetric well: mean spacing grows with $T$</td> </tr> <tr> <td>Incompressible</td> <td>$\det\mathbf F = 1$, $\nu = \tfrac12$</td> </tr> <tr> <td>Strain</td> <td>$\boldsymbol\varepsilon = \tfrac12(\mathbf F + \mathbf F^T) - \mathbf I$ (small deformation)</td> </tr> </tbody> </table> <h3 id="check-understanding">Check Understanding</h3> <details> <summary><strong>Q1.</strong> Find the equilibrium lattice parameter of the Lennard-Jones solid with Fe parameters ($\sigma = 2.32$ Å), and state which condition fixes it.</summary> <p>$P = 0$, equivalently $dU/da = 0$, gives $a_0 = \sigma(2S_{12}/S_6)^{1/6} = \sigma\,(2\cdot6.2021/8.4019)^{1/6} \approx 1.067\,\sigma \approx 2.48$ Å.</p> </details> <details> <summary><strong>Q2.</strong> Why can the lattice have $P&lt;0$ while an ideal gas cannot?</summary> <p>The lattice atoms are bonded: for $a&gt;a_0$ the attractive term dominates and pulls the solid back, so equilibrium requires a tensile (negative) pressure. An ideal gas has no interactions, so $P\propto1/V$ stays positive at every volume.</p> </details> <details> <summary><strong>Q3.</strong> Why does a perfectly harmonic spring give no thermal expansion, while the Lennard-Jones bond does?</summary> <p>A symmetric parabola $\tfrac12kx^2$ gives turning points equally far on both sides of $l_0$ at any energy, so the midpoint never moves. The Lennard-Jones well is steep on the compression side and shallow on the stretch side, so higher energy pushes the outer turning point out much further than the inner one, and the midpoint drifts to larger spacing.</p> </details> <details> <summary><strong>Q4.</strong> Which of these deformation gradients preserve volume? (a) $\text{diag}(2,\,1/\sqrt2,\,1/\sqrt2)$, (b) $\text{diag}(2,1,1)$, (c) a simple shear with $F_{12}=0.5$ and unit diagonal, (d) $1.1\,\mathbf I$.</summary> <p>Volume is preserved when $\det\mathbf F = 1$.</p> <ul> <li>(a) $2\cdot\tfrac{1}{\sqrt2}\cdot\tfrac{1}{\sqrt2} = 1$: preserved.</li> <li>(b) $\det = 2$: volume doubles.</li> <li>(c) Upper-triangular with unit diagonal, so $\det=1$: preserved.</li> <li>(d) $\det = 1.1^3 = 1.331$: volume grows by 33%.</li> </ul> </details> <details> <summary><strong>Q5.</strong> A bar under axial load has $\varepsilon_{\text{axial}} = 0.002$ and $\varepsilon_{\text{lateral}} = -0.0006$. Find $\nu$ and decide whether the deformation is volume-preserving.</summary> <p>$\nu = -(-0.0006)/0.002 = 0.3$. The volumetric strain is $\text{tr}(\boldsymbol\varepsilon) = 0.002 + 2(-0.0006) = 0.0008 \neq 0$, so the volume increases. Incompressible behavior would need $\nu = \tfrac12$.</p> </details> <details> <summary><strong>Q6.</strong> Why does the isochoric stretch of Section 8 cost essentially no energy in a fluid but a large energy in a solid?</summary> <p>A fluid cannot support shear, so pure shape change at constant volume leaves its energy unchanged ($U_t=U_0$). In a solid the same deformation stretches and compresses bonds away from $a_0$ along different directions; at $\lambda=2$ the lattice energy rises from about $-5.69\,\epsilon$ to about $+188\,\epsilon$ per atom, so $U_t \gg U_0$.</p> </details> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Nirmal Prasad Panta. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "Blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "A growing collection of your cool projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Comprehensive overview of my academic background and skills.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "post-modeling-and-analysis-of-mechanical-systems-principal-component-analysis-pca",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Principal Component Analysis (PCA)",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-principal-component-analysis/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-gradient-based-optimization",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Gradient-Based Optimization",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-gradient-based-optimization/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-derivatives-gradients-hessians-and-the-material-derivative",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Derivatives, Gradients, Hessians and the Material...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-derivatives-and-gradients/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-linear-operators-and-matrix-decomposition",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Linear Operators and Matrix Decomposition",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-matrix-decomposition/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-4-einstein-39-s-index-notation",
+        
+          title: "Theory of Elasticity — Week 4: Einstein's Index Notation",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week4-index-notation/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-3-a-solid-from-atoms-with-the-lennard-jones-potential",
+        
+          title: "Theory of Elasticity — Week 3: A Solid from Atoms with the Lennard-Jones...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week3-lennard-jones-solid/";
+          
+        },
+      },{id: "post-taylor-series-why-it-matters-and-what-linear-and-quadratic-approximation-really-mean",
+        
+          title: "Taylor Series: Why It Matters, and What Linear and Quadratic Approximation Really Mean...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/taylor-series/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-2-generalizing-vector-spaces",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 2: Generalizing Vector Spaces",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter2-generalizing-vector-spaces/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-2-hydrostatics-as-an-idealized-introduction-to-continuum-elasticity",
+        
+          title: "Theory of Elasticity — Week 2: Hydrostatics as an Idealized Introduction to Continuum...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week2-hydrostatics-idealized-continuum/";
+          
+        },
+      },{id: "post-modeling-and-analysis-of-mechanical-systems-chapter-1-classify-and-analyze",
+        
+          title: "Modeling and Analysis of Mechanical Systems — Chapter 1: Classify and Analyze",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/meen602-chapter1-classifying-model-equations/";
+          
+        },
+      },{id: "post-theory-of-elasticity-week-1-what-39-s-the-matter",
+        
+          title: "Theory of Elasticity — Week 1: What's the Matter?",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/elasticity-week1-continuum-hypothesis/";
+          
+        },
+      },{id: "post-vitruvius-redux",
+        
+          title: "Vitruvius Redux",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vitruvius-redux/";
+          
+        },
+      },{id: "post-reading-notes-computational-design-synthesis-amp-ai",
+        
+          title: "Reading Notes: Computational Design Synthesis & AI",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/reading-notes-design-synthesis/";
+          
+        },
+      },{id: "post-formal-engineering-design-synthesis",
+        
+          title: "Formal Engineering Design Synthesis",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-engineering-design-synthesis/";
+          
+        },
+      },{id: "post-formal-design-gramar",
+        
+          title: "Formal Design Gramar",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/formal-design-grammar/";
+          
+        },
+      },{id: "post-a-post-with-marimo-snippets",
+        
+          title: "a post with marimo snippets",
+        
+        description: "running Python in the browser with marimo",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/marimo/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
+        
+          title: "a post with plotly.js",
+        
+        description: "this is what included plotly.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/plotly/";
+          
+        },
+      },{id: "post-a-post-with-image-galleries",
+        
+          title: "a post with image galleries",
+        
+        description: "this is what included image galleries could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/photo-gallery/";
+          
+        },
+      },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-a-post-with-tabs",
+        
+          title: "a post with tabs",
+        
+        description: "this is what included tabs in a post could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/tabs/";
+          
+        },
+      },{id: "post-a-post-with-typograms",
+        
+          title: "a post with typograms",
+        
+        description: "this is what included typograms code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/typograms/";
+          
+        },
+      },{id: "post-a-post-that-can-be-cited",
+        
+          title: "a post that can be cited",
+        
+        description: "this is what a post that can be cited looks like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/post-citation/";
+          
+        },
+      },{id: "post-a-post-with-pseudo-code",
+        
+          title: "a post with pseudo code",
+        
+        description: "this is what included pseudo code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/pseudocode/";
+          
+        },
+      },{id: "post-a-post-with-code-diff",
+        
+          title: "a post with code diff",
+        
+        description: "this is how you can display code diffs",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/code-diff/";
+          
+        },
+      },{id: "post-a-post-with-advanced-image-components",
+        
+          title: "a post with advanced image components",
+        
+        description: "this is what advanced image components could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/advanced-images/";
+          
+        },
+      },{id: "post-a-post-with-vega-lite",
+        
+          title: "a post with vega lite",
+        
+        description: "this is what included vega lite code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/vega-lite/";
+          
+        },
+      },{id: "post-a-post-with-geojson",
+        
+          title: "a post with geojson",
+        
+        description: "this is what included geojson code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/geojson-map/";
+          
+        },
+      },{id: "post-a-post-with-echarts",
+        
+          title: "a post with echarts",
+        
+        description: "this is what included echarts code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/echarts/";
+          
+        },
+      },{id: "post-a-post-with-chart-js",
+        
+          title: "a post with chart.js",
+        
+        description: "this is what included chart.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/chartjs/";
+          
+        },
+      },{id: "post-a-post-with-tikzjax",
+        
+          title: "a post with TikZJax",
+        
+        description: "this is what included TikZ code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tikzjax/";
+          
+        },
+      },{id: "post-a-post-with-bibliography",
+        
+          title: "a post with bibliography",
+        
+        description: "an example of a blog post with bibliography",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/post-bibliography/";
+          
+        },
+      },{id: "post-a-post-with-jupyter-notebook",
+        
+          title: "a post with jupyter notebook",
+        
+        description: "an example of a blog post with jupyter notebook",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/jupyter-notebook/";
+          
+        },
+      },{id: "post-a-post-with-custom-blockquotes",
+        
+          title: "a post with custom blockquotes",
+        
+        description: "an example of a blog post with custom blockquotes",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/custom-blockquotes/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents-on-a-sidebar",
+        
+          title: "a post with table of contents on a sidebar",
+        
+        description: "an example of a blog post with table of contents on a sidebar",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/sidebar-table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-audios",
+        
+          title: "a post with audios",
+        
+        description: "this is what included audios could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/audios/";
+          
+        },
+      },{id: "post-a-post-with-videos",
+        
+          title: "a post with videos",
+        
+        description: "this is what included videos could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/videos/";
+          
+        },
+      },{id: "post-displaying-beautiful-interactive-tables",
+        
+          title: "displaying beautiful interactive tables",
+        
+        description: "an example of how to use interactive tables in al-folio",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/tables/";
+          
+        },
+      },{id: "post-a-post-with-table-of-contents",
+        
+          title: "a post with table of contents",
+        
+        description: "an example of a blog post with table of contents",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/table-of-contents/";
+          
+        },
+      },{id: "post-a-post-with-giscus-comments",
+        
+          title: "a post with giscus comments",
+        
+        description: "an example of a blog post with giscus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/giscus-comments/";
+          
+        },
+      },{id: "post-یک-نوشتهٔ-راست-چین",
+        
+          title: "یک نوشتهٔ راست‌چین",
+        
+        description: "نمونه‌ای از پشتیبانی زبان‌های راست‌چین",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/rtl/";
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "post-a-post-with-redirect",
+        
+          title: "a post with redirect",
+        
+        description: "you can also redirect to assets like pdf",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/example_pdf.pdf";
+          
+        },
+      },{id: "post-a-post-with-diagrams",
+        
+          title: "a post with diagrams",
+        
+        description: "an example of a blog post with diagrams",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/diagrams/";
+          
+        },
+      },{id: "post-a-distill-style-blog-post",
+        
+          title: "A distill-style blog post",
+        
+        description: "an example of a distill-style blog post and main elements",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/distill/";
+          
+        },
+      },{id: "post-a-post-with-twitter",
+        
+          title: "a post with twitter",
+        
+        description: "an example of a blog post with twitter",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/twitter/";
+          
+        },
+      },{id: "post-a-post-with-disqus-comments",
+        
+          title: "a post with disqus comments",
+        
+        description: "an example of a blog post with disqus comments",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/disqus-comments/";
+          
+        },
+      },{id: "post-a-post-with-math",
+        
+          title: "a post with math",
+        
+        description: "an example of a blog post with some math",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/math/";
+          
+        },
+      },{id: "post-a-post-with-code",
+        
+          title: "a post with code",
+        
+        description: "an example of a blog post with some code",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/code/";
+          
+        },
+      },{id: "post-a-post-with-images",
+        
+          title: "a post with images",
+        
+        description: "this is what included images could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/images/";
+          
+        },
+      },{id: "post-a-post-with-formatting-and-links",
+        
+          title: "a post with formatting and links",
+        
+        description: "march & april, looking forward to summer",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/formatting-and-links/";
+          
+        },
+      },{id: "books-formal-engineering-design-synthesis",
+          title: 'Formal Engineering Design Synthesis',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/formal_engineering_design_synthesis/";
+            },},{id: "books-the-structure-of-scientific-revolutions",
+          title: 'The Structure of Scientific Revolutions',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/structure_of_scientific_revolution/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-project-1",
+          title: 'project 1',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-project-3-with-very-long-name",
+          title: 'project 3 with very long name',
+          description: "a project that redirects to another website",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
+            },},{id: "projects-project-4",
+          title: 'project 4',
+          description: "another without an image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
+            },},{id: "projects-project-5",
+          title: 'project 5',
+          description: "a project with a background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
+            },},{id: "projects-project-6",
+          title: 'project 6',
+          description: "a project with no image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
+            },},{id: "projects-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_project/";
+            },},{id: "projects-project-8",
+          title: 'project 8',
+          description: "an other project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/8_project/";
+            },},{id: "projects-project-9",
+          title: 'project 9',
+          description: "another project with an image 🎉",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/9_project/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6E%69%6C.%70%61%6E%74%61%37%37@%74%61%6D%75.%65%64%75", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=a9fiG98AAAAJ", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/niel-77", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/nirmal-panta", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
