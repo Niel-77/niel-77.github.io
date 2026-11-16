@@ -11,7 +11,7 @@ tags:
 buy_link: https://www.cambridge.org/core/books/formal-engineering-design-synthesis/5F91CBDBA1C73CD2802D0A182B85CF54
 date: 2026-08-09
 started: 2026-08-01
-finished: 
+finished:
 released: 2003
 status: Reading
 ---

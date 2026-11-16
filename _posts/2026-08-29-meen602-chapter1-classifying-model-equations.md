@@ -41,14 +41,14 @@ A physics-based model takes one of three mathematical forms, in increasing order
 
    Partial derivatives get their own shorthand too — a subscript for each variable differentiated against: $u_t = \frac{\partial u}{\partial t}$, $u_{tt} = \frac{\partial^2 u}{\partial t^2}$, and likewise $u_{xx} = \frac{\partial^2 u}{\partial x^2}$. So the rod equation above is usually written $\rho A\, u_{tt} = EA\, u_{xx}$. We'll use subscript notation from here on too.
 
-This progression tracks how many independent numbers it takes to pin down the system's state. An algebraic model is defined pointwise; a lumped ODE model needs a fixed, finite set of coordinates — its **degrees of freedom (DOF)**; a continuous PDE model needs a value at *every* point in space, i.e., infinitely many DOF. So "discrete vs. continuous" is really the ODE/PDE distinction restated in terms of how many numbers we're tracking:
+This progression tracks how many independent numbers it takes to pin down the system's state. An algebraic model is defined pointwise; a lumped ODE model needs a fixed, finite set of coordinates — its **degrees of freedom (DOF)**; a continuous PDE model needs a value at _every_ point in space, i.e., infinitely many DOF. So "discrete vs. continuous" is really the ODE/PDE distinction restated in terms of how many numbers we're tracking:
 
-| System | Model type | DOF |
-|---|---|---|
-| Static spring under a known load | Algebraic | — |
-| Single mass on a spring | ODE | 1 |
-| Two masses connected by springs (in series) | Coupled ODEs | 2 |
-| Cantilever beam (deflection at every point along its length) | PDE | $\infty$ |
+| System                                                       | Model type   | DOF      |
+| ------------------------------------------------------------ | ------------ | -------- |
+| Static spring under a known load                             | Algebraic    | —        |
+| Single mass on a spring                                      | ODE          | 1        |
+| Two masses connected by springs (in series)                  | Coupled ODEs | 2        |
+| Cantilever beam (deflection at every point along its length) | PDE          | $\infty$ |
 
 ### 3. Four properties of a model
 
@@ -56,39 +56,39 @@ Once the model's type (algebraic/ODE/PDE) is settled, four further yes/no questi
 
 **Linear vs. non-linear.** The formal test is two conditions together, stated on a general input–output system:
 
-- *Superposition (addition):* if input $i_1$ produces response $r_1$, and input $i_2$ produces response $r_2$, then applying $i_1 + i_2$ together produces exactly $r_1 + r_2$.
-- *Proportionality (scaling):* scaling the input by a constant $k$ scales the output by the same $k$ — input $ki$ produces output $kr$.
+- _Superposition (addition):_ if input $i_1$ produces response $r_1$, and input $i_2$ produces response $r_2$, then applying $i_1 + i_2$ together produces exactly $r_1 + r_2$.
+- _Proportionality (scaling):_ scaling the input by a constant $k$ scales the output by the same $k$ — input $ki$ produces output $kr$.
 
 {% include figure.liquid path="assets/img/meen602/fig-linear-system.svg" class="img-fluid rounded" %}
 
-A system that satisfies both is linear; if either fails, it's non-linear. Quick test: every occurrence of the unknown and its derivatives must appear **alone, to the first power** — never raised to a power, never inside a nonlinear function ($\sin$, $\exp$, $\sqrt{\ \ }$, …), never multiplied by another unknown or by itself. Coefficients are free to depend on the *independent* variables ($t$, $x$); linearity is a statement about the unknown only.
+A system that satisfies both is linear; if either fails, it's non-linear. Quick test: every occurrence of the unknown and its derivatives must appear **alone, to the first power** — never raised to a power, never inside a nonlinear function ($\sin$, $\exp$, $\sqrt{\ \ }$, …), never multiplied by another unknown or by itself. Coefficients are free to depend on the _independent_ variables ($t$, $x$); linearity is a statement about the unknown only.
 
-- *Linear:*
+- _Linear:_
   - $m\ddot u + c\dot u + ku = 0$ — $u$, $\dot u$, $\ddot u$ each appear once, first power, constant coefficients.
   - $EI\,w'''' = q(x)$ — all $w$ terms are first power; the load $q(x)$ carries no $w$. (Non-homogeneous but still linear — the two properties are independent.)
-  - $\ddot u + t^2 u = 0$ — the variable coefficient $t^2$ multiplies the *independent* variable, not the unknown, so this stays linear.
+  - $\ddot u + t^2 u = 0$ — the variable coefficient $t^2$ multiplies the _independent_ variable, not the unknown, so this stays linear.
   - $m_1\ddot x_1 + k(x_1 - x_2) = 0$ — coupled, but each unknown appears to the first power.
 
-- *Non-linear* (offending term named):
+- _Non-linear_ (offending term named):
   - $I\ddot\theta + k\theta + \varepsilon\theta^3 = T_0\cos\Omega t$ — the $\theta^3$ term is a power of the unknown; it breaks proportionality.
   - $\ddot\theta + \dfrac{g}{L}\sin\theta = 0$ (exact pendulum) — $\sin\theta$ is a nonlinear function of the unknown.
   - $u_t + u\,u_x = \nu\,u_{xx}$ (Burgers' equation) — $u\,u_x$ is the unknown multiplied by its own derivative.
   - $\dot T = -\sigma\left(T^4 - T_\infty^4\right)$ (radiative cooling) — the $T^4$ term.
 
-**Homogeneous vs. non-homogeneous.** *If every term contains the dependent variable or one of its derivatives, the equation is homogeneous.* The moment one isolated term appears that doesn't involve the dependent variable at all — a forcing, source, or load term — the equation is non-homogeneous. Quick test: move every term that carries the unknown to the left-hand side; the equation is homogeneous if and only if what's left on the right is exactly zero.
+**Homogeneous vs. non-homogeneous.** _If every term contains the dependent variable or one of its derivatives, the equation is homogeneous._ The moment one isolated term appears that doesn't involve the dependent variable at all — a forcing, source, or load term — the equation is non-homogeneous. Quick test: move every term that carries the unknown to the left-hand side; the equation is homogeneous if and only if what's left on the right is exactly zero.
 
-- *Homogeneous* — every term carries the unknown:
+- _Homogeneous_ — every term carries the unknown:
   - $m\ddot u + c\dot u + ku = 0$ — each term has $u$, $\dot u$, or $\ddot u$.
   - $\dot\theta + \beta\theta = 0$ — both terms contain $\theta$.
   - $u_{tt} - c^2 u_{xx} = 0$ — both terms contain $u$.
-  - $\ddot u + t^2 u = 0$ — still homogeneous: the variable coefficient $t^2$ is *attached to* $u$, not standing alone.
+  - $\ddot u + t^2 u = 0$ — still homogeneous: the variable coefficient $t^2$ is _attached to_ $u$, not standing alone.
   - $m_1\ddot x_1 + k(x_1 - x_2) = 0$ — $x_1$ and $x_2$ are both unknowns, so even a coupled system can be fully homogeneous.
 
-- *Non-homogeneous* — one term stands alone with no unknown in it:
+- _Non-homogeneous_ — one term stands alone with no unknown in it:
   - $m\ddot u + ku = F_0\cos\Omega t$ — the forcing term $F_0\cos\Omega t$ has no $u$.
   - $EI\,w'''' = q(x)$ — the distributed load $q(x)$ depends only on position.
   - $u_{tt} - c^2 u_{xx} = g$ — the gravity term $g$ sits by itself.
-  - $\dot T + \beta T = \beta T_\infty$ — the constant $\beta T_\infty$ carries no $T$. This is exactly the cooling equation of §5; the substitution $\theta = T - T_\infty$ absorbs that constant and *converts* it to the homogeneous $\dot\theta + \beta\theta = 0$ — a change of variable can move an equation between the two categories.
+  - $\dot T + \beta T = \beta T_\infty$ — the constant $\beta T_\infty$ carries no $T$. This is exactly the cooling equation of §5; the substitution $\theta = T - T_\infty$ absorbs that constant and _converts_ it to the homogeneous $\dot\theta + \beta\theta = 0$ — a change of variable can move an equation between the two categories.
 
 **Deterministic vs. probabilistic.** A **deterministic** model produces exactly the same output every time for the same input — no randomness anywhere in it. A **probabilistic (stochastic)** model has randomness or uncertainty built into it, so the same nominal input produces a distribution of possible outputs rather than one fixed answer. Every physics-based model built purely from conservation laws and constitutive relations, as we're using here, is deterministic by default.
 
@@ -103,7 +103,7 @@ Pinning down one specific solution out of an ODE or PDE's general solution requi
 
 ### 5. Worked example — transient cooling of a lumped mass
 
-A small body at uniform temperature $T=T_i$ at $t=0$ is exposed to a surrounding fluid at $T_\infty$. Assume the body is small/conductive enough that its temperature is spatially uniform at every instant (the *lumped-capacitance* assumption) — so $T=T(t)$ alone, with no spatial dependence, which is exactly why this is an ODE model rather than a PDE one. Find $T(t)$.
+A small body at uniform temperature $T=T_i$ at $t=0$ is exposed to a surrounding fluid at $T_\infty$. Assume the body is small/conductive enough that its temperature is spatially uniform at every instant (the _lumped-capacitance_ assumption) — so $T=T(t)$ alone, with no spatial dependence, which is exactly why this is an ODE model rather than a PDE one. Find $T(t)$.
 
 {% include figure.liquid path="assets/img/meen602/fig-lumped-cooling.svg" class="img-fluid rounded" %}
 
@@ -178,8 +178,8 @@ $$
 \int_{y_0}^{y_0+h} dy = \int_{x_0}^{x_0+h} f(x,y)\,dx.
 $$
 
-  - **Explicit (forward) Euler** evaluates the integrand at the known, left-hand point: $y_{0+h} = y_0 + h\,f(x_0, y_0)$.
-  - **Implicit (backward) Euler** evaluates it at the unknown, right-hand point instead: $y_{0+h} = y_0 + h\,f(x_0+h,\ y_{0+h})$ — which has to be solved for $y_{0+h}$ since it appears on both sides.
+- **Explicit (forward) Euler** evaluates the integrand at the known, left-hand point: $y_{0+h} = y_0 + h\,f(x_0, y_0)$.
+- **Implicit (backward) Euler** evaluates it at the unknown, right-hand point instead: $y_{0+h} = y_0 + h\,f(x_0+h,\ y_{0+h})$ — which has to be solved for $y_{0+h}$ since it appears on both sides.
 
 This is the starting point for solving ODEs numerically — the natural next step once an equation has been classified.
 
@@ -189,13 +189,13 @@ PDEs get an extra classification layer on top of everything above — both a mat
 
 **Mathematical classification.** For the general second-order linear PDE in two independent variables, $A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + (\text{lower-order terms}) = 0$, the discriminant $\Delta = B^2-4AC$ sorts it into one of three families:
 
-| Discriminant | Type | Canonical form | Mechanical-system example |
-|---|---|---|---|
-| $\Delta < 0$ | **Elliptic** | Laplace's equation, $\nabla^2 u = 0$ | Steady-state temperature or steady membrane/torsion deflection — no time dependence at all |
-| $\Delta = 0$ | **Parabolic** | Diffusion/heat equation, $u_t = \alpha\, u_{xx}$ | Transient (unsteady) heat conduction along a bar |
-| $\Delta > 0$ | **Hyperbolic** | Wave equation, $u_{tt} = c^2 u_{xx}$ | A vibrating string or elastic rod |
+| Discriminant | Type           | Canonical form                                   | Mechanical-system example                                                                  |
+| ------------ | -------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| $\Delta < 0$ | **Elliptic**   | Laplace's equation, $\nabla^2 u = 0$             | Steady-state temperature or steady membrane/torsion deflection — no time dependence at all |
+| $\Delta = 0$ | **Parabolic**  | Diffusion/heat equation, $u_t = \alpha\, u_{xx}$ | Transient (unsteady) heat conduction along a bar                                           |
+| $\Delta > 0$ | **Hyperbolic** | Wave equation, $u_{tt} = c^2 u_{xx}$             | A vibrating string or elastic rod                                                          |
 
-($\nabla^2$, the *Laplacian*, is itself a shorthand: $\nabla^2 u = u_{xx} + u_{yy}$ in two dimensions, the sum of the unmixed second partial derivatives — extending to $u_{xx}+u_{yy}+u_{zz}$ in three.)
+($\nabla^2$, the _Laplacian_, is itself a shorthand: $\nabla^2 u = u_{xx} + u_{yy}$ in two dimensions, the sum of the unmixed second partial derivatives — extending to $u_{xx}+u_{yy}+u_{zz}$ in three.)
 
 **Reading off $A$, $B$, $C$.** Move everything to one side, then match the coefficients of the three second-order terms $u_{xx}$, $u_{xy}$, $u_{yy}$. The two independent variables can be any pair — $(x, y)$ for a spatial field, or $(x, t)$ when one of them is time. A missing second-order term just means its coefficient is zero.
 
@@ -207,22 +207,23 @@ The sign of $\Delta$ is really counting how many real **characteristic direction
 
 **Physical classification.** Parabolic and hyperbolic equations are **marching (propagation) problems**: given the state everywhere at one instant, the solution advances forward step by step. Elliptic equations are **jury (equilibrium) problems**: there's no time-like variable to march along, so the interior solution depends simultaneously on the boundary data all the way around the domain — the whole domain has to be considered together, the way a jury weighs all the evidence at once. The lumped-cooling example above, run long enough that $dT/dt\to 0$, degenerates from a marching problem into an equilibrium one — a nice bridge between the two worlds.
 
-**Propagation speed and the domain of dependence.** The number of characteristics above is the same thing as *how fast information travels*, and that fixes the **domain of dependence** of a point — the set of earlier/boundary data that can affect the solution there.
-- **Hyperbolic — finite speed.** A disturbance moves at a fixed, finite speed $c$ along the two characteristics. The solution at $(x, t)$ depends only on the initial data in the interval $[x - ct,\ x + ct]$ — a *finite* domain of dependence, the base of a backward-pointing wedge. Conversely, a disturbance made at one point can only reach the forward wedge $\vert x' - x \vert \le c\,(t' - t)$, its zone of influence. Outside that wedge nothing has changed yet, so wavefronts stay sharp.
-- **Parabolic — infinite speed, but decaying.** There is only one characteristic direction ($t = \text{const}$), and the propagation speed is formally infinite: a change anywhere is felt *everywhere* at the next instant. But the influence decays exponentially with distance, so the domain of dependence is the whole line at earlier times, weighted heavily toward nearby points — you see smooth smearing, not a clean front.
-- **Elliptic — no propagation.** No time-like direction, no real characteristics, no wavefront. Every interior point depends on the *entire* boundary at once, so its domain of dependence is the whole domain. That is precisely why elliptic problems are "jury" problems — there is no direction along which to march information in, so all the boundary evidence must be weighed simultaneously.
+**Propagation speed and the domain of dependence.** The number of characteristics above is the same thing as _how fast information travels_, and that fixes the **domain of dependence** of a point — the set of earlier/boundary data that can affect the solution there.
+
+- **Hyperbolic — finite speed.** A disturbance moves at a fixed, finite speed $c$ along the two characteristics. The solution at $(x, t)$ depends only on the initial data in the interval $[x - ct,\ x + ct]$ — a _finite_ domain of dependence, the base of a backward-pointing wedge. Conversely, a disturbance made at one point can only reach the forward wedge $\vert x' - x \vert \le c\,(t' - t)$, its zone of influence. Outside that wedge nothing has changed yet, so wavefronts stay sharp.
+- **Parabolic — infinite speed, but decaying.** There is only one characteristic direction ($t = \text{const}$), and the propagation speed is formally infinite: a change anywhere is felt _everywhere_ at the next instant. But the influence decays exponentially with distance, so the domain of dependence is the whole line at earlier times, weighted heavily toward nearby points — you see smooth smearing, not a clean front.
+- **Elliptic — no propagation.** No time-like direction, no real characteristics, no wavefront. Every interior point depends on the _entire_ boundary at once, so its domain of dependence is the whole domain. That is precisely why elliptic problems are "jury" problems — there is no direction along which to march information in, so all the boundary evidence must be weighed simultaneously.
 
 ### Recap
 
-| Topic | Core question it answers |
-|---|---|
-| What is a model | Physics-based (conservation + constitutive laws) or data-driven — we'll focus on physics-based. |
-| Three model types | Algebraic, ODE, or PDE — tracking finite DOF (discrete) vs. infinite DOF (continuous). |
-| Four properties | Linear/non-linear (superposition + proportionality), homogeneous/non-homogeneous, deterministic/probabilistic, single/coupled. |
-| Auxiliary conditions | IVP (all conditions at one point) vs. BVP (conditions at ≥2 points, requiring order ≥ 2). |
-| Worked examples | Lumped cooling and spring-mass free vibration — both physics-based, ODE, linear, homogeneous, deterministic, single, IVP. |
-| Numerical solutions | Order reduction ($n$th-order → $n$ first-order ODEs) and Euler's method (explicit/implicit). |
-| PDE classification | Elliptic/parabolic/hyperbolic by the sign of $\Delta = B^2 - 4AC$ (0, 1, or 2 real characteristics); marching (finite or infinite propagation speed) vs. jury (no propagation — whole-boundary domain of dependence) physically. |
+| Topic                | Core question it answers                                                                                                                                                                                                         |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| What is a model      | Physics-based (conservation + constitutive laws) or data-driven — we'll focus on physics-based.                                                                                                                                  |
+| Three model types    | Algebraic, ODE, or PDE — tracking finite DOF (discrete) vs. infinite DOF (continuous).                                                                                                                                           |
+| Four properties      | Linear/non-linear (superposition + proportionality), homogeneous/non-homogeneous, deterministic/probabilistic, single/coupled.                                                                                                   |
+| Auxiliary conditions | IVP (all conditions at one point) vs. BVP (conditions at ≥2 points, requiring order ≥ 2).                                                                                                                                        |
+| Worked examples      | Lumped cooling and spring-mass free vibration — both physics-based, ODE, linear, homogeneous, deterministic, single, IVP.                                                                                                        |
+| Numerical solutions  | Order reduction ($n$th-order → $n$ first-order ODEs) and Euler's method (explicit/implicit).                                                                                                                                     |
+| PDE classification   | Elliptic/parabolic/hyperbolic by the sign of $\Delta = B^2 - 4AC$ (0, 1, or 2 real characteristics); marching (finite or infinite propagation speed) vs. jury (no propagation — whole-boundary domain of dependence) physically. |
 
 ### Check our understanding — Chapter 1 practice questions
 

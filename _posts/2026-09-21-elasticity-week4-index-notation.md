@@ -31,12 +31,12 @@ The last two terms are the product rule applied to $(\zeta u_{k,k})_{,i}$. One e
 
 ### 2. Summation convention
 
-| Rule | Meaning | Example |
-|---|---|---|
-| **Dummy index** | An index repeated twice in one term is summed over $1,2,3$ | $a_{ii} = a_{11}+a_{22}+a_{33}$ |
-| **Free index** | An index appearing once per term is not summed; it must appear in every term of the equation | $a_{ij}b_j = \sum_{j=1}^{3} a_{ij}b_j$, free index $i$ |
-| **Renaming** | A dummy index is a placeholder and can be renamed | $a_i b_i = a_k b_k$ |
-| **Rank** | Number of free indices | $p$: 0, $u_i$: 1, $\varepsilon_{ij}$: 2 |
+| Rule            | Meaning                                                                                      | Example                                                |
+| --------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| **Dummy index** | An index repeated twice in one term is summed over $1,2,3$                                   | $a_{ii} = a_{11}+a_{22}+a_{33}$                        |
+| **Free index**  | An index appearing once per term is not summed; it must appear in every term of the equation | $a_{ij}b_j = \sum_{j=1}^{3} a_{ij}b_j$, free index $i$ |
+| **Renaming**    | A dummy index is a placeholder and can be renamed                                            | $a_i b_i = a_k b_k$                                    |
+| **Rank**        | Number of free indices                                                                       | $p$: 0, $u_i$: 1, $\varepsilon_{ij}$: 2                |
 
 **Matrix product.** $C_{ik} = a_{ij}b_{jk}$ has dummy $j$ and free $i,k$, so it is a matrix. For $n=3$:
 
@@ -63,12 +63,12 @@ $$
 
 It is the identity matrix, and its properties follow from the definition:
 
-| Identity | Reason |
-|---|---|
-| $\delta_{kk} = \delta_{11}+\delta_{22}+\delta_{33} = 3$ | trace of the identity |
-| $\delta_{ij}a_j = a_i$ | replaces the dummy index, hence "substitution" |
-| $\delta_{ij}\delta_{jk} = \delta_{ik}$ | identity times identity |
-| $\delta_{ij}\delta_{ij} = \delta_{ii} = 3$ | sum of nine terms, three of them equal to 1 |
+| Identity                                                | Reason                                         |
+| ------------------------------------------------------- | ---------------------------------------------- |
+| $\delta_{kk} = \delta_{11}+\delta_{22}+\delta_{33} = 3$ | trace of the identity                          |
+| $\delta_{ij}a_j = a_i$                                  | replaces the dummy index, hence "substitution" |
+| $\delta_{ij}\delta_{jk} = \delta_{ik}$                  | identity times identity                        |
+| $\delta_{ij}\delta_{ij} = \delta_{ii} = 3$              | sum of nine terms, three of them equal to 1    |
 
 **Counter-examples:** $\delta_{ii} \neq 1$ (it is 3, not the single entry $\delta_{11}$), and $\delta_{ij}a_j \neq a_j$ (the free index of the result is $i$).
 
@@ -80,11 +80,11 @@ $$
 
 Even permutations are the cyclic orders (same sense as $1\to2\to3$); odd permutations are the reversed orders.
 
-| Value | Triples |
-|---|---|
-| $+1$ | $\epsilon_{123},\ \epsilon_{231},\ \epsilon_{312}$ |
-| $-1$ | $\epsilon_{321},\ \epsilon_{213},\ \epsilon_{132}$ |
-| $0$ | $\epsilon_{233},\ \epsilon_{121}$, any triple with a repeated index |
+| Value | Triples                                                             |
+| ----- | ------------------------------------------------------------------- |
+| $+1$  | $\epsilon_{123},\ \epsilon_{231},\ \epsilon_{312}$                  |
+| $-1$  | $\epsilon_{321},\ \epsilon_{213},\ \epsilon_{132}$                  |
+| $0$   | $\epsilon_{233},\ \epsilon_{121}$, any triple with a repeated index |
 
 Swapping any two indices flips the sign: $\epsilon_{ijk} = -\epsilon_{jik}$. Six of the 27 components are nonzero.
 
@@ -108,14 +108,14 @@ Cyclic permutation gives the other two components, $a_3b_1 - a_1b_3$ and $a_1b_2
 
 With $p$ a scalar field and $\mathbf u$ a vector field:
 
-| Operator | Symbol | Index form | Rank of result |
-|---|---|---|---|
-| Gradient of scalar | $\nabla p$ | $p_{,i}\,\mathbf e_i$ | 1 (raises by 1) |
-| Gradient of vector | $\nabla\mathbf u$ | $u_{i,j}\,\mathbf e_i\otimes\mathbf e_j$ | 2 (raises by 1) |
-| Divergence | $\nabla\cdot\mathbf u$ | $\operatorname{tr}(\nabla\mathbf u) = u_{i,i}$ | 0 (lowers by 1) |
-| Curl | $\nabla\times\mathbf u$ | $\epsilon_{ijk}\,u_{k,j}\,\mathbf e_i$ | 1 (keeps rank) |
-| Laplacian of scalar | $\nabla^2 p = \nabla\cdot\nabla p$ | $p_{,ii}$ | 0 (keeps rank) |
-| Laplacian of vector | $\nabla^2\mathbf u$ | $u_{i,kk}\,\mathbf e_i$ | 1 (keeps rank) |
+| Operator            | Symbol                             | Index form                                     | Rank of result  |
+| ------------------- | ---------------------------------- | ---------------------------------------------- | --------------- |
+| Gradient of scalar  | $\nabla p$                         | $p_{,i}\,\mathbf e_i$                          | 1 (raises by 1) |
+| Gradient of vector  | $\nabla\mathbf u$                  | $u_{i,j}\,\mathbf e_i\otimes\mathbf e_j$       | 2 (raises by 1) |
+| Divergence          | $\nabla\cdot\mathbf u$             | $\operatorname{tr}(\nabla\mathbf u) = u_{i,i}$ | 0 (lowers by 1) |
+| Curl                | $\nabla\times\mathbf u$            | $\epsilon_{ijk}\,u_{k,j}\,\mathbf e_i$         | 1 (keeps rank)  |
+| Laplacian of scalar | $\nabla^2 p = \nabla\cdot\nabla p$ | $p_{,ii}$                                      | 0 (keeps rank)  |
+| Laplacian of vector | $\nabla^2\mathbf u$                | $u_{i,kk}\,\mathbf e_i$                        | 1 (keeps rank)  |
 
 The comma always opens a new index that belongs to the derivative: $u_{i,j}$ is the derivative of component $i$ with respect to $x_j$. In the momentum equation of section 1, $u_k u_{i,k} = (\mathbf u\cdot\nabla)u_i$ is the convective term.
 
@@ -157,16 +157,16 @@ The displacement gradient is nonzero, yet the strain is zero. This is why strain
 
 ### Recap
 
-| Object | Index form |
-|---|---|
-| Trace | $a_{ii}$ |
-| Matrix–vector product | $a_{ij}b_j$ |
-| Matrix product | $a_{ij}b_{jk}$ |
-| Identity matrix | $\delta_{ij}$, with $\delta_{ii}=3$ |
-| Cross product | $\epsilon_{ijk}a_jb_k$ |
+| Object                       | Index form                                   |
+| ---------------------------- | -------------------------------------------- |
+| Trace                        | $a_{ii}$                                     |
+| Matrix–vector product        | $a_{ij}b_j$                                  |
+| Matrix product               | $a_{ij}b_{jk}$                               |
+| Identity matrix              | $\delta_{ij}$, with $\delta_{ii}=3$          |
+| Cross product                | $\epsilon_{ijk}a_jb_k$                       |
 | Gradient / divergence / curl | $p_{,i}$, $u_{i,i}$, $\epsilon_{ijk}u_{k,j}$ |
-| Laplacian | $p_{,ii}$, $u_{i,kk}$ |
-| Strain | $\tfrac{1}{2}(u_{i,j}+u_{j,i})$ |
+| Laplacian                    | $p_{,ii}$, $u_{i,kk}$                        |
+| Strain                       | $\tfrac{1}{2}(u_{i,j}+u_{j,i})$              |
 
 ### Check Understanding
 

@@ -79,17 +79,17 @@ Fast compression leaves no time for heat to escape, so the gas is stiffer ($\gam
 
 **Polytropic:** $p = C\rho^{\,n}$
 
-| $n$ | Process / limit | $K = \rho\,\partial p/\partial\rho$ |
-|---|---|---|
-| $0$ | Isobaric ($p$ independent of $\rho$) | $0$ |
-| $1$ | Isothermal ideal gas, $C = RT$ | $p$ |
-| $\gamma \approx 1.4$ | Adiabatic, diatomic gas ($\gamma = c_p/c_v$) | $\gamma p$ |
-| $\to\infty$ | Incompressible | $\to\infty$ |
+| $n$                  | Process / limit                              | $K = \rho\,\partial p/\partial\rho$ |
+| -------------------- | -------------------------------------------- | ----------------------------------- |
+| $0$                  | Isobaric ($p$ independent of $\rho$)         | $0$                                 |
+| $1$                  | Isothermal ideal gas, $C = RT$               | $p$                                 |
+| $\gamma \approx 1.4$ | Adiabatic, diatomic gas ($\gamma = c_p/c_v$) | $\gamma p$                          |
+| $\to\infty$          | Incompressible                               | $\to\infty$                         |
 
 **Incompressible vs isochoric.**
 
-- *Incompressible* is a material property: no volume change under any pressure, so $K\to\infty$. Example: water at ordinary pressures.
-- *Isochoric* is a process: volume held constant for the duration. Example: heating a gas in a sealed rigid tank. The gas is still compressible, so it is isochoric but not incompressible.
+- _Incompressible_ is a material property: no volume change under any pressure, so $K\to\infty$. Example: water at ordinary pressures.
+- _Isochoric_ is a process: volume held constant for the duration. Example: heating a gas in a sealed rigid tank. The gas is still compressible, so it is isochoric but not incompressible.
 
 **Van der Waals** (real gas, $n_{\text{mol}}$ = moles):
 
@@ -104,10 +104,10 @@ $$
 
 Uniform sphere: radius $R_E$, density $\rho_E$, surface gravity $g_0$. By the shell theorem only the mass enclosed within $r$ matters.
 
-| Region | $g(r)$ | Behavior |
-|---|---|---|
-| Inside, $r \le R_E$ | $\dfrac{GM(r)}{r^2} = \tfrac43\pi G\rho_E\, r = g_0\dfrac{r}{R_E}$ | Linear, $0$ at center |
-| Outside, $r \ge R_E$ | $\dfrac{GM_E}{r^2} = g_0\left(\dfrac{R_E}{r}\right)^2$ | Inverse-square |
+| Region               | $g(r)$                                                             | Behavior              |
+| -------------------- | ------------------------------------------------------------------ | --------------------- |
+| Inside, $r \le R_E$  | $\dfrac{GM(r)}{r^2} = \tfrac43\pi G\rho_E\, r = g_0\dfrac{r}{R_E}$ | Linear, $0$ at center |
+| Outside, $r \ge R_E$ | $\dfrac{GM_E}{r^2} = g_0\left(\dfrac{R_E}{r}\right)^2$             | Inverse-square        |
 
 - Branches match at $r = R_E$; $g$ peaks at $g_0$ on the surface.
 - Height $z$ above surface: $g(z) = g_0\big(R_E/(R_E+z)\big)^2 \approx g_0(1 - 2z/R_E)$ for $z \ll R_E$.
@@ -135,12 +135,12 @@ $$
 
 Every model needs the same four ingredients.
 
-| | Particles | Fluids | Solids |
-|---|---|---|---|
-| **Balance equation** | $\sum \mathbf F + m\mathbf g = 0$ | $-\nabla p + \rho\mathbf b = 0$, i.e. $\partial_x p = \partial_y p = 0,\ \partial_z p = -\rho g$ | $\nabla\cdot\boldsymbol\sigma + \rho\mathbf b = 0$ |
-| **Constitutive law** | $F = k\,\Delta L$ | $p = f(\rho, T)$ | $\boldsymbol\sigma = K\,\text{tr}(\boldsymbol\varepsilon)\,\mathbf I + 2G\,\boldsymbol\varepsilon^{\text{dev}}$ |
-| **Kinematics** | $\Delta L = u_2 - u_1$ | $\Delta V = f(\Delta L)$ | $\boldsymbol\varepsilon = \tfrac12\left(\nabla\mathbf u + (\nabla\mathbf u)^T\right)$ |
-| **Boundary conditions** | Newton's third law, or no forces | $p(z{=}0) = p_0 = 1\,\text{atm}$ | $\mathbf u$ prescribed (fixed) or $\mathbf t = \boldsymbol\sigma\mathbf n$ prescribed (loaded / free) |
+|                         | Particles                         | Fluids                                                                                           | Solids                                                                                                          |
+| ----------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| **Balance equation**    | $\sum \mathbf F + m\mathbf g = 0$ | $-\nabla p + \rho\mathbf b = 0$, i.e. $\partial_x p = \partial_y p = 0,\ \partial_z p = -\rho g$ | $\nabla\cdot\boldsymbol\sigma + \rho\mathbf b = 0$                                                              |
+| **Constitutive law**    | $F = k\,\Delta L$                 | $p = f(\rho, T)$                                                                                 | $\boldsymbol\sigma = K\,\text{tr}(\boldsymbol\varepsilon)\,\mathbf I + 2G\,\boldsymbol\varepsilon^{\text{dev}}$ |
+| **Kinematics**          | $\Delta L = u_2 - u_1$            | $\Delta V = f(\Delta L)$                                                                         | $\boldsymbol\varepsilon = \tfrac12\left(\nabla\mathbf u + (\nabla\mathbf u)^T\right)$                           |
+| **Boundary conditions** | Newton's third law, or no forces  | $p(z{=}0) = p_0 = 1\,\text{atm}$                                                                 | $\mathbf u$ prescribed (fixed) or $\mathbf t = \boldsymbol\sigma\mathbf n$ prescribed (loaded / free)           |
 
 Fluids cannot support shear stress at rest; solids can.
 
@@ -181,23 +181,23 @@ $$
 
 where $\mathbf n$ is the outward unit normal.
 
-| Condition | Meaning | Example |
-|---|---|---|
-| $\mathbf u = 0$ | Fixed support | Clamped left end of a bar |
-| $\mathbf t = 0$ | Traction-free surface | Unloaded top, bottom, and free end |
-| $\mathbf t = \bar{\mathbf t}$ | Applied load | $t = -1000\,\text{MPa}$ pressing on a face (compressive) |
+| Condition                     | Meaning               | Example                                                  |
+| ----------------------------- | --------------------- | -------------------------------------------------------- |
+| $\mathbf u = 0$               | Fixed support         | Clamped left end of a bar                                |
+| $\mathbf t = 0$               | Traction-free surface | Unloaded top, bottom, and free end                       |
+| $\mathbf t = \bar{\mathbf t}$ | Applied load          | $t = -1000\,\text{MPa}$ pressing on a face (compressive) |
 
 ### Recap
 
-| Quantity | Result |
-|---|---|
-| Static fluid equilibrium | $dp/dz = -\rho g$ from $\boldsymbol\sigma = -p\mathbf I$ |
-| Constitutive law | EOS $p = f(\rho,T)$ |
-| Mass conservation | $d\rho/\rho = -dV/V$ |
-| Bulk modulus | $K = \rho\,\partial p/\partial\rho$; ideal gas: $K_T = p$, $K_S = \gamma p$ |
-| Gravity | $g_0 r/R_E$ inside, $g_0(R_E/r)^2$ outside |
-| Atmosphere | $p = p_0\exp[-g_0R_Ez/(RT(R_E+z))]$ |
-| Solid model | $\nabla\cdot\boldsymbol\sigma+\rho\mathbf b=0$; $\boldsymbol\sigma = K\,\text{tr}(\boldsymbol\varepsilon)\mathbf I + 2G\boldsymbol\varepsilon^{\text{dev}}$; $\boldsymbol\varepsilon = \tfrac12(\nabla\mathbf u+\nabla\mathbf u^T)$; BCs $\mathbf u$ or $\mathbf t=\boldsymbol\sigma\mathbf n$ |
+| Quantity                 | Result                                                                                                                                                                                                                                                                                         |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Static fluid equilibrium | $dp/dz = -\rho g$ from $\boldsymbol\sigma = -p\mathbf I$                                                                                                                                                                                                                                       |
+| Constitutive law         | EOS $p = f(\rho,T)$                                                                                                                                                                                                                                                                            |
+| Mass conservation        | $d\rho/\rho = -dV/V$                                                                                                                                                                                                                                                                           |
+| Bulk modulus             | $K = \rho\,\partial p/\partial\rho$; ideal gas: $K_T = p$, $K_S = \gamma p$                                                                                                                                                                                                                    |
+| Gravity                  | $g_0 r/R_E$ inside, $g_0(R_E/r)^2$ outside                                                                                                                                                                                                                                                     |
+| Atmosphere               | $p = p_0\exp[-g_0R_Ez/(RT(R_E+z))]$                                                                                                                                                                                                                                                            |
+| Solid model              | $\nabla\cdot\boldsymbol\sigma+\rho\mathbf b=0$; $\boldsymbol\sigma = K\,\text{tr}(\boldsymbol\varepsilon)\mathbf I + 2G\boldsymbol\varepsilon^{\text{dev}}$; $\boldsymbol\varepsilon = \tfrac12(\nabla\mathbf u+\nabla\mathbf u^T)$; BCs $\mathbf u$ or $\mathbf t=\boldsymbol\sigma\mathbf n$ |
 
 ### Check Understanding
 

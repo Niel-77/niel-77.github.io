@@ -15,5 +15,5 @@ finished:
 released: 1962
 status: Reading
 ---
-Research is the accretion of past knowledge and expanding that knowledge. Every time a new paradigm is introduced that challenges the existing research, it faces backlashes in adoption by the existing scientific community. But, these paradigms overcome such challenges and become a widely used method that advances the science and these can be called scientific revolutions. This book focuses on how scientific knowledge is accumulated over time and what inhibits its accumulation. 
 
+Research is the accretion of past knowledge and expanding that knowledge. Every time a new paradigm is introduced that challenges the existing research, it faces backlashes in adoption by the existing scientific community. But, these paradigms overcome such challenges and become a widely used method that advances the science and these can be called scientific revolutions. This book focuses on how scientific knowledge is accumulated over time and what inhibits its accumulation.

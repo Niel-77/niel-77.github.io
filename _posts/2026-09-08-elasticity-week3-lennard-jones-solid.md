@@ -29,23 +29,23 @@ $$
 \phi(r) = 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6}\right]
 $$
 
-| Term | Role |
-|---|---|
-| $(\sigma/r)^{12}$ | Repulsion, short-ranged and steep |
-| $(\sigma/r)^{6}$ | Attraction, longer-ranged |
-| $\epsilon$ | Well depth: how strong the attraction is; loosely related to melting temperature |
-| $\sigma$ | Distance where $\phi = 0$; only loosely related to atomic size |
+| Term              | Role                                                                             |
+| ----------------- | -------------------------------------------------------------------------------- |
+| $(\sigma/r)^{12}$ | Repulsion, short-ranged and steep                                                |
+| $(\sigma/r)^{6}$  | Attraction, longer-ranged                                                        |
+| $\epsilon$        | Well depth: how strong the attraction is; loosely related to melting temperature |
+| $\sigma$          | Distance where $\phi = 0$; only loosely related to atomic size                   |
 
 {% include figure.liquid path="assets/img/elasticity/lj_pair_potential.png" class="img-fluid rounded z-depth-1" caption="Lennard-Jones pair potential: steep repulsion plus weaker, longer-ranged attraction." %}
 
 Fitted values:
 
 | Element | Atomic # | $\sigma$ (Å) | $\epsilon$ (eV) |
-|---|---|---|---|
-| He | 2 | 2.56 | 0.00088 |
-| Fe | 26 | 2.32 | 0.401 |
-| Ni | 28 | 2.55 | 0.245 |
-| Cu | 29 | 2.38 | 0.415 |
+| ------- | -------- | ------------ | --------------- |
+| He      | 2        | 2.56         | 0.00088         |
+| Fe      | 26       | 2.32         | 0.401           |
+| Ni      | 28       | 2.55         | 0.245           |
+| Cu      | 29       | 2.38         | 0.415           |
 
 **Example: Fe, nearest-neighbor-diagonal bond.** Atoms $(0,0,0)$ and $(0,-1,1)$ are $a\sqrt2$ apart. Take $a = 2\sigma$, so $r = 2\sqrt2\,\sigma$ and $(2\sqrt2)^6 = 512$:
 
@@ -100,10 +100,10 @@ $$
 
 ### 5. Key points on the $P$–$V$ curve
 
-| Point | Condition | Result |
-|---|---|---|
-| Equilibrium (unloaded) | $P = 0$ | $a_0 = \sigma\,(2S_{12}/S_6)^{1/6} \approx 1.067\,\sigma$ |
-| Binding energy per atom | $U(a_0)$ | $-S_6^2\epsilon/(2S_{12}) \approx -5.69\,\epsilon$ |
+| Point                                  | Condition   | Result                                                                 |
+| -------------------------------------- | ----------- | ---------------------------------------------------------------------- |
+| Equilibrium (unloaded)                 | $P = 0$     | $a_0 = \sigma\,(2S_{12}/S_6)^{1/6} \approx 1.067\,\sigma$              |
+| Binding energy per atom                | $U(a_0)$    | $-S_6^2\epsilon/(2S_{12}) \approx -5.69\,\epsilon$                     |
 | Maximum tension (theoretical strength) | $dP/da = 0$ | $a \approx 1.162\,\sigma$, $P_{\min} \approx -3.48\,\epsilon/\sigma^3$ |
 
 {% include figure.liquid path="assets/img/elasticity/lj_pressure_volume.png" class="img-fluid rounded z-depth-1" caption="Pressure versus volume for the lattice. The shaded region is tensile pressure, which a gas cannot support. The gas curve is illustrative, with an arbitrary constant." %}
@@ -144,11 +144,11 @@ U = 2\epsilon\left[S_{12}(\lambda)\left(\frac{\sigma}{a}\right)^{12} - S_6(\lamb
 S_n(\lambda) = \sum_{\substack{i,j,k\\(i,j,k)\neq 0}}\left(\lambda^2 i^2 + \frac{j^2+k^2}{\lambda}\right)^{-n/2}
 $$
 
-| $\lambda$ | $S_6(\lambda)$ | $S_{12}(\lambda)$ |
-|---|---|---|
-| $1/2$ (compression) | 132.34 | 8194.16 |
-| $1$ (cubic) | 8.4019 | 6.2021 |
-| $2$ (expansion) | 37.696 | 260.10 |
+| $\lambda$           | $S_6(\lambda)$ | $S_{12}(\lambda)$ |
+| ------------------- | -------------- | ----------------- |
+| $1/2$ (compression) | 132.34         | 8194.16           |
+| $1$ (cubic)         | 8.4019         | 6.2021            |
+| $2$ (expansion)     | 37.696         | 260.10            |
 
 Compression packs atoms closer along $x$, so the sums blow up and the repulsive $S_{12}$ term dominates.
 
@@ -161,11 +161,11 @@ At $a = a_0$, $\lambda=1$ gives the lowest energy, $\approx -5.69\,\epsilon$ per
 - **Ideal gas, isothermal:** $P \propto 1/V$. $P$ is always positive and has no equilibrium volume.
 - **Lattice:** $P(V)$ crosses zero at $V_0 = Na_0^3$ and dips negative for $V>V_0$.
 
-| System | Can it support $P<0$? | Why |
-|---|---|---|
-| Ideal gas | No | No bonds to resist expansion |
-| Liquid, short of cavitation | Briefly | Attraction between neighbors |
-| Solid | Yes | Bonded lattice resists being stretched |
+| System                      | Can it support $P<0$? | Why                                    |
+| --------------------------- | --------------------- | -------------------------------------- |
+| Ideal gas                   | No                    | No bonds to resist expansion           |
+| Liquid, short of cavitation | Briefly               | Attraction between neighbors           |
+| Solid                       | Yes                   | Bonded lattice resists being stretched |
 
 This is the continuum link: near $V_0$, $P$ is approximately linear in $V - V_0$ with slope set by $K = -V\,dP/dV$ (Week 2), the bulk modulus.
 
@@ -173,10 +173,10 @@ This is the continuum link: near $V_0$, $P$ is approximately linear in $V - V_0$
 
 Take a cube of side $a$ (state $S_0$, undeformed) and stretch it to $2a \times a/\sqrt2 \times a/\sqrt2$ (state $S_t$, current). The cell volume stays $a^3$, so $V_0 = V_t$: a **volume-preserving (isochoric)** deformation, i.e. pure shape change. This is the $\lambda = 2$ lattice of Section 6.
 
-| | Energy cost of this shape change | Reason |
-|---|---|---|
-| Fluid | None: $U_t = U_0$ | No resistance to pure shape change (no shear stiffness) |
-| Solid | Large: $U_t \gg U_0$ | Bonds are stretched and compressed |
+|       | Energy cost of this shape change | Reason                                                  |
+| ----- | -------------------------------- | ------------------------------------------------------- |
+| Fluid | None: $U_t = U_0$                | No resistance to pure shape change (no shear stiffness) |
+| Solid | Large: $U_t \gg U_0$             | Bonds are stretched and compressed                      |
 
 Check with the Lennard-Jones lattice at $a = a_0$: $U_0 \approx -5.69\,\epsilon$ per atom, but at $\lambda = 2$, $U_t \approx +188\,\epsilon$.
 
@@ -186,12 +186,12 @@ A linear spring stores $\tfrac12 k x^2$, with $x$ the change in length from the 
 
 {% include figure.liquid path="assets/img/elasticity/lj_vs_spring.png" class="img-fluid rounded z-depth-1" caption="Lennard-Jones energy versus its harmonic-spring approximation. They agree near $a_0$ only." %}
 
-| | Harmonic spring | Lennard-Jones |
-|---|---|---|
-| Shape | Symmetric parabola | Asymmetric: steep wall, long tail |
+|                          | Harmonic spring                                          | Lennard-Jones                             |
+| ------------------------ | -------------------------------------------------------- | ----------------------------------------- |
+| Shape                    | Symmetric parabola                                       | Asymmetric: steep wall, long tail         |
 | Compressing to $l \to 0$ | Finite energy (unphysical: matter collapsing to nothing) | Energy $\to\infty$ (repulsion forbids it) |
-| Stretching far | Energy grows without bound | Energy levels off at $0$ (bond breaks) |
-| Valid | Small $x$ only | All $a$ in the model |
+| Stretching far           | Energy grows without bound                               | Energy levels off at $0$ (bond breaks)    |
+| Valid                    | Small $x$ only                                           | All $a$ in the model                      |
 
 **Thermal expansion.** Raising the temperature gives atoms more energy, so they oscillate between a turning point $l_{\min}$ and a larger $l_{\max}$. Because the well is asymmetric, the midpoint $l_{eq}$ moves outward as $T$ rises. A symmetric spring would give no thermal expansion.
 
@@ -205,18 +205,18 @@ $$
 
 For an isochoric (volume-preserving) deformation, $\nu = \tfrac12$.
 
-| Condition | Statement |
-|---|---|
-| Exact | $\det\mathbf F = 1$ |
+| Condition    | Statement                                                  |
+| ------------ | ---------------------------------------------------------- |
+| Exact        | $\det\mathbf F = 1$                                        |
 | Small strain | $\text{tr}(\boldsymbol\varepsilon) = \varepsilon_{kk} = 0$ |
 
 Why $\nu = \tfrac12$: for small strain, $\varepsilon_{\text{axial}} + 2\varepsilon_{\text{lateral}} = 0$, so $\varepsilon_{\text{lateral}} = -\tfrac12\varepsilon_{\text{axial}}$.
 
-| Material | $\nu$ | Comment |
-|---|---|---|
-| Rubber | $\approx 0.5$ | Nearly incompressible, so it satisfies the condition |
-| Steel | $\approx 0.3$ | Changes volume under axial load |
-| Cork | $\approx 0$ | Barely expands sideways when compressed |
+| Material | $\nu$         | Comment                                              |
+| -------- | ------------- | ---------------------------------------------------- |
+| Rubber   | $\approx 0.5$ | Nearly incompressible, so it satisfies the condition |
+| Steel    | $\approx 0.3$ | Changes volume under axial load                      |
+| Cork     | $\approx 0$   | Barely expands sideways when compressed              |
 
 So $\nu = \tfrac12$ is the incompressible limit, not a universal value.
 
@@ -254,17 +254,17 @@ $$
 
 ### Recap
 
-| Quantity | Result |
-|---|---|
-| Pair potential | $\phi = 4\epsilon[(\sigma/r)^{12} - (\sigma/r)^6]$ |
-| Energy per atom | $U = 2\epsilon[S_{12}(\sigma/a)^{12} - S_6(\sigma/a)^6]$ |
-| Pressure | $P = -\dfrac{1}{3a^2}\dfrac{dU}{da} = 4\epsilon\left[\dfrac{2S_{12}N^5\sigma^{12}}{V^5} - \dfrac{S_6N^3\sigma^6}{V^3}\right]$ |
-| Equilibrium | $a_0 \approx 1.067\,\sigma$ |
-| Distinguishing feature | $P<0$ for $V>V_0$: solids support tension |
-| Shape change | Free in fluids ($U_t = U_0$), costly in solids ($U_t \gg U_0$) |
-| Thermal expansion | Asymmetric well: mean spacing grows with $T$ |
-| Incompressible | $\det\mathbf F = 1$, $\nu = \tfrac12$ |
-| Strain | $\boldsymbol\varepsilon = \tfrac12(\mathbf F + \mathbf F^T) - \mathbf I$ (small deformation) |
+| Quantity               | Result                                                                                                                        |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Pair potential         | $\phi = 4\epsilon[(\sigma/r)^{12} - (\sigma/r)^6]$                                                                            |
+| Energy per atom        | $U = 2\epsilon[S_{12}(\sigma/a)^{12} - S_6(\sigma/a)^6]$                                                                      |
+| Pressure               | $P = -\dfrac{1}{3a^2}\dfrac{dU}{da} = 4\epsilon\left[\dfrac{2S_{12}N^5\sigma^{12}}{V^5} - \dfrac{S_6N^3\sigma^6}{V^3}\right]$ |
+| Equilibrium            | $a_0 \approx 1.067\,\sigma$                                                                                                   |
+| Distinguishing feature | $P<0$ for $V>V_0$: solids support tension                                                                                     |
+| Shape change           | Free in fluids ($U_t = U_0$), costly in solids ($U_t \gg U_0$)                                                                |
+| Thermal expansion      | Asymmetric well: mean spacing grows with $T$                                                                                  |
+| Incompressible         | $\det\mathbf F = 1$, $\nu = \tfrac12$                                                                                         |
+| Strain                 | $\boldsymbol\varepsilon = \tfrac12(\mathbf F + \mathbf F^T) - \mathbf I$ (small deformation)                                  |
 
 ### Check Understanding
 
