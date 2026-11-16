@@ -7,7 +7,7 @@ tags:
 related_posts: false
 ---
 
-A **linear operator** acts on a function the way a **matrix** acts on a vector. This post first checks when an operator is "symmetric" under the inner product, then covers the four standard matrix factorizations — LU, QR, eigenvalue decomposition (EVD) and singular value decomposition (SVD) — and when to use each.
+A **linear operator** acts on a function the way a **matrix** acts on a vector. This post first checks when an operator is "symmetric" under the inner product, then covers the four standard matrix factorizations — LU, QR, eigenvalue decomposition (EVD) and singular value decomposition (SVD) — when to use each, and how a truncated SVD reconstructs and compresses data. The follow-up post on [Principal Component Analysis]({% post_url 2026-11-15-meen602-principal-component-analysis %}) builds on §7–8.
 
 ### 1. Inner products and linear operators
 
@@ -324,17 +324,107 @@ $A$ sends the perpendicular pair $\vec v_1,\vec v_2$ to the perpendicular pair $
 - For symmetric $A$, $\sigma_i=\lvert\lambda_i\rvert$. They equal the eigenvalues only if all $\lambda_i\ge0$. For $A_5$ in §3: $\lambda=8,-2$ but $\sigma=8,2$.
 - For non-symmetric matrices there is no simple relation: the shear above has $\lambda=1,1$ but $\sigma=2.414,\ 0.414$.
 
+### 8. Data reconstruction with SVD
+
+**Outer-product expansion.** Multiplying out $U\Sigma V^T$ column by column writes any rank-$r$ matrix as a sum of $r$ rank-1 matrices:
+
+$$
+A=\sum_{i=1}^{r}\sigma_i\,\vec u_i\vec v_i^T=\sigma_1\vec u_1\vec v_1^T+\sigma_2\vec u_2\vec v_2^T+\dots+\sigma_r\vec u_r\vec v_r^T,\qquad r\le\min(m,n).
+$$
+
+Each term $\vec u_i\vec v_i^T$ is an $m\times n$ matrix of rank 1, weighted by its singular value. Keeping all $r$ terms reconstructs $A$ exactly. Truncating after $k<r$ terms gives the **rank-$k$ approximation**
+
+$$
+A_k=\sum_{i=1}^{k}\sigma_i\,\vec u_i\vec v_i^T .
+$$
+
+**Why the first $k$ terms are the right ones (Eckart–Young–Mirsky theorem).** Among _all_ matrices of rank $k$, $A_k$ is the closest to $A$, in both the spectral and Frobenius norms:
+
+$$
+\lVert A-A_k\rVert_2=\sigma_{k+1},\qquad
+\lVert A-A_k\rVert_F=\sqrt{\sigma_{k+1}^2+\dots+\sigma_r^2}.
+$$
+
+So the error is set entirely by the singular values we throw away. (In class this was called the data compression theorem; in the literature it is the Eckart–Young or Eckart–Young–Mirsky theorem.)
+
+**Worked example.** Continue with $A$ from §7, where $\sigma_1=2.414$, $\sigma_2=0.414$. The rank-1 approximation is
+
+$$
+A_1=\sigma_1\vec u_1\vec v_1^T
+=2.414\begin{bmatrix}0.924\\0.383\end{bmatrix}\begin{bmatrix}0.383&0.924\end{bmatrix}
+=\begin{bmatrix}0.854&2.061\\0.354&0.854\end{bmatrix}
+\quad\text{vs.}\quad
+A=\begin{bmatrix}1&2\\0&1\end{bmatrix}.
+$$
+
+Entry-by-entry relative error $(a_{ij}-\hat a_{ij})/a_{ij}$:
+
+$$
+\begin{bmatrix}14.6\%&-3.0\%\\\text{undefined}&14.6\%\end{bmatrix}
+$$
+
+The $(2,1)$ entry is undefined because $a_{21}=0$. This is why the entry-wise error is a poor summary; the matrix-norm error is better behaved:
+
+$$
+\frac{\lVert A-A_1\rVert_F}{\lVert A\rVert_F}=\frac{\sigma_2}{\sqrt{\sigma_1^2+\sigma_2^2}}=\frac{0.414}{\sqrt6}=16.9\%,
+\qquad \lVert A-A_1\rVert_2=\sigma_2=0.414.
+$$
+
+Adding the second term restores $A$ exactly:
+
+$$
+A_2=A_1+\sigma_2\vec u_2\vec v_2^T
+=\begin{bmatrix}0.854&2.061\\0.354&0.854\end{bmatrix}
++0.414\begin{bmatrix}-0.383\\0.924\end{bmatrix}\begin{bmatrix}-0.924&0.383\end{bmatrix}
+=\begin{bmatrix}1&2\\0&1\end{bmatrix}\ \checkmark
+$$
+
+**Data storage savings.** For an $m\times n$ matrix (tall if $m>n$, short if $m<n$), storing $A$ costs $mn$ numbers. Storing $A_k=U_{m\times k}\Sigma_{k\times k}V_{n\times k}^T$ costs
+
+$$
+\underbrace{mk}_{U_k}+\underbrace{k}_{\text{diagonal of }\Sigma_k}+\underbrace{nk}_{V_k}=k(m+n+1).
+$$
+
+It saves space only when
+
+$$
+k(m+n+1)<mn\quad\Longleftrightarrow\quad k<\frac{mn}{m+n+1}.
+$$
+
+For $m=n=100$: $k<10000/201=49.75$, so $k\le49$ (at $k=50$, $50\times201=10050>10000$ — no saving). With $k=20$:
+
+$$
+\text{saving}=\frac{mn-k(m+n+1)}{mn}=\frac{10000-4020}{10000}=59.8\%\approx60\%.
+$$
+
+**Choosing $k$: energy fraction.** The squared singular values measure how much of the matrix's "energy" (squared Frobenius norm) each mode carries. Pick the smallest $k$ that captures a target, typically 90 % or more:
+
+$$
+E_k=\frac{\sum_{i=1}^{k}\sigma_i^2}{\sum_{i=1}^{r}\sigma_i^2},\qquad
+1-E_k=\left(\frac{\lVert A-A_k\rVert_F}{\lVert A\rVert_F}\right)^2 .
+$$
+
+For the example, $E_1=5.828/6=97.1\%$ — one mode carries almost all the energy, yet the relative Frobenius error is still $\sqrt{1-0.971}=16.9\%$. **An energy fraction is a squared quantity, so 97 % energy is not 97 % accuracy.**
+
+**Edge cases.**
+
+- Ties: if $\sigma_k=\sigma_{k+1}$, the best rank-$k$ approximation is not unique.
+- Compression only pays when the singular values decay quickly. A matrix with flat $\sigma_i$ (e.g. the identity, or white noise) has $E_k=k/r$ and no good low-rank approximation.
+- Truncating also filters noise: small $\sigma_i$ usually carry measurement noise, so $A_k$ can be _closer to the true signal_ than $A$ itself.
+
 ### Recap
 
-| Topic                 | Core idea                                                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------------ |
-| Self-adjoint operator | $\langle Lf,g\rangle=\langle f,Lg\rangle$; for $d^2/dx^2$ it needs vanishing boundary terms.           |
-| Why decompose         | Avoid $A^{-1}$; save flops and memory; keep dominant modes (POD / PCA).                                |
-| PD / PSD / ND         | $\vec x^TA\vec x>0\ /\ \ge0\ /\ <0 \iff$ all $\lambda>0\ /\ \ge0\ /\ <0$ (symmetric $A$).              |
-| LU                    | $A=LU$; forward then back substitution. Doolittle ($l_{ii}=1$), Crout ($u_{ii}=1$), Cholesky ($LL^T$). |
-| QR                    | $A=QR$, $R\vec x=Q^T\vec c$; Gram–Schmidt; any shape.                                                  |
-| EVD                   | $A=Q\Lambda Q^{-1}$ ($Q\Lambda Q^T$ if symmetric); frequencies, powers; square and diagonalizable.     |
-| SVD                   | $A=U\Sigma V^T$, $\sigma=\sqrt{\lambda(A^TA)}\ge0$; any matrix, orthogonal vectors.                    |
+| Topic                 | Core idea                                                                                                         |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Self-adjoint operator | $\langle Lf,g\rangle=\langle f,Lg\rangle$; for $d^2/dx^2$ it needs vanishing boundary terms.                      |
+| Why decompose         | Avoid $A^{-1}$; save flops and memory; keep dominant modes (POD / PCA).                                           |
+| PD / PSD / ND         | $\vec x^TA\vec x>0\ /\ \ge0\ /\ <0 \iff$ all $\lambda>0\ /\ \ge0\ /\ <0$ (symmetric $A$).                         |
+| LU                    | $A=LU$; forward then back substitution. Doolittle ($l_{ii}=1$), Crout ($u_{ii}=1$), Cholesky ($LL^T$).            |
+| QR                    | $A=QR$, $R\vec x=Q^T\vec c$; Gram–Schmidt; any shape.                                                             |
+| EVD                   | $A=Q\Lambda Q^{-1}$ ($Q\Lambda Q^T$ if symmetric); frequencies, powers; square and diagonalizable.                |
+| SVD                   | $A=U\Sigma V^T$, $\sigma=\sqrt{\lambda(A^TA)}\ge0$; any matrix, orthogonal vectors.                               |
+| Data reconstruction   | $A_k=\sum_{i\le k}\sigma_i\vec u_i\vec v_i^T$ is the best rank-$k$ fit; error $=\sigma_{k+1}$ (2-norm).           |
+| Storage               | $k(m+n+1)$ vs. $mn$; saves only if $k<mn/(m+n+1)$. Choose $k$ by energy $\sum_{i\le k}\sigma_i^2/\sum\sigma_i^2$. |
 
 ### Check our understanding
 
@@ -360,6 +450,9 @@ $A$ sends the perpendicular pair $\vec v_1,\vec v_2$ to the perpendicular pair $
 18. Eigenvalue decomposition applies directly to rectangular matrices.
 19. Singular values are always real and non-negative.
 20. The matrix with rows $[1,2]$ and $[0,1]$ has singular values equal to its eigenvalues (both 1).
+21. The rank-$k$ SVD truncation $A_k$ is the best rank-$k$ approximation of $A$ in the Frobenius norm.
+22. Storing a rank-$k$ approximation of a $100\times100$ matrix saves memory for $k=50$.
+23. If the first mode captures 97 % of the energy, the rank-1 approximation is accurate to within 3 %.
 
 <details markdown="1">
 <summary><strong>View Answer Key</strong></summary>
@@ -384,6 +477,9 @@ $A$ sends the perpendicular pair $\vec v_1,\vec v_2$ to the perpendicular pair $
 18. **False.** $A\vec v=\lambda\vec v$ needs a square matrix; use SVD.
 19. **True.** $\sigma_i=\sqrt{\lambda_i(A^TA)}$ and $A^TA$ is positive semi-definite.
 20. **False.** Eigenvalues are $1,1$; singular values are $2.414$ and $0.414$.
+21. **True.** Eckart–Young–Mirsky; the error is $\sqrt{\sigma_{k+1}^2+\dots+\sigma_r^2}$.
+22. **False.** $50(100+100+1)=10050>10000$; the break-even is $k\le49$.
+23. **False.** Energy is squared: the relative Frobenius error is $\sqrt{0.03}\approx17\%$ (our $2\times2$ example).
 
 </details>
 
